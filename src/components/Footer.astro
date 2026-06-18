@@ -7,8 +7,11 @@ const categories = (await getCollection("categories")).sort((a, b) => a.data.ord
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-ink-950 text-ink-300">
-  <Container class="grid grid-cols-1 gap-12 py-16 lg:grid-cols-4">
+<footer class="relative overflow-hidden bg-ink-950 text-ink-300">
+  <div class="absolute inset-0 bg-grain"></div>
+  <div class="glow-orb -left-24 top-0 h-72 w-72 bg-brand-500/10"></div>
+
+  <Container class="relative grid grid-cols-1 gap-12 py-16 lg:grid-cols-4">
     <div>
       <Logo variant="light" />
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-400">
@@ -17,7 +20,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-white">Categorías</h3>
+      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Categorías</h3>
       <ul class="mt-4 space-y-2.5">
         {
           categories.map((category) => (
@@ -32,7 +35,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-white">Esmera Online</h3>
+      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Esmera Online</h3>
       <ul class="mt-4 space-y-2.5">
         <li><a href="/nosotros" class="text-sm text-ink-400 hover:text-brand-400">Nosotros</a></li>
         <li><a href="/cursos" class="text-sm text-ink-400 hover:text-brand-400">Todos los cursos</a></li>
@@ -42,7 +45,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="text-sm font-semibold text-white">Habla con nosotros</h3>
+      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Habla con nosotros</h3>
       <ul class="mt-4 space-y-2.5">
         <li><a href="mailto:info@esmeraonline.com" class="text-sm text-ink-400 hover:text-brand-400">info@esmeraonline.com</a></li>
         <li><a href="/contacto" class="text-sm text-ink-400 hover:text-brand-400">Solicitar información</a></li>
@@ -50,7 +53,7 @@ const year = new Date().getFullYear();
     </div>
   </Container>
 
-  <div class="border-t border-white/10">
+  <div class="relative border-t border-white/10">
     <Container class="flex flex-col gap-2 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
       <p>&copy; {year} Esmera Online — Grupo Esmera Global. Todos los derechos reservados.</p>
       <div class="flex gap-5">

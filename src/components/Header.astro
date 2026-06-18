@@ -2,6 +2,7 @@
 import Logo from "./Logo.astro";
 import Button from "./ui/Button.astro";
 import Container from "./ui/Container.astro";
+import Icon from "./Icon.astro";
 import { getCollection } from "astro:content";
 
 const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
@@ -11,55 +12,79 @@ const navLinks = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/blog", label: "Blog" },
 ];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 border-b border-transparent bg-white/80 backdrop-blur-md transition-shadow duration-300"
+  class="sticky top-0 z-50 border-b border-ink-100/70 bg-white/85 backdrop-blur-md transition-shadow duration-300"
 >
   <Container class="flex h-18 items-center justify-between py-3">
     <Logo imageOnly />
 
-    <nav class="hidden items-center gap-8 lg:flex">
+    <nav class="hidden items-center gap-7 lg:flex">
       <div class="group relative">
-        <button class="flex items-center gap-1 text-sm font-medium text-ink-700 transition-colors duration-200 hover:text-brand-700">
+        <button class="relative flex cursor-pointer items-center gap-1 text-sm font-medium text-ink-700 transition-colors duration-200 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-brand-600 after:transition-all after:duration-300 hover:text-brand-700 group-hover:after:w-[calc(100%-0.85rem)]">
           Categorías
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" class="text-ink-400 transition-transform duration-200 group-hover:rotate-180">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
           </svg>
         </button>
         <div
-          class="invisible absolute left-1/2 top-full grid w-72 -translate-x-1/2 translate-y-1 grid-cols-1 gap-1 rounded-2xl border border-ink-100 bg-white p-3 opacity-0 shadow-xl shadow-ink-900/5 transition-all duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+          class="invisible absolute left-1/2 top-full grid w-80 -translate-x-1/2 translate-y-1 grid-cols-1 gap-0.5 rounded-2xl border border-ink-100 bg-white p-2 opacity-0 shadow-xl shadow-ink-900/10 transition-all duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
         >
           {
             categories.map((category) => (
               <a
                 href={`/categorias/${category.id}`}
-                class="rounded-xl px-3 py-2.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700"
+                class="group/item flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700"
               >
-                {category.data.name}
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-150 group-hover/item:bg-white">
+                  <Icon name={(category.data.icon as "sparkles" | "shield" | "megaphone") ?? "sparkles"} class="h-4 w-4" />
+                </span>
+                <span>
+                  <span class="block">{category.data.name}</span>
+                  <span class="block text-xs font-normal text-ink-400">{category.data.description}</span>
+                </span>
               </a>
             ))
           }
+          <a
+            href="/cursos"
+            class="mt-1 flex items-center justify-between rounded-xl border-t border-ink-100 px-3 py-2.5 text-sm font-semibold text-brand-700 transition-colors duration-150 hover:bg-brand-50"
+          >
+            Ver todos los cursos
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
       {
         navLinks.map((link) => (
-          <a href={link.href} class="text-sm font-medium text-ink-700 transition-colors duration-200 hover:text-brand-700">
+          <a
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            class:list={[
+              "relative text-sm font-medium transition-colors duration-200 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-brand-600 after:transition-all after:duration-300 hover:text-brand-700 hover:after:w-full",
+              isActive(link.href) ? "text-brand-700 after:w-full" : "text-ink-700 after:w-0",
+            ]}
+          >
             {link.label}
           </a>
         ))
       }
     </nav>
 
-    <div class="hidden lg:block">
+    <div class="hidden items-center gap-5 lg:flex">
+      <span class="h-6 w-px bg-ink-100" aria-hidden="true"></span>
       <Button href="/contacto" variant="primary">Habla con un asesor</Button>
     </div>
 
     <button
       id="mobile-menu-button"
-      class="relative inline-flex h-9 w-9 items-center justify-center rounded-full text-ink-700 lg:hidden"
+      class="relative inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-ink-700 lg:hidden"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -162,8 +187,6 @@ const navLinks = [
     const scrolled = window.scrollY > 8;
     header.classList.toggle("shadow-sm", scrolled);
     header.classList.toggle("shadow-ink-900/5", scrolled);
-    header.classList.toggle("border-ink-100", scrolled);
-    header.classList.toggle("border-transparent", !scrolled);
   }
 
   window.addEventListener("scroll", updateHeaderShadow, { passive: true });

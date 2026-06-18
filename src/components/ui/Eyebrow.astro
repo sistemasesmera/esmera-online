@@ -6,7 +6,7 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
-<span class={`inline-flex items-center gap-2 text-sm font-medium text-brand-700 ${className}`}>
-  <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>
+<span class={`inline-flex items-center gap-2.5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand-700 ${className}`}>
+  <span class="h-px w-5 bg-brand-500"></span>
   <slot />
 </span>

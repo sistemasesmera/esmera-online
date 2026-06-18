@@ -26,37 +26,37 @@ const courses = presetCourse ? [] : await getCollection("courses");
     {presetCourse && <input type="hidden" name="courseOfInterest" value={presetCourse} />}
 
     <div>
-      <label for="lead-name" class="mb-1.5 block text-sm font-medium text-ink-700">Nombre completo</label>
+      <label for="lead-name" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">Nombre completo</label>
       <input
         id="lead-name"
         name="name"
         type="text"
         required
-        class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+        class="w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
         placeholder="Tu nombre"
       />
     </div>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <div>
-        <label for="lead-email" class="mb-1.5 block text-sm font-medium text-ink-700">Email</label>
+        <label for="lead-email" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">Email</label>
         <input
           id="lead-email"
           name="email"
           type="email"
           required
-          class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          class="w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
           placeholder="tu@email.com"
         />
       </div>
       <div>
-        <label for="lead-phone" class="mb-1.5 block text-sm font-medium text-ink-700">Teléfono</label>
+        <label for="lead-phone" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">Teléfono</label>
         <input
           id="lead-phone"
           name="phone"
           type="tel"
           required
-          class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          class="w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
           placeholder="600 000 000"
         />
       </div>
@@ -65,13 +65,13 @@ const courses = presetCourse ? [] : await getCollection("courses");
     {
       !presetCourse && (
         <div>
-          <label for="lead-course" class="mb-1.5 block text-sm font-medium text-ink-700">
+          <label for="lead-course" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">
             Curso de interés
           </label>
           <select
             id="lead-course"
             name="courseOfInterest"
-            class="w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+            class="w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
           >
             <option value="">Aún no lo sé / quiero orientación</option>
             {courses.map((course) => (
@@ -83,21 +83,21 @@ const courses = presetCourse ? [] : await getCollection("courses");
     }
 
     <div>
-      <label for="lead-message" class="mb-1.5 block text-sm font-medium text-ink-700">
+      <label for="lead-message" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">
         ¿Qué te gustaría conseguir? <span class="text-ink-400">(opcional)</span>
       </label>
       <textarea
         id="lead-message"
         name="message"
         rows="3"
-        class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+        class="w-full rounded-lg border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
         placeholder="Ej: quiero cambiar de profesión, especializarme, encontrar empleo..."
       ></textarea>
     </div>
 
     <button
       type="submit"
-      class="w-full rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+      class="w-full rounded-lg bg-brand-600 px-6 py-3 font-display text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_8px_20px_-10px_var(--color-brand-700)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700"
     >
       Solicitar información
     </button>

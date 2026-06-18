@@ -9,12 +9,13 @@ interface Props {
 const { href, variant = "primary", size = "md", class: className = "" } = Astro.props;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-all duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-display font-semibold tracking-tight whitespace-nowrap transition-all duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]";
 
 const variants: Record<string, string> = {
-  primary: "bg-brand-600 text-white hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/25",
+  primary:
+    "bg-brand-600 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_8px_20px_-10px_var(--color-brand-700)] hover:bg-brand-700 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_14px_28px_-10px_var(--color-brand-700)]",
   secondary: "bg-white text-ink-900 ring-1 ring-inset ring-ink-200 hover:bg-ink-50 hover:ring-ink-300",
-  ghost: "text-ink-900 hover:text-brand-700",
+  ghost: "text-ink-900 underline decoration-brand-300 decoration-2 underline-offset-4 hover:text-brand-700 hover:decoration-brand-600",
 };
 
 const sizes: Record<string, string> = {

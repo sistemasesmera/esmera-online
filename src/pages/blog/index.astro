@@ -5,8 +5,10 @@ import Eyebrow from "../../components/ui/Eyebrow.astro";
 ---
 
 <Layout title="Blog" description="Artículos sobre formación profesional, empleo y tendencias de cada sector — próximamente en Esmera Online.">
-  <section class="bg-gradient-to-b from-brand-50 to-white py-24">
-    <Container class="max-w-2xl text-center" data-reveal>
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white py-24">
+    <div class="absolute inset-x-0 top-0 -z-10 h-full bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
+
+    <Container class="relative max-w-2xl text-center" data-reveal>
       <Eyebrow class="justify-center">Blog</Eyebrow>
       <h1 class="mt-4 font-display text-4xl font-semibold text-ink-900 sm:text-5xl">Muy pronto</h1>
       <p class="mt-4 text-lg leading-relaxed text-ink-500">

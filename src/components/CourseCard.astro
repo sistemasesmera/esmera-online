@@ -14,8 +14,9 @@ const tutor = await getEntry(course.data.tutor);
 
 <a
   href={`/cursos/${course.id}`}
-  class="group flex flex-col overflow-hidden rounded-3xl border border-ink-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/10"
+  class="group relative flex flex-col overflow-hidden rounded-3xl border border-ink-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/10"
 >
+  <span class="absolute inset-x-0 top-0 z-10 h-[3px] origin-left scale-x-0 bg-brand-500 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
   <div class="aspect-video overflow-hidden">
     <Image
       src={course.data.coverImage}
@@ -26,11 +27,11 @@ const tutor = await getEntry(course.data.tutor);
     />
   </div>
   <div class="flex flex-1 flex-col p-6">
-    {category && <span class="text-xs font-semibold uppercase tracking-wide text-brand-600">{category.data.name}</span>}
+    {category && <span class="font-mono text-xs font-semibold uppercase tracking-wide text-brand-600">{category.data.name}</span>}
     <h3 class="mt-2 font-display text-lg font-semibold text-ink-900">{course.data.title}</h3>
     <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{course.data.shortDescription}</p>
 
-    <div class="mt-5 flex items-center justify-between border-t border-ink-100 pt-4 text-xs text-ink-500">
+    <div class="mt-5 flex items-center justify-between border-t border-ink-100 pt-4 font-mono text-xs text-ink-500">
       <span>{course.data.level} · {course.data.duration}</span>
     </div>
     {tutor && <p class="mt-2 text-xs text-ink-400">Con {tutor.data.name}</p>}

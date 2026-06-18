@@ -1,11 +1,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@import "@fontsource-variable/montserrat";
+@import "@fontsource-variable/albert-sans";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --font-sans: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Albert Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 
   /* Brand teal, derived from the two reference colors #75bcb1 / #5ba099 */
   --color-brand-50: #f1f9f7;
@@ -40,6 +43,48 @@ html {
 
 body {
   font-family: var(--font-sans);
+}
+
+/* Tailwind's preflight resets buttons to the browser's native cursor
+   (default) instead of pointer; restore it for anything clickable. */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
+.font-display {
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* Faint dot-grid texture for "tech" surfaces, see hero/CTA sections in index.astro */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 35%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-dot-grid-light {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-ink-900) 12%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Subtle film-grain texture, layered absolutely behind content on dark/brand sections.
+   Usage: <div class="absolute inset-0 bg-grain"></div> as the first child, with the
+   rest of the section's content wrapped in a sibling carrying `relative` (or `z-10`). */
+.bg-grain {
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Soft brand-colored blur shapes used as decorative depth behind hero/CTA content */
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
 }
 
 /* Scroll-reveal entrance animation, see src/lib/reveal.ts */
@@ -87,6 +132,21 @@ body {
   animation-play-state: paused;
 }
 
+/* Floating social-proof cards in the hero, see index.astro */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -106,7 +166,8 @@ body {
     transition-duration: 0.01ms !important;
   }
 
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float {
     animation: none;
   }
 }
