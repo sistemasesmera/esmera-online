@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ChatWidget from "../components/ChatWidget.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const { title, description, image = "/og-default.png", noIndex = false } = Astro.props;
+
+const siteName = "Esmera Online";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: siteName,
+  url: Astro.site?.toString(),
+  description:
+    "Esmera Online es una empresa de formación profesional online, parte del grupo Esmera Global, con tutorías semanales, tutor asignado y comunidad de alumnos.",
+  logo: new URL("/logo.png", Astro.site).toString(),
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Esmera Global",
+  },
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
+    <ClientRouter />
+    <script>
+      import "../lib/reveal";
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body class="bg-white text-ink-900 antialiased">
+    <Header transition:persist />
+    <main transition:animate="fade">
+      <slot />
+    </main>
+    <Footer transition:persist />
+    <ChatWidget transition:persist />
+  </body>
+</html>

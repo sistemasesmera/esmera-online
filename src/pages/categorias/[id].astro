@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/ui/Container.astro";
+import Eyebrow from "../../components/ui/Eyebrow.astro";
+import CourseCard from "../../components/CourseCard.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  const categories = await getCollection("categories");
+  const courses = await getCollection("courses");
+
+  return categories.map((category) => ({
+    params: { id: category.id },
+    props: { category, courses: courses.filter((course) => course.data.category.id === category.id) },
+  }));
+}) satisfies GetStaticPaths;
+
+const { category, courses } = Astro.props;
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Cursos", item: new URL("/cursos", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: category.data.name, item: new URL(`/categorias/${category.id}`, Astro.site).toString() },
+  ],
+};
+---
+
+<Layout title={category.data.name} description={category.data.description}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+
+  <section class="border-b border-ink-100 bg-gradient-to-b from-brand-50 to-white py-16 sm:py-20">
+    <Container>
+      <div data-reveal>
+        <Eyebrow>Categoría</Eyebrow>
+        <h1 class="mt-4 font-display text-4xl font-semibold text-ink-900 sm:text-5xl">{category.data.name}</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-500">{category.data.description}</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16">
+    <Container>
+      {
+        courses.length > 0 ? (
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {courses.map((course, index) => (
+              <div data-reveal style={`--reveal-delay: ${(index % 3) * 80}ms`}>
+                <CourseCard course={course} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p data-reveal class="text-ink-500">Próximamente nuevos cursos en esta categoría.</p>
+        )
+      }
+    </Container>
+  </section>
+</Layout>

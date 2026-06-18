@@ -1,0 +1,145 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  presetCourse?: string;
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  presetCourse,
+  title = "Habla con un asesor de formación",
+  subtitle = "Cuéntanos qué quieres conseguir y te ayudamos a elegir el camino formativo adecuado.",
+  class: className = "",
+} = Astro.props;
+
+const courses = presetCourse ? [] : await getCollection("courses");
+---
+
+<div class={`rounded-3xl border border-ink-100 bg-white p-8 shadow-xl shadow-ink-900/5 sm:p-10 ${className}`}>
+  <h3 class="font-display text-2xl font-semibold text-ink-900">{title}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-ink-500">{subtitle}</p>
+
+  <form id="lead-form" class="mt-8 space-y-4" novalidate>
+    {presetCourse && <input type="hidden" name="courseOfInterest" value={presetCourse} />}
+
+    <div>
+      <label for="lead-name" class="mb-1.5 block text-sm font-medium text-ink-700">Nombre completo</label>
+      <input
+        id="lead-name"
+        name="name"
+        type="text"
+        required
+        class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+        placeholder="Tu nombre"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label for="lead-email" class="mb-1.5 block text-sm font-medium text-ink-700">Email</label>
+        <input
+          id="lead-email"
+          name="email"
+          type="email"
+          required
+          class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          placeholder="tu@email.com"
+        />
+      </div>
+      <div>
+        <label for="lead-phone" class="mb-1.5 block text-sm font-medium text-ink-700">Teléfono</label>
+        <input
+          id="lead-phone"
+          name="phone"
+          type="tel"
+          required
+          class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          placeholder="600 000 000"
+        />
+      </div>
+    </div>
+
+    {
+      !presetCourse && (
+        <div>
+          <label for="lead-course" class="mb-1.5 block text-sm font-medium text-ink-700">
+            Curso de interés
+          </label>
+          <select
+            id="lead-course"
+            name="courseOfInterest"
+            class="w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          >
+            <option value="">Aún no lo sé / quiero orientación</option>
+            {courses.map((course) => (
+              <option value={course.data.title}>{course.data.title}</option>
+            ))}
+          </select>
+        </div>
+      )
+    }
+
+    <div>
+      <label for="lead-message" class="mb-1.5 block text-sm font-medium text-ink-700">
+        ¿Qué te gustaría conseguir? <span class="text-ink-400">(opcional)</span>
+      </label>
+      <textarea
+        id="lead-message"
+        name="message"
+        rows="3"
+        class="w-full rounded-xl border border-ink-200 px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+        placeholder="Ej: quiero cambiar de profesión, especializarme, encontrar empleo..."
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+    >
+      Solicitar información
+    </button>
+
+    <p id="lead-form-status" class="text-center text-sm text-ink-500" role="status"></p>
+
+    <p class="text-center text-xs leading-relaxed text-ink-400">
+      Al enviar este formulario aceptas nuestra <a href="/privacidad" class="underline hover:text-brand-600">política de privacidad</a>.
+    </p>
+  </form>
+</div>
+
+<script>
+  import { submitLead } from "../lib/leads";
+
+  function initLeadForms() {
+    // <main> is swapped on every View Transitions navigation, so forms are
+    // re-queried (and re-bound) on astro:page-load rather than once at parse time.
+    document.querySelectorAll<HTMLFormElement>("#lead-form").forEach((form) => {
+      if (form.dataset.bound) return;
+      form.dataset.bound = "true";
+
+      const status = form.querySelector<HTMLParagraphElement>("#lead-form-status");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+
+        submitLead({
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          phone: String(data.get("phone") ?? ""),
+          courseOfInterest: String(data.get("courseOfInterest") ?? "") || undefined,
+          message: String(data.get("message") ?? "") || undefined,
+        });
+
+        if (status) {
+          status.textContent = "Abriendo tu cliente de correo para enviar tu solicitud...";
+        }
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initLeadForms);
+</script>

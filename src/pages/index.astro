@@ -1,0 +1,289 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container.astro";
+import Eyebrow from "../components/ui/Eyebrow.astro";
+import Button from "../components/ui/Button.astro";
+import CourseCard from "../components/CourseCard.astro";
+import CategoryCard from "../components/CategoryCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import InstructorCard from "../components/InstructorCard.astro";
+import LeadForm from "../components/LeadForm.astro";
+import Icon from "../components/Icon.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
+const courses = await getCollection("courses");
+const featuredCourses = courses.filter((course) => course.data.featured).sort((a, b) => a.data.order - b.data.order);
+const instructors = await getCollection("instructors");
+const testimonials = (await getCollection("testimonials")).filter((testimonial) => testimonial.data.featured);
+const companies = await getCollection("companies");
+
+const courseCountByCategory = new Map<string, number>();
+for (const course of courses) {
+  const key = course.data.category.id;
+  courseCountByCategory.set(key, (courseCountByCategory.get(key) ?? 0) + 1);
+}
+
+const journeySteps = [
+  { title: "Bienvenida personalizada", description: "Accedes de inmediato y un tutor de bienvenida te guía en tus primeros pasos." },
+  { title: "Tutor asignado", description: "Tienes un tutor de referencia durante todo el curso, no un foro genérico." },
+  { title: "Tutorías semanales", description: "Resuelves dudas en directo cada semana, no solo ves vídeos en soledad." },
+  { title: "Proyecto y comunidad", description: "Aplicas lo aprendido en un proyecto real y conectas con tu comunidad de alumnos." },
+  { title: "Certificado profesional", description: "Terminas con un diploma o certificado profesional que demuestra tu nueva capacidad." },
+];
+
+const benefits = [
+  { title: "Acompañamiento real", description: "Tutor asignado y seguimiento personalizado, no estás solo frente a una pantalla.", icon: "chat" as const },
+  { title: "Tutorías semanales en directo", description: "Resuelve tus dudas en tiempo real con profesionales en activo.", icon: "calendar" as const },
+  { title: "Comunidad y networking", description: "Conecta con compañeros y profesionales de tu mismo sector.", icon: "users" as const },
+  { title: "Proyectos reales", description: "Aplica lo aprendido en proyectos que puedes mostrar en tu portfolio profesional.", icon: "briefcase" as const },
+  { title: "Contenidos siempre actualizados", description: "Formación al día con lo que el mercado laboral demanda hoy.", icon: "refresh" as const },
+  { title: "Orientación profesional", description: "Te ayudamos a dar el siguiente paso: empleo, especialización o emprendimiento.", icon: "compass" as const },
+];
+
+const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step}ms`;
+---
+
+<Layout
+  title="Esmera Online — Formación profesional online con acompañamiento real"
+  description="Formación online en IA, marketing, desarrollo, diseño y más sectores. Tutorías semanales, tutor asignado, comunidad y certificación profesional."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-white pt-20 pb-24 sm:pt-28 sm:pb-32">
+    <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-brand-50 to-white"></div>
+    <Container class="relative">
+      <div class="mx-auto max-w-3xl text-center">
+        <div data-reveal>
+          <Eyebrow class="justify-center">Grupo Esmera Global</Eyebrow>
+        </div>
+        <h1 data-reveal style={delayStyle(1)} class="mt-5 font-display text-4xl font-semibold tracking-tight text-ink-900 sm:text-6xl">
+          No vendemos cursos.<br />
+          <span class="text-brand-600">Te llevamos a tu próximo paso profesional.</span>
+        </h1>
+        <p
+          data-reveal
+          style={delayStyle(2)}
+          class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-500"
+        >
+          Formación online con tutor asignado, tutorías semanales y comunidad real — para conseguir empleo, cambiar de profesión o especializarte de verdad.
+        </p>
+        <div data-reveal style={delayStyle(3)} class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href="/cursos" variant="primary" size="lg">Explorar cursos</Button>
+          <Button href="/contacto" variant="secondary" size="lg">Habla con un asesor</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-24">
+    <Container>
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <Eyebrow class="justify-center">Por qué Esmera Online</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+          Nuestra ventaja no son los vídeos
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-ink-500">
+          Es el acompañamiento real durante todo el proceso, de principio a fin.
+        </p>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          benefits.map((benefit, index) => (
+            <div
+              data-reveal
+              style={delayStyle(index % 3)}
+              class="rounded-2xl border border-ink-100 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg hover:shadow-ink-900/5"
+            >
+              <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+                <Icon name={benefit.icon} class="h-5 w-5" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-ink-900">{benefit.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">{benefit.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section class="bg-ink-950 py-24 text-white">
+    <Container>
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <Eyebrow class="justify-center text-brand-400">Cómo funciona</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">Tu recorrido como alumno</h2>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          journeySteps.map((step, index) => (
+            <div data-reveal style={delayStyle(index)} class="relative">
+              <span class="font-display text-3xl font-semibold text-brand-400">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="mt-3 text-base font-semibold">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-300">{step.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Categorías -->
+  <section class="py-24">
+    <Container>
+      <div data-reveal class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <Eyebrow>Categorías</Eyebrow>
+          <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">Formación en múltiples sectores</h2>
+        </div>
+        <Button href="/cursos" variant="ghost">Ver todos los cursos →</Button>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          categories.map((category, index) => (
+            <div data-reveal style={delayStyle(index % 3)}>
+              <CategoryCard category={category} courseCount={courseCountByCategory.get(category.id) ?? 0} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Cursos destacados -->
+  <section class="bg-ink-50/60 py-24">
+    <Container>
+      <div data-reveal class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <Eyebrow>Cursos destacados</Eyebrow>
+          <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">Empieza por aquí</h2>
+        </div>
+        <Button href="/cursos" variant="ghost">Ver todos los cursos →</Button>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          featuredCourses.map((course, index) => (
+            <div data-reveal style={delayStyle(index % 4)}>
+              <CourseCard course={course} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Profesores -->
+  <section class="py-24">
+    <Container>
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <Eyebrow class="justify-center">Tutores</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">Aprende de profesionales en activo</h2>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          instructors.map((instructor, index) => (
+            <div data-reveal style={delayStyle(index)}>
+              <InstructorCard instructor={instructor} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="bg-ink-50/60 py-24">
+    <Container>
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <Eyebrow class="justify-center">Testimonios</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">Resultados reales de alumnos reales</h2>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          testimonials.map((testimonial, index) => (
+            <div data-reveal style={delayStyle(index)}>
+              <TestimonialCard testimonial={testimonial} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Empresas colaboradoras -->
+  <section class="py-20" data-reveal>
+    <Container>
+      <p class="text-center text-sm font-medium text-ink-400">Empresas que confían en nuestro talento formado</p>
+    </Container>
+
+    <p class="sr-only">Empresas colaboradoras: {companies.map((company) => company.data.name).join(", ")}.</p>
+
+    <div
+      aria-hidden="true"
+      class="group relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+    >
+      <div class="flex w-max items-center gap-16 animate-marquee">
+        {
+          [...companies, ...companies].map((company) => (
+            <Image
+              src={company.data.logo}
+              alt=""
+              width={120}
+              height={40}
+              class="h-8 w-auto shrink-0 opacity-60 transition-opacity duration-200 hover:opacity-100"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Comunidad -->
+  <section class="py-24">
+    <Container>
+      <div data-reveal class="grid grid-cols-1 items-center gap-12 rounded-3xl bg-brand-600 p-10 text-white sm:p-16 lg:grid-cols-2">
+        <div>
+          <Eyebrow class="text-white/80">Comunidad</Eyebrow>
+          <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">No estudias solo</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-white/85">
+            Formas parte de una comunidad de alumnos y profesionales: networking, proyectos compartidos y, próximamente, eventos, mentorías y bolsa de empleo.
+          </p>
+        </div>
+        <ul class="grid grid-cols-2 gap-4 text-sm font-medium">
+          <li class="flex flex-col gap-2 rounded-2xl bg-white/10 p-5 transition-colors duration-200 hover:bg-white/15">
+            <Icon name="users" class="h-5 w-5 text-white/80" />
+            Networking entre alumnos
+          </li>
+          <li class="flex flex-col gap-2 rounded-2xl bg-white/10 p-5 transition-colors duration-200 hover:bg-white/15">
+            <Icon name="briefcase" class="h-5 w-5 text-white/80" />
+            Proyectos colaborativos
+          </li>
+          <li class="flex flex-col gap-2 rounded-2xl bg-white/10 p-5 transition-colors duration-200 hover:bg-white/15">
+            <Icon name="calendar" class="h-5 w-5 text-white/80" />
+            Eventos (próximamente)
+          </li>
+          <li class="flex flex-col gap-2 rounded-2xl bg-white/10 p-5 transition-colors duration-200 hover:bg-white/15">
+            <Icon name="compass" class="h-5 w-5 text-white/80" />
+            Bolsa de empleo (próximamente)
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-24">
+    <Container class="max-w-3xl">
+      <div data-reveal>
+        <LeadForm />
+      </div>
+    </Container>
+  </section>
+</Layout>

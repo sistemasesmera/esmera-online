@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/ui/Container.astro";
+import Eyebrow from "../../components/ui/Eyebrow.astro";
+import CourseCard from "../../components/CourseCard.astro";
+import { getCollection } from "astro:content";
+
+const courses = (await getCollection("courses")).sort((a, b) => a.data.order - b.data.order);
+const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="Todos los cursos"
+  description="Explora toda la formación profesional online de Esmera Online: IA, marketing, desarrollo web, diseño y más sectores."
+>
+  <section class="border-b border-ink-100 bg-gradient-to-b from-brand-50 to-white py-16 sm:py-20">
+    <Container>
+      <div data-reveal>
+        <Eyebrow>Catálogo</Eyebrow>
+        <h1 class="mt-4 font-display text-4xl font-semibold text-ink-900 sm:text-5xl">Todos los cursos</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-500">
+          Formación con tutor asignado, tutorías semanales y proyectos reales. Elige tu sector y empieza tu próximo paso profesional.
+        </p>
+      </div>
+
+      <div data-reveal style="--reveal-delay: 100ms" class="mt-8 flex flex-wrap gap-2">
+        <a href="/cursos" class="rounded-full bg-ink-900 px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5">Todos</a>
+        {
+          categories.map((category) => (
+            <a
+              href={`/categorias/${category.id}`}
+              class="rounded-full border border-ink-200 px-4 py-2 text-sm font-medium text-ink-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-700"
+            >
+              {category.data.name}
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16">
+    <Container>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          courses.map((course, index) => (
+            <div data-reveal style={`--reveal-delay: ${(index % 3) * 80}ms`}>
+              <CourseCard course={course} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>

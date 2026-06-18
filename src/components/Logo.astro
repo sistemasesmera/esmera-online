@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import logoIcon from "../assets/brand/logo-icon.png";
+import logoFull from "../assets/brand/logo-full.png";
+
+interface Props {
+  variant?: "dark" | "light";
+  imageOnly?: boolean;
+  class?: string;
+}
+
+const { variant = "dark", imageOnly = false, class: className = "" } = Astro.props;
+const textColor = variant === "light" ? "text-white" : "text-ink-900";
+---
+
+{
+  imageOnly ? (
+    <a href="/" class={`inline-flex items-center ${className}`}>
+      <Image src={logoFull} alt="Esmera Online" width={84} height={62} class="h-10 w-auto" />
+    </a>
+  ) : (
+    <a href="/" class={`inline-flex items-center gap-2 font-display font-semibold text-xl ${textColor} ${className}`}>
+      <Image src={logoIcon} alt="" width={28} height={33} class="h-7 w-auto shrink-0" />
+      <span>Esmera<span class="text-brand-600">Online</span></span>
+    </a>
+  )
+}

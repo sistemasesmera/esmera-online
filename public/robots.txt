@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://esmeraonline.com/sitemap-index.xml

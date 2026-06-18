@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  testimonial: CollectionEntry<"testimonials">;
+}
+
+const { testimonial } = Astro.props;
+const initials = testimonial.data.name
+  .split(" ")
+  .map((part) => part[0])
+  .slice(0, 2)
+  .join("");
+---
+
+<figure class="flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-ink-900/5">
+  <div class="flex gap-1 text-brand-500">
+    {Array.from({ length: testimonial.data.rating }).map(() => (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.6l-4.94 2.6.94-5.5-4-3.9 5.53-.8L8 0z" />
+      </svg>
+    ))}
+  </div>
+  <blockquote class="mt-4 flex-1 text-sm leading-relaxed text-ink-700">"{testimonial.data.quote}"</blockquote>
+  <figcaption class="mt-6 flex items-center gap-3">
+    {
+      testimonial.data.photo ? (
+        <Image
+          src={testimonial.data.photo}
+          alt={testimonial.data.name}
+          width={40}
+          height={40}
+          class="h-10 w-10 rounded-full object-cover"
+        />
+      ) : (
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700">
+          {initials}
+        </span>
+      )
+    }
+    <span>
+      <span class="block text-sm font-semibold text-ink-900">{testimonial.data.name}</span>
+      <span class="block text-xs text-ink-500">{testimonial.data.role}</span>
+    </span>
+  </figcaption>
+</figure>

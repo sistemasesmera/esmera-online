@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "@fontsource-variable/montserrat";
+
+@theme {
+  --font-sans: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand teal, derived from the two reference colors #75bcb1 / #5ba099 */
+  --color-brand-50: #f1f9f7;
+  --color-brand-100: #def0ec;
+  --color-brand-200: #bce1da;
+  --color-brand-300: #94cdc2;
+  --color-brand-400: #75bcb1;
+  --color-brand-500: #62aea2;
+  --color-brand-600: #5ba099;
+  --color-brand-700: #467f79;
+  --color-brand-800: #36625e;
+  --color-brand-900: #2a4b48;
+  --color-brand-950: #1a302e;
+
+  /* Technological dark neutrals, used for contrast sections and dark mode */
+  --color-ink-50: #f5f6f7;
+  --color-ink-100: #e7e9eb;
+  --color-ink-200: #cbd0d4;
+  --color-ink-300: #a3abb1;
+  --color-ink-400: #76828a;
+  --color-ink-500: #5a666e;
+  --color-ink-600: #46505a;
+  --color-ink-700: #353d46;
+  --color-ink-800: #232932;
+  --color-ink-900: #14181f;
+  --color-ink-950: #0a0d12;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Scroll-reveal entrance animation, see src/lib/reveal.ts */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Continuous logo marquee, see Companies section in index.astro */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.group:hover .animate-marquee,
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
+}
