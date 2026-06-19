@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de la Inteligencia Artificial y ChatGPT"
 internalCode: "AE26-00681"
-shortDescription: "Da tus primeros pasos en IA generativa y ChatGPT, y aprende a usarlos de forma práctica en tu trabajo diario."
+shortDescription: "Comprende, aplica e integra la IA generativa y ChatGPT en tu trabajo: prompt engineering, productividad, creatividad y un uso ético y responsable de la tecnología."
 category: "inteligencia-artificial"
 level: "Iniciación"
 duration: "30 horas"
@@ -9,30 +9,34 @@ modality: "Online"
 tutor: "laura-mendez"
 coverImage: "./ia-aplicada-empresas-cover.jpg"
 objectives:
-  - text: "Entender qué es la IA generativa y qué puede (y no puede) hacer por ti."
+  - text: "Comprender qué es la IA generativa y cómo funciona ChatGPT en el ámbito profesional."
     icon: "bot"
-  - text: "Usar ChatGPT con confianza para tareas reales del día a día."
-    icon: "chat"
-  - text: "Escribir prompts claros y efectivos para obtener mejores resultados."
+  - text: "Aplicar técnicas de prompt engineering para obtener mejores resultados."
     icon: "send"
-  - text: "Identificar oportunidades para aplicar la IA en tu propio trabajo."
-    icon: "compass"
+  - text: "Usar la IA para mejorar tu productividad, creatividad y toma de decisiones."
+    icon: "sparkles"
+  - text: "Aplicar la IA de forma ética, responsable y dentro del marco legal vigente."
+    icon: "shield"
 contents:
-  - title: "Qué es la IA generativa"
-    description: "Cómo funcionan modelos como ChatGPT, sin tecnicismos innecesarios."
-  - title: "Primeros pasos con ChatGPT"
-    description: "Configuración, casos de uso y errores habituales al empezar."
-  - title: "Prompting para principiantes"
-    description: "Cómo pedirle a la IA lo que necesitas y obtenerlo a la primera."
-  - title: "Aplicaciones prácticas en el día a día"
-    description: "Redacción, organización, resúmenes y tareas administrativas con IA."
+  - title: "Introducción a la Inteligencia Artificial"
+    description: "Concepto, evolución y tipos de IA, principales tecnologías (Machine Learning, Deep Learning y PLN) y casos reales de uso en empresas."
+  - title: "Inteligencia Artificial generativa"
+    description: "Qué es la IA generativa, modelos de lenguaje (LLM), generación de texto e imágenes, y sus ventajas, límites y riesgos."
+  - title: "ChatGPT y modelos conversacionales"
+    description: "Cómo funciona ChatGPT, diferencias con otros asistentes de IA y su integración en el trabajo diario."
+  - title: "Prompt engineering aplicado"
+    description: "Cómo estructurar un prompt, tipos de prompts y técnicas para productividad, creatividad y toma de decisiones."
+  - title: "Uso responsable de las herramientas de IA"
+    description: "Herramientas para productividad y automatización, criterios de selección, ética, privacidad y marco legal básico."
   - title: "Proyecto final"
     description: "Resuelve con IA una tarea real de tu trabajo o estudio."
 hasFinalProject: true
 certificate: "Diploma privado"
 faq:
   - question: "¿Necesito conocimientos previos de tecnología?"
-    answer: "No. Es un curso de iniciación pensado para empezar desde cero, sin perfil técnico."
+    answer: "No. Es un curso de iniciación pensado para empezar desde cero, sin perfil técnico, aunque llega hasta el prompt engineering aplicado al trabajo profesional."
+  - question: "¿El curso cubre el uso ético y legal de la IA?"
+    answer: "Sí, dedicamos una unidad completa a la ética, la privacidad y el marco legal básico del uso de la IA en el entorno profesional."
   - question: "¿Las tutorías son en directo?"
     answer: "Sí, tienes tutorías semanales en directo con tu tutora, además de poder resolver dudas en cualquier momento."
   - question: "¿Obtengo certificado al finalizar?"
@@ -44,6 +48,6 @@ featured: true
 order: 1
 ---
 
-Este curso está pensado para quien nunca ha usado ChatGPT ni herramientas de IA generativa y quiere empezar con buenas bases, sin perderse en tecnicismos.
+Este curso está pensado para que comprendas, apliques e integres la IA generativa y ChatGPT en tu trabajo: desde los conceptos básicos hasta el prompt engineering aplicado a la productividad, la creatividad y la toma de decisiones, siempre con un uso ético y responsable de la tecnología.
 
 Aprenderás de forma práctica, con tutorías semanales en directo y un proyecto final aplicado a una tarea real de tu trabajo o estudio.
