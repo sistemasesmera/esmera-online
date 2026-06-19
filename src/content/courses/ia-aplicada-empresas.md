@@ -1,37 +1,42 @@
 ---
-title: "Experto en IA Aplicada a Empresas"
-shortDescription: "Aprende a integrar la inteligencia artificial en procesos reales de negocio y destaca en cualquier sector."
+title: "Fundamentos de la Inteligencia Artificial y ChatGPT"
+internalCode: "AE26-00681"
+shortDescription: "Da tus primeros pasos en IA generativa y ChatGPT, y aprende a usarlos de forma práctica en tu trabajo diario."
 category: "inteligencia-artificial"
-level: "Intermedio"
-duration: "8 semanas · 4h/semana"
-modality: "Online en directo"
+level: "Iniciación"
+duration: "30 horas"
+modality: "Online"
 tutor: "laura-mendez"
 coverImage: "./ia-aplicada-empresas-cover.jpg"
 objectives:
-  - "Automatizar tareas repetitivas con herramientas de IA generativa."
-  - "Diseñar flujos de trabajo con IA aplicados a tu sector."
-  - "Crear prompts efectivos para distintos casos de uso profesional."
-  - "Evaluar y elegir las herramientas de IA adecuadas para cada proyecto."
+  - text: "Entender qué es la IA generativa y qué puede (y no puede) hacer por ti."
+    icon: "bot"
+  - text: "Usar ChatGPT con confianza para tareas reales del día a día."
+    icon: "chat"
+  - text: "Escribir prompts claros y efectivos para obtener mejores resultados."
+    icon: "send"
+  - text: "Identificar oportunidades para aplicar la IA en tu propio trabajo."
+    icon: "compass"
 contents:
-  - title: "Fundamentos de la IA generativa"
-    description: "Cómo funcionan los modelos de lenguaje y qué pueden (y no pueden) hacer por tu negocio."
-  - title: "Prompting profesional"
-    description: "Técnicas avanzadas para obtener resultados precisos y consistentes."
-  - title: "Automatización de procesos"
-    description: "Conecta IA con tus herramientas de trabajo diarias."
-  - title: "IA aplicada a tu sector"
-    description: "Casos prácticos en marketing, atención al cliente, ventas y operaciones."
+  - title: "Qué es la IA generativa"
+    description: "Cómo funcionan modelos como ChatGPT, sin tecnicismos innecesarios."
+  - title: "Primeros pasos con ChatGPT"
+    description: "Configuración, casos de uso y errores habituales al empezar."
+  - title: "Prompting para principiantes"
+    description: "Cómo pedirle a la IA lo que necesitas y obtenerlo a la primera."
+  - title: "Aplicaciones prácticas en el día a día"
+    description: "Redacción, organización, resúmenes y tareas administrativas con IA."
   - title: "Proyecto final"
-    description: "Diseña e implementa una solución de IA para un caso real de empresa."
+    description: "Resuelve con IA una tarea real de tu trabajo o estudio."
 hasFinalProject: true
-certificate: "Certificado profesional"
+certificate: "Diploma privado"
 faq:
-  - question: "¿Necesito conocimientos previos de programación?"
-    answer: "No. El curso está diseñado para profesionales sin perfil técnico que quieran aplicar la IA en su trabajo."
+  - question: "¿Necesito conocimientos previos de tecnología?"
+    answer: "No. Es un curso de iniciación pensado para empezar desde cero, sin perfil técnico."
   - question: "¿Las tutorías son en directo?"
     answer: "Sí, tienes tutorías semanales en directo con tu tutora, además de poder resolver dudas en cualquier momento."
   - question: "¿Obtengo certificado al finalizar?"
-    answer: "Sí, recibirás un certificado profesional avalado por Esmera Online al completar el curso y el proyecto final."
+    answer: "Sí, recibirás un diploma de Esmera Online al completar el curso y el proyecto final."
 relatedCourses:
   - "marketing-digital"
   - "ciberseguridad-profesional"
@@ -39,6 +44,6 @@ featured: true
 order: 1
 ---
 
-Este curso está diseñado para que cualquier profesional, sin importar su sector, pueda incorporar la inteligencia artificial en su trabajo diario de forma práctica y aplicada — no solo en teoría.
+Este curso está pensado para quien nunca ha usado ChatGPT ni herramientas de IA generativa y quiere empezar con buenas bases, sin perderse en tecnicismos.
 
-A lo largo de 8 semanas, combinarás contenidos actualizados con tutorías semanales en directo, ejercicios prácticos y un proyecto final que podrás aplicar directamente en tu empresa o como carta de presentación profesional.
+Aprenderás de forma práctica, con tutorías semanales en directo y un proyecto final aplicado a una tarea real de tu trabajo o estudio.

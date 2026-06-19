@@ -52,15 +52,38 @@ const courses = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      internalCode: z.string().optional(),
       shortDescription: z.string(),
       category: reference("categories"),
       level: z.enum(["Iniciación", "Intermedio", "Avanzado"]),
       duration: z.string(),
-      modality: z.enum(["Online en directo", "Online a tu ritmo", "Mixta"]),
+      modality: z.literal("Online"),
       tutor: reference("instructors"),
       coverImage: image(),
       videoUrl: z.string().url().optional(),
-      objectives: z.array(z.string()),
+      objectives: z.array(
+        z.object({
+          text: z.string(),
+          icon: z.enum([
+            "sparkles",
+            "shield",
+            "megaphone",
+            "users",
+            "calendar",
+            "briefcase",
+            "refresh",
+            "compass",
+            "chat",
+            "send",
+            "bot",
+            "award",
+            "clock",
+            "chart",
+            "target",
+            "alert",
+          ]),
+        }),
+      ),
       contents: z.array(
         z.object({
           title: z.string(),
@@ -69,6 +92,23 @@ const courses = defineCollection({
       ),
       hasFinalProject: z.boolean().default(false),
       certificate: z.enum(["Diploma privado", "Certificado profesional"]),
+      careerOutcomes: z
+        .array(
+          z.object({
+            title: z.string(),
+            description: z.string().optional(),
+          }),
+        )
+        .optional(),
+      certificadoProfesionalidad: z
+        .object({
+          codigo: z.string(),
+          nombre: z.string(),
+          familia: z.string(),
+          nivel: z.enum(["Nivel 1", "Nivel 2", "Nivel 3"]),
+          estado: z.enum(["Vigente", "En proceso de homologación"]).default("Vigente"),
+        })
+        .optional(),
       faq: z.array(
         z.object({
           question: z.string(),
@@ -81,10 +121,26 @@ const courses = defineCollection({
     }),
 });
 
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      category: z.string(),
+      publishDate: z.date(),
+      readingTime: z.string(),
+      author: reference("instructors"),
+      coverImage: image(),
+      featured: z.boolean().default(false),
+    }),
+});
+
 export const collections = {
   categories,
   instructors,
   testimonials,
   companies,
   courses,
+  blog,
 };

@@ -9,8 +9,9 @@ const categories = (await getCollection("categories")).sort((a, b) => a.data.ord
 
 const navLinks = [
   { href: "/cursos", label: "Cursos" },
-  { href: "/nosotros", label: "Nosotros" },
+  { href: "/certificados-de-profesionalidad", label: "Certificados" },
   { href: "/blog", label: "Blog" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -79,7 +80,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
     <div class="hidden items-center gap-5 lg:flex">
       <span class="h-6 w-px bg-ink-100" aria-hidden="true"></span>
-      <Button href="/contacto" variant="primary">Habla con un asesor</Button>
+      <Button href="javascript:void(0)" variant="primary" data-lead-modal-trigger>Habla con un asesor</Button>
     </div>
 
     <button
@@ -137,7 +138,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
             </a>
           ))
         }
-        <Button href="/contacto" variant="primary" class="mt-3 w-full">Habla con un asesor</Button>
+        <Button href="javascript:void(0)" variant="primary" class="mt-3 w-full" data-lead-modal-trigger>Habla con un asesor</Button>
       </Container>
     </div>
   </div>

@@ -5,61 +5,82 @@ import { getCollection } from "astro:content";
 
 const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
 const year = new Date().getFullYear();
+
+const linkColumns = [
+  {
+    title: "Categorías",
+    links: categories.map((category) => ({ label: category.data.name, href: `/categorias/${category.id}` })),
+  },
+  {
+    title: "Esmera Online",
+    links: [
+      { label: "Todos los cursos", href: "/cursos" },
+      { label: "Certificados de Profesionalidad", href: "/certificados-de-profesionalidad" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contacto", href: "/contacto" },
+    ],
+  },
+  {
+    title: "Habla con nosotros",
+    links: [
+      { label: "info@esmeraonline.com", href: "mailto:info@esmeraonline.com" },
+      { label: "Solicitar información", href: "javascript:void(0)", modalTrigger: true },
+    ],
+  },
+];
 ---
 
 <footer class="relative overflow-hidden bg-ink-950 text-ink-300">
   <div class="absolute inset-0 bg-grain"></div>
-  <div class="glow-orb -left-24 top-0 h-72 w-72 bg-brand-500/10"></div>
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+  <div class="glow-orb -left-32 -top-24 h-[28rem] w-[28rem] bg-brand-500/15"></div>
+  <div class="glow-orb -right-20 top-1/4 h-72 w-72 bg-brand-400/10"></div>
 
-  <Container class="relative grid grid-cols-1 gap-12 py-16 lg:grid-cols-4">
-    <div>
-      <Logo variant="light" />
-      <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-400">
-        Formación profesional online con acompañamiento real: tutorías, seguimiento y comunidad. Parte del grupo Esmera Global.
-      </p>
-    </div>
+  <Container class="relative">
+    <div class="grid grid-cols-1 gap-14 py-20 lg:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr] lg:gap-10">
+      <div data-reveal>
+        <Logo variant="light" />
+        <p class="mt-5 max-w-sm text-base leading-relaxed text-ink-400">
+          Fórmate para tu futuro profesional con cursos online y el acompañamiento real que te mereces.
+        </p>
+      </div>
 
-    <div>
-      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Categorías</h3>
-      <ul class="mt-4 space-y-2.5">
-        {
-          categories.map((category) => (
-            <li>
-              <a href={`/categorias/${category.id}`} class="text-sm text-ink-400 hover:text-brand-400">
-                {category.data.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div>
-      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Esmera Online</h3>
-      <ul class="mt-4 space-y-2.5">
-        <li><a href="/nosotros" class="text-sm text-ink-400 hover:text-brand-400">Nosotros</a></li>
-        <li><a href="/cursos" class="text-sm text-ink-400 hover:text-brand-400">Todos los cursos</a></li>
-        <li><a href="/blog" class="text-sm text-ink-400 hover:text-brand-400">Blog</a></li>
-        <li><a href="/contacto" class="text-sm text-ink-400 hover:text-brand-400">Contacto</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">Habla con nosotros</h3>
-      <ul class="mt-4 space-y-2.5">
-        <li><a href="mailto:info@esmeraonline.com" class="text-sm text-ink-400 hover:text-brand-400">info@esmeraonline.com</a></li>
-        <li><a href="/contacto" class="text-sm text-ink-400 hover:text-brand-400">Solicitar información</a></li>
-      </ul>
+      {
+        linkColumns.map((column, columnIndex) => (
+          <div data-reveal style={`--reveal-delay: ${(columnIndex + 1) * 80}ms`}>
+            <h3 class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-white/70">{column.title}</h3>
+            <ul class="mt-5 space-y-3">
+              {column.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    data-lead-modal-trigger={"modalTrigger" in link && link.modalTrigger ? true : undefined}
+                    class="group inline-flex items-center gap-1.5 text-sm text-ink-400 transition-colors duration-150 hover:text-white"
+                  >
+                    <span>{link.label}</span>
+                    <span
+                      aria-hidden="true"
+                      class="-translate-x-1 text-brand-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                    >
+                      →
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
   </Container>
 
   <div class="relative border-t border-white/10">
-    <Container class="flex flex-col gap-2 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
-      <p>&copy; {year} Esmera Online — Grupo Esmera Global. Todos los derechos reservados.</p>
+    <Container class="flex flex-col gap-3 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} Esmera Online. Todos los derechos reservados.</p>
       <div class="flex gap-5">
-        <a href="/privacidad" class="hover:text-brand-400">Privacidad</a>
-        <a href="/terminos" class="hover:text-brand-400">Términos</a>
-        <a href="/cookies" class="hover:text-brand-400">Cookies</a>
+        <a href="/privacidad" class="transition-colors duration-150 hover:text-brand-400">Privacidad</a>
+        <a href="/terminos" class="transition-colors duration-150 hover:text-brand-400">Términos</a>
+        <a href="/cookies" class="transition-colors duration-150 hover:text-brand-400">Cookies</a>
       </div>
     </Container>
   </div>

@@ -1,0 +1,362 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container.astro";
+import Eyebrow from "../components/ui/Eyebrow.astro";
+import Button from "../components/ui/Button.astro";
+import Icon from "../components/Icon.astro";
+import InstructorCard from "../components/InstructorCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+const instructors = await getCollection("instructors");
+const companies = await getCollection("companies");
+const courses = await getCollection("courses");
+
+const spotlightTestimonial = await getEntry("testimonials", "maria-gonzalez");
+const supportingTestimonials = (await getCollection("testimonials")).filter((t) => t.id !== "maria-gonzalez").slice(0, 2);
+
+const stats = [
+  { value: "+1.200", label: "Alumnos formados" },
+  { value: "4.9/5", label: "Valoración media" },
+  { value: String(courses.length), label: "Cursos especializados" },
+  { value: "3", label: "Sectores en expansión" },
+];
+
+const timeline = [
+  {
+    title: "El problema",
+    description: "La mayoría de formación online es un vídeo grabado y un certificado al final. Nadie pregunta si entendiste nada hasta que ya has pagado.",
+  },
+  {
+    title: "Por qué nace Esmera Online",
+    description: "Esmera Global lleva años formando profesionales presencialmente. Faltaba llevar esa misma exigencia y seguimiento al terreno online.",
+  },
+  {
+    title: "Cómo lo resolvemos",
+    description: "Tutor asignado, tutorías semanales en directo y proyectos reales — alguien que de verdad nota si te has quedado atrás.",
+  },
+];
+
+const values = [
+  {
+    title: "Acompañamiento real",
+    description: "Tutor asignado y tutorías semanales en directo. No un foro genérico ni un bot que responde con un manual.",
+    icon: "chat" as const,
+  },
+  {
+    title: "Resultados con seguimiento",
+    description: "Medimos el progreso real de cada alumno, no si ha visto los vídeos. Si te atascas, alguien lo nota antes que tú.",
+    icon: "compass" as const,
+  },
+  {
+    title: "Contenido siempre vivo",
+    description: "Revisamos los programas con la misma frecuencia con la que cambian los sectores que enseñamos.",
+    icon: "refresh" as const,
+  },
+  {
+    title: "Comunidad, no soledad",
+    description: "Networking y proyectos compartidos entre alumnos. Formarte online no debería significar formarte en solitario.",
+    icon: "users" as const,
+  },
+];
+---
+
+<Layout
+  title="Nosotros"
+  description="Esmera Online, parte del grupo Esmera Global, es una empresa de formación profesional online con acompañamiento real: tutor asignado, tutorías semanales y proyectos reales."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-white py-20 sm:py-28">
+    <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-brand-50 to-white"></div>
+    <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
+    <div class="glow-orb -left-32 top-16 -z-10 h-96 w-96 bg-brand-300/25"></div>
+
+    <Container class="relative">
+      <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p data-reveal class="font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand-700">
+            Esmera Online · parte de Esmera Global
+          </p>
+          <h1 data-reveal style="--reveal-delay: 80ms" class="mt-5 font-display text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-6xl">
+            No vendemos cursos.<br />
+            <span class="relative text-brand-600">
+              Vendemos transformación profesional.
+              <svg viewBox="0 0 360 12" preserveAspectRatio="none" class="absolute -bottom-1 left-0 h-2.5 w-full text-brand-300/70 sm:-bottom-2">
+                <path d="M2 9.5C60 2 280 1 358 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+              </svg>
+            </span>
+          </h1>
+          <p data-reveal style="--reveal-delay: 140ms" class="mt-7 max-w-xl text-lg leading-relaxed text-ink-500">
+            Esmera Online ofrece formación profesional online en sectores con demanda real — Inteligencia Artificial,
+            Ciberseguridad y Marketing Digital — con un acompañamiento que va mucho más allá de unos vídeos grabados.
+          </p>
+          <div data-reveal style="--reveal-delay: 200ms" class="mt-10 flex flex-col items-start gap-3 sm:flex-row">
+            <Button href="javascript:void(0)" variant="primary" size="lg" data-lead-modal-trigger>Habla con un asesor</Button>
+            <Button href="/cursos" variant="secondary" size="lg">Ver cursos</Button>
+          </div>
+        </div>
+
+        <div data-reveal style="--reveal-delay: 120ms" class="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <div class="relative overflow-hidden rounded-[2rem] bg-brand-600 p-8 text-white shadow-2xl shadow-brand-900/20 sm:p-10 lg:rotate-1">
+            <div class="absolute inset-0 bg-grain"></div>
+            <div class="glow-orb -right-10 -top-10 h-56 w-56 bg-brand-300/30"></div>
+            <div class="relative">
+              <Icon name="sparkles" class="h-7 w-7 text-white/80" />
+              <p class="mt-6 font-display text-2xl font-medium leading-snug">
+                "Formación con la misma exigencia que esperarías de un centro presencial — solo que cabe en tu agenda real."
+              </p>
+              <p class="mt-6 font-mono text-xs uppercase tracking-wide text-white/70">Filosofía Esmera Online</p>
+            </div>
+          </div>
+
+          <div class="absolute -left-6 top-10 flex items-center gap-3 rounded-2xl bg-white/95 p-4 shadow-xl shadow-ink-900/10 backdrop-blur-sm animate-float sm:-left-10">
+            <div class="flex text-brand-500">
+              {Array.from({ length: 5 }).map(() => (
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.6l-4.94 2.6.94-5.5-4-3.9 5.53-.8L8 0z" />
+                </svg>
+              ))}
+            </div>
+            <div>
+              <p class="font-mono text-sm font-semibold text-ink-900">4.9/5</p>
+              <p class="text-xs text-ink-500">valoración de alumnos</p>
+            </div>
+          </div>
+
+          <div
+            class="absolute -right-4 bottom-10 flex items-center gap-3 rounded-2xl bg-white/95 p-4 shadow-xl shadow-ink-900/10 backdrop-blur-sm animate-float sm:-right-8"
+            style="animation-delay: 1.2s"
+          >
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+              <Icon name="users" class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="font-mono text-sm font-semibold text-ink-900">+1.200</p>
+              <p class="text-xs text-ink-500">alumnos formados</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Cifras -->
+  <section class="relative overflow-hidden bg-ink-950 py-16 text-white">
+    <div class="absolute inset-0 bg-grain"></div>
+    <div class="glow-orb left-1/2 top-0 h-72 w-72 -translate-x-1/2 bg-brand-500/20"></div>
+
+    <Container class="relative">
+      <div class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
+        {
+          stats.map((stat, index) => (
+            <div
+              data-reveal
+              style={`--reveal-delay: ${index * 90}ms`}
+              class={`pl-5 ${index > 0 ? "border-l border-white/10" : ""}`}
+            >
+              <p class="font-display text-3xl font-semibold sm:text-4xl">{stat.value}</p>
+              <p class="mt-1 font-mono text-xs uppercase tracking-wide text-ink-300">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Historia -->
+  <section class="py-24">
+    <Container>
+      <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <div data-reveal>
+          <Eyebrow>Por qué existimos</Eyebrow>
+          <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+            Formación online que sí nota cuando te quedas atrás
+          </h2>
+          <p class="mt-6 text-base leading-relaxed text-ink-500">
+            Esmera Online forma parte de <strong class="text-ink-700">Esmera Global</strong>, un grupo con años de
+            experiencia formando profesionales en distintos sectores. Cuando decidimos llevar esa formación al
+            terreno online, nos negamos a hacerlo de la forma más fácil: grabar unos vídeos y desentendernos.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-ink-500">
+            Por eso cada alumno tiene un tutor asignado de verdad, no un buzón de soporte. Por eso hay tutorías
+            semanales en directo, no solo contenido grabado. Y por eso medimos el progreso real, no las horas de
+            vídeo reproducidas.
+          </p>
+        </div>
+
+        <div data-reveal style="--reveal-delay: 100ms" class="relative pl-8">
+          <div class="absolute bottom-2 left-[11px] top-2 w-px bg-ink-100"></div>
+          <div class="space-y-10">
+            {
+              timeline.map((step, index) => (
+                <div class="relative">
+                  <span class="absolute -left-8 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 font-mono text-[11px] font-semibold text-white">
+                    {index + 1}
+                  </span>
+                  <h3 class="font-display text-lg font-semibold text-ink-900">{step.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-ink-500">{step.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Valores -->
+  <section class="border-t border-ink-100 bg-ink-50/60 py-24">
+    <Container>
+      <div data-reveal class="max-w-xl">
+        <Eyebrow>Cómo trabajamos</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">Cuatro principios que no negociamos</h2>
+      </div>
+
+      <div class="mt-12 divide-y divide-ink-200 border-y border-ink-200">
+        {
+          values.map((value, index) => (
+            <div
+              data-reveal
+              style={`--reveal-delay: ${index * 70}ms`}
+              class="group grid grid-cols-1 gap-4 py-7 transition-colors duration-200 hover:bg-white sm:grid-cols-[80px_48px_1fr]"
+            >
+              <span class="font-mono text-3xl font-semibold text-ink-200 transition-colors duration-200 group-hover:text-brand-300">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+                <Icon name={value.icon} class="h-5 w-5" />
+              </div>
+              <div>
+                <h3 class="font-display text-lg font-semibold text-ink-900">{value.title}</h3>
+                <p class="mt-1.5 max-w-xl text-sm leading-relaxed text-ink-500">{value.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Equipo -->
+  <section class="relative overflow-hidden bg-ink-950 py-24 text-white">
+    <div class="absolute inset-0 bg-grain"></div>
+    <div class="glow-orb -right-20 bottom-0 h-80 w-80 bg-brand-500/20"></div>
+
+    <Container class="relative">
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <Eyebrow class="justify-center text-white/80">Quién te forma</Eyebrow>
+        <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">Tutores con experiencia real en su sector</h2>
+        <p class="mt-4 text-base leading-relaxed text-ink-300">
+          No enseñan teoría desde fuera: han trabajado dentro de lo que ahora enseñan.
+        </p>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          instructors.map((instructor, index) => (
+            <div data-reveal style={`--reveal-delay: ${index * 90}ms`}>
+              <InstructorCard instructor={instructor} />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Empresas -->
+  <section class="py-20" data-reveal>
+    <Container>
+      <p class="text-center font-mono text-xs font-medium uppercase tracking-[0.18em] text-ink-400">
+        Empresas que confían en nuestro talento formado
+      </p>
+    </Container>
+
+    <div
+      aria-hidden="true"
+      class="group relative mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+    >
+      <div class="flex w-max items-center gap-16 animate-marquee">
+        {
+          [...companies, ...companies].map((company) => (
+            <Image
+              src={company.data.logo}
+              alt=""
+              width={120}
+              height={40}
+              class="h-8 w-auto shrink-0 opacity-60 transition-opacity duration-200 hover:opacity-100"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  {
+    spotlightTestimonial && (
+      <section class="border-t border-ink-100 py-24">
+        <Container>
+          <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1.3fr_1fr]">
+            <div data-reveal class="relative">
+              <span class="font-display text-7xl leading-none text-brand-200" aria-hidden="true">"</span>
+              <blockquote class="-mt-6 font-display text-2xl font-medium leading-snug text-ink-900 sm:text-3xl">
+                {spotlightTestimonial.data.quote}
+              </blockquote>
+              <div class="mt-6 flex items-center gap-3">
+                {spotlightTestimonial.data.photo && (
+                  <Image
+                    src={spotlightTestimonial.data.photo}
+                    alt={spotlightTestimonial.data.name}
+                    width={48}
+                    height={48}
+                    class="h-12 w-12 rounded-full object-cover"
+                  />
+                )}
+                <span>
+                  <span class="block text-sm font-semibold text-ink-900">{spotlightTestimonial.data.name}</span>
+                  <span class="block font-mono text-xs text-ink-500">{spotlightTestimonial.data.role}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              {
+                supportingTestimonials.map((testimonial, index) => (
+                  <div data-reveal style={`--reveal-delay: ${(index + 1) * 100}ms`}>
+                    <TestimonialCard testimonial={testimonial} />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  <!-- CTA final -->
+  <section class="py-24">
+    <Container>
+      <div data-reveal class="relative overflow-hidden rounded-3xl bg-brand-600 p-10 text-center text-white sm:p-16">
+        <div class="absolute inset-0 bg-grain"></div>
+        <div class="glow-orb -left-20 -top-20 h-72 w-72 bg-brand-300/30"></div>
+        <div class="glow-orb -bottom-20 -right-20 h-72 w-72 bg-brand-300/30"></div>
+
+        <div class="relative mx-auto max-w-2xl">
+          <Eyebrow class="justify-center text-white/80">Tu próximo paso</Eyebrow>
+          <h2 class="mt-4 font-display text-3xl font-semibold sm:text-4xl">¿Hablamos de tu próximo paso profesional?</h2>
+          <p class="mt-4 text-base leading-relaxed text-white/85">
+            Sin compromiso. Un asesor educativo te cuenta qué curso encaja contigo y cómo sería tu acompañamiento real.
+          </p>
+          <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger>Habla con un asesor</Button>
+            <Button href="/cursos" variant="ghost" size="lg" class="text-white decoration-white/40 hover:text-white hover:decoration-white">
+              Ver todos los cursos →
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

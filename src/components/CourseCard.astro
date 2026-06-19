@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
 
 interface Props {
   course: CollectionEntry<"courses">;
@@ -9,7 +10,12 @@ interface Props {
 
 const { course } = Astro.props;
 const category = await getEntry(course.data.category);
-const tutor = await getEntry(course.data.tutor);
+
+const displayTitle = course.data.certificadoProfesionalidad
+  ? `${course.data.certificadoProfesionalidad.codigo} - ${course.data.title}`
+  : course.data.title;
+
+const totalHours = course.data.duration.split(" · ")[0];
 ---
 
 <a
@@ -27,13 +33,22 @@ const tutor = await getEntry(course.data.tutor);
     />
   </div>
   <div class="flex flex-1 flex-col p-6">
-    {category && <span class="font-mono text-xs font-semibold uppercase tracking-wide text-brand-600">{category.data.name}</span>}
-    <h3 class="mt-2 font-display text-lg font-semibold text-ink-900">{course.data.title}</h3>
+    <div class="flex items-center justify-between gap-2">
+      {category && <span class="font-mono text-xs font-semibold uppercase tracking-wide text-brand-600">{category.data.name}</span>}
+      {
+        course.data.certificadoProfesionalidad && (
+          <span class="inline-flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-amber-700">
+            <Icon name="award" class="h-3 w-3" />
+            Cert. Profesionalidad
+          </span>
+        )
+      }
+    </div>
+    <h3 class="mt-2 font-display text-lg font-semibold text-ink-900">{displayTitle}</h3>
     <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{course.data.shortDescription}</p>
 
     <div class="mt-5 flex items-center justify-between border-t border-ink-100 pt-4 font-mono text-xs text-ink-500">
-      <span>{course.data.level} · {course.data.duration}</span>
+      <span>{totalHours}</span>
     </div>
-    {tutor && <p class="mt-2 text-xs text-ink-400">Con {tutor.data.name}</p>}
   </div>
 </a>

@@ -147,6 +147,16 @@ summary {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Hides the scrollbar on horizontally-scrolling carousels (certificate cards, etc.)
+   while keeping native touch/trackpad scroll and snap behavior. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
