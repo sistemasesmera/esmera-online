@@ -2,7 +2,7 @@
 title: "Estrategias Marketing Digital"
 internalCode: "3436-38_R"
 shortDescription: "Aprende a diseñar, ejecutar y medir estrategias de marketing digital como un profesional, con un programa práctico orientado a la empleabilidad real."
-category: "marketing"
+categories: ["marketing"]
 level: "Iniciación"
 duration: "50 horas"
 modality: "Online"
@@ -61,6 +61,7 @@ faq:
   - question: "¿Hay acompañamiento personalizado?"
     answer: "Sí, cuentas con un tutor asignado y seguimiento durante todo el curso."
 relatedCourses:
+  - "ia-marketing-digital"
   - "ia-aplicada-empresas"
   - "ciberseguridad-profesional"
 featured: true

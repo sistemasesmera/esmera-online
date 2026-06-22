@@ -2,7 +2,7 @@
 title: "Fundamentos de la Inteligencia Artificial y ChatGPT"
 internalCode: "AE26-00681"
 shortDescription: "Comprende, aplica e integra la IA generativa y ChatGPT en tu trabajo: prompt engineering, productividad, creatividad y un uso ético y responsable de la tecnología."
-category: "inteligencia-artificial"
+categories: ["inteligencia-artificial"]
 level: "Iniciación"
 duration: "30 horas"
 modality: "Online"
@@ -42,6 +42,7 @@ faq:
   - question: "¿Obtengo certificado al finalizar?"
     answer: "Sí, recibirás un diploma de Esmera Online al completar el curso y el proyecto final."
 relatedCourses:
+  - "ia-marketing-digital"
   - "marketing-digital"
   - "ciberseguridad-profesional"
 featured: true

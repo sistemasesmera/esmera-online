@@ -16,20 +16,21 @@ const featuredCourses = courses.filter((course) => course.data.featured).sort((a
 
 const courseCountByCategory = new Map<string, number>();
 for (const course of courses) {
-  const key = course.data.category.id;
-  courseCountByCategory.set(key, (courseCountByCategory.get(key) ?? 0) + 1);
+  for (const category of course.data.categories) {
+    courseCountByCategory.set(category.id, (courseCountByCategory.get(category.id) ?? 0) + 1);
+  }
 }
 
 const journeySteps = [
   { title: "Bienvenida personalizada", description: "Accedes de inmediato y un tutor de bienvenida te guía en tus primeros pasos." },
-  { title: "Tutor asignado", description: "Tienes un tutor de referencia durante todo el curso, no un foro genérico." },
-  { title: "Tutorías semanales", description: "Resuelves dudas en directo cada semana, no solo ves vídeos en soledad." },
+  { title: "Tutor asignado", description: "Tienes un tutor de referencia que te acompaña durante todo el curso." },
+  { title: "Tutorías semanales", description: "Resuelves tus dudas en directo cada semana, en sesiones con grupo reducido." },
   { title: "Proyecto final aplicado", description: "Aplicas lo aprendido en un proyecto real que puedes mostrar en tu portfolio." },
   { title: "Certificado profesional", description: "Terminas con un diploma o certificado profesional que demuestra tu nueva capacidad." },
 ];
 
 const benefits = [
-  { title: "Acompañamiento real", description: "Tutor asignado y seguimiento personalizado, no estás solo frente a una pantalla.", icon: "chat" as const },
+  { title: "Acompañamiento real", description: "Tutor asignado y seguimiento personalizado en cada etapa de tu formación.", icon: "chat" as const },
   { title: "Tutorías semanales en directo", description: "Resuelve tus dudas en tiempo real con profesionales en activo.", icon: "calendar" as const },
   { title: "Proyectos reales", description: "Aplica lo aprendido en proyectos que puedes mostrar en tu portfolio profesional.", icon: "briefcase" as const },
   { title: "Contenidos siempre actualizados", description: "Formación al día con lo que el mercado laboral demanda hoy.", icon: "refresh" as const },
@@ -41,29 +42,55 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
 ---
 
 <Layout
-  title="Esmera Online — Formación profesional online con acompañamiento real"
-  description="Formación online en Inteligencia Artificial, Ciberseguridad y Marketing Digital. Tutor asignado, tutorías semanales en directo y proyectos reales."
+  title="Esmera Online — Conviértete en el profesional que el mercado pide"
+  description="Formación profesional online con tutor asignado, tutorías semanales en directo y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden bg-white py-20 sm:py-28">
     <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-brand-50 to-white"></div>
-    <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
+    <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-dot-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
+    <svg class="absolute inset-0 -z-10 h-full w-full text-brand-300/60 [mask-image:radial-gradient(ellipse_60%_55%_at_50%_30%,black,transparent)]" preserveAspectRatio="none">
+      <defs>
+        <pattern id="hero-circuit" width="72" height="72" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M0 18H18V0" />
+            <path d="M36 0V18H54V36" />
+            <path d="M72 54H54V72" />
+            <path d="M18 72V54H0" />
+            <path d="M36 36H72" />
+            <path d="M0 54H18V36" />
+          </g>
+          <g fill="currentColor">
+            <circle cx="18" cy="18" r="1.6" />
+            <circle cx="54" cy="36" r="1.6" />
+            <circle cx="18" cy="54" r="1.6" />
+            <circle cx="36" cy="36" r="1.6" />
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-circuit)" />
+    </svg>
     <div class="glow-orb -right-32 top-10 -z-10 h-96 w-96 bg-brand-300/25"></div>
+    <div class="glow-orb -left-24 bottom-0 -z-10 h-72 w-72 bg-brand-200/30"></div>
 
     <Container class="relative">
       <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div>
-          <h1 data-reveal style={delayStyle(1)} class="font-display text-4xl font-semibold text-ink-900 sm:text-6xl">
-            Fórmate en IA, Ciberseguridad o Marketing Digital<br />
+          <span data-reveal style={delayStyle(0)} class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 font-mono text-xs font-medium text-brand-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+            Tu futuro profesional empieza aquí
+          </span>
+          <h1 data-reveal style={delayStyle(1)} class="mt-5 font-display text-4xl font-bold tracking-tight text-ink-900 sm:text-6xl">
+            Conviértete en el profesional<br />
             <span class="relative text-brand-600">
-              con un tutor real, no un vídeo más.
+              que el mercado pide.
               <svg viewBox="0 0 360 12" preserveAspectRatio="none" class="absolute -bottom-1 left-0 h-2.5 w-full text-brand-300/70 sm:-bottom-2">
                 <path d="M2 9.5C60 2 280 1 358 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
               </svg>
             </span>
           </h1>
-          <p data-reveal style={delayStyle(2)} class="mt-7 max-w-xl text-lg leading-relaxed text-ink-500">
-            Tutorías semanales en directo, proyectos reales y seguimiento personalizado en los sectores con más demanda laboral de hoy.
+          <p data-reveal style={delayStyle(2)} class="mt-7 max-w-xl text-lg font-normal leading-relaxed text-ink-500">
+            Formación profesional online con tutor asignado, tutorías semanales en directo y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital.
           </p>
           <div data-reveal style={delayStyle(3)} class="mt-10 flex flex-col items-start gap-3 sm:flex-row">
             <Button href="/cursos" variant="primary" size="lg">Explorar cursos</Button>
@@ -72,36 +99,11 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
         </div>
 
         <div data-reveal style={delayStyle(2)} class="relative mx-auto w-full max-w-md lg:max-w-none">
-          <div class="absolute -inset-3 -z-10 rounded-[2.5rem] border-2 border-brand-200 lg:rotate-2"></div>
-          <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-900/15">
-            <Image src={heroImage} alt="Alumno organizando su plan de formación" width={700} height={875} class="h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/30 via-transparent to-transparent"></div>
-          </div>
-
-          <div class="absolute -left-4 top-8 flex items-center gap-3 rounded-2xl bg-white/90 p-4 shadow-xl shadow-ink-900/10 backdrop-blur-sm animate-float sm:-left-8">
-            <div class="flex text-brand-500">
-              {Array.from({ length: 5 }).map(() => (
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M8 0l2.47 5.01 5.53.8-4 3.9.94 5.5L8 12.6l-4.94 2.6.94-5.5-4-3.9 5.53-.8L8 0z" />
-                </svg>
-              ))}
-            </div>
-            <div>
-              <p class="font-mono text-sm font-semibold text-ink-900">4.9/5</p>
-              <p class="text-xs text-ink-500">valoración de alumnos</p>
-            </div>
-          </div>
-
-          <div
-            class="absolute -right-4 bottom-8 flex items-center gap-3 rounded-2xl bg-white/90 p-4 shadow-xl shadow-ink-900/10 backdrop-blur-sm animate-float sm:-right-8"
-            style="animation-delay: 1.2s"
-          >
-            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-700">
-              <Icon name="users" class="h-5 w-5" />
-            </span>
-            <div>
-              <p class="font-mono text-sm font-semibold text-ink-900">+1.200</p>
-              <p class="text-xs text-ink-500">alumnos formados</p>
+          <div class="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-brand-200/50 via-brand-100/40 to-transparent blur-2xl"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-300 via-brand-400 to-brand-600 p-[3px] shadow-2xl shadow-ink-900/20">
+            <div class="relative h-full w-full overflow-hidden rounded-[calc(2rem-3px)]">
+              <Image src={heroImage} alt="Alumno organizando su plan de formación" width={700} height={875} class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/25 via-transparent to-transparent"></div>
             </div>
           </div>
         </div>

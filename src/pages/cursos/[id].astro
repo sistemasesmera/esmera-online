@@ -18,7 +18,7 @@ export const getStaticPaths = (async () => {
 const { course } = Astro.props;
 const { Content } = await render(course);
 
-const category = await getEntry(course.data.category);
+const categories = await Promise.all(course.data.categories.map((ref) => getEntry(ref)));
 const relatedCourses = await Promise.all(course.data.relatedCourses.map((ref) => getEntry(ref)));
 
 const displayTitle = course.data.certificadoProfesionalidad
@@ -77,11 +77,13 @@ const breadcrumbJsonLd = {
     <Container class="relative">
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
         <div data-reveal class="lg:col-span-2">
-          {category && (
-            <a href={`/categorias/${category.id}`}>
-              <Eyebrow>{category.data.name}</Eyebrow>
-            </a>
-          )}
+          <div class="flex flex-wrap items-center gap-4">
+            {categories.map((category) => (
+              <a href={`/categorias/${category.id}`}>
+                <Eyebrow>{category.data.name}</Eyebrow>
+              </a>
+            ))}
+          </div>
           <h1 class="mt-4 font-display text-4xl font-semibold text-ink-900 sm:text-5xl">{displayTitle}</h1>
           <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-500">{course.data.shortDescription}</p>
 

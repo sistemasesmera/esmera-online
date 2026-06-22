@@ -2,7 +2,7 @@
 title: "Ciberseguridad"
 internalCode: "DTF0317"
 shortDescription: "Aprende los fundamentos de la ciberseguridad: tipos de ataques, malware, gestión de la seguridad (SGSI) y las herramientas de protección que usan los profesionales del sector."
-category: "ciberseguridad"
+categories: ["ciberseguridad"]
 level: "Iniciación"
 duration: "57 horas"
 modality: "Online"

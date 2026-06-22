@@ -1,13 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@import "@fontsource-variable/albert-sans";
-@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/montserrat";
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  --font-sans: "Albert Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 
   /* Brand teal, derived from the two reference colors #75bcb1 / #5ba099 */

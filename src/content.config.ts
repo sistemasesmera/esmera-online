@@ -54,7 +54,7 @@ const courses = defineCollection({
       title: z.string(),
       internalCode: z.string().optional(),
       shortDescription: z.string(),
-      category: reference("categories"),
+      categories: z.array(reference("categories")).min(1),
       level: z.enum(["Iniciación", "Intermedio", "Avanzado"]),
       duration: z.string(),
       modality: z.literal("Online"),

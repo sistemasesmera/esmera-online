@@ -12,7 +12,7 @@ export const getStaticPaths = (async () => {
 
   return categories.map((category) => ({
     params: { id: category.id },
-    props: { category, courses: courses.filter((course) => course.data.category.id === category.id) },
+    props: { category, courses: courses.filter((course) => course.data.categories.some((c) => c.id === category.id)) },
   }));
 }) satisfies GetStaticPaths;
 

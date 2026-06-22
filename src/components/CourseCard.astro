@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { course } = Astro.props;
-const category = await getEntry(course.data.category);
+const categories = await Promise.all(course.data.categories.map((ref) => getEntry(ref)));
 
 const displayTitle = course.data.certificadoProfesionalidad
   ? `${course.data.certificadoProfesionalidad.codigo} - ${course.data.title}`
@@ -34,7 +34,11 @@ const totalHours = course.data.duration.split(" · ")[0];
   </div>
   <div class="flex flex-1 flex-col p-6">
     <div class="flex items-center justify-between gap-2">
-      {category && <span class="font-mono text-xs font-semibold uppercase tracking-wide text-brand-600">{category.data.name}</span>}
+      {categories.length > 0 && (
+        <span class="font-mono text-xs font-semibold uppercase tracking-wide text-brand-600">
+          {categories.map((category) => category.data.name).join(" · ")}
+        </span>
+      )}
       {
         course.data.certificadoProfesionalidad && (
           <span class="inline-flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-amber-700">
