@@ -58,8 +58,8 @@ faq:
     answer: "No. El curso parte de los fundamentos de la IA y avanza de forma progresiva hasta su aplicación práctica en marketing digital."
   - question: "¿Qué herramientas de IA voy a usar?"
     answer: "Trabajarás con ChatGPT y otras herramientas de IA generativa aplicadas a contenidos, SEO, SEM, redes sociales y email marketing."
-  - question: "¿Las tutorías son en directo?"
-    answer: "Sí, tienes tutorías semanales en directo con tu tutor, además de poder resolver dudas en cualquier momento."
+  - question: "¿Cómo funcionan las tutorías?"
+    answer: "Tienes tutorías semanales con tu tutor asignado, además de poder resolver dudas en cualquier momento."
   - question: "¿Obtengo certificado al finalizar?"
     answer: "Sí, recibirás un diploma de Esmera Online al completar el curso y el proyecto final."
 relatedCourses:
@@ -71,4 +71,4 @@ order: 4
 
 Este curso te lleva desde los fundamentos de la Inteligencia Artificial generativa hasta su aplicación práctica en marketing digital: creación de contenidos, SEO y SEM, redes sociales, email marketing y analítica predictiva, siempre con un uso ético y responsable de la tecnología.
 
-Aprenderás de forma práctica, con tutorías semanales en directo y un proyecto final en el que diseñarás y presentarás una estrategia de marketing aplicando IA de principio a fin.
+Aprenderás de forma práctica, con tutorías semanales con tu tutor asignado y un proyecto final en el que diseñarás y presentarás una estrategia de marketing aplicando IA de principio a fin.

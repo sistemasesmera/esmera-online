@@ -24,14 +24,14 @@ for (const course of courses) {
 const journeySteps = [
   { title: "Bienvenida personalizada", description: "Accedes de inmediato y un tutor de bienvenida te guía en tus primeros pasos." },
   { title: "Tutor asignado", description: "Tienes un tutor de referencia que te acompaña durante todo el curso." },
-  { title: "Tutorías semanales", description: "Resuelves tus dudas en directo cada semana, en sesiones con grupo reducido." },
+  { title: "Tutor personalizado", description: "Resuelves tus dudas con tu tutor asignado cada semana, a tu ritmo y sin presiones." },
   { title: "Proyecto final aplicado", description: "Aplicas lo aprendido en un proyecto real que puedes mostrar en tu portfolio." },
   { title: "Certificado profesional", description: "Terminas con un diploma o certificado profesional que demuestra tu nueva capacidad." },
 ];
 
 const benefits = [
   { title: "Acompañamiento real", description: "Tutor asignado y seguimiento personalizado en cada etapa de tu formación.", icon: "chat" as const },
-  { title: "Tutorías semanales en directo", description: "Resuelve tus dudas en tiempo real con profesionales en activo.", icon: "calendar" as const },
+  { title: "Tutorías semanales", description: "Resuelve tus dudas con tu tutor asignado cada semana, de forma personalizada y a tu ritmo.", icon: "calendar" as const },
   { title: "Proyectos reales", description: "Aplica lo aprendido en proyectos que puedes mostrar en tu portfolio profesional.", icon: "briefcase" as const },
   { title: "Contenidos siempre actualizados", description: "Formación al día con lo que el mercado laboral demanda hoy.", icon: "refresh" as const },
   { title: "Orientación profesional", description: "Te ayudamos a dar el siguiente paso: empleo, especialización o emprendimiento.", icon: "compass" as const },
@@ -43,7 +43,7 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
 
 <Layout
   title="Esmera Online — Conviértete en el profesional que el mercado pide"
-  description="Formación profesional online con tutor asignado, tutorías semanales en directo y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital."
+  description="Formación profesional online con tutor personalizado, tutorías semanales y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden bg-white py-20 sm:py-28">
@@ -90,7 +90,7 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
             </span>
           </h1>
           <p data-reveal style={delayStyle(2)} class="mt-7 max-w-xl text-lg font-normal leading-relaxed text-ink-500">
-            Formación profesional online con tutor asignado, tutorías semanales en directo y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital.
+            Formación profesional online con tutor personalizado, tutorías semanales y proyectos reales. Especialidades en IA, Ciberseguridad y Marketing Digital.
           </p>
           <div data-reveal style={delayStyle(3)} class="mt-10 flex flex-col items-start gap-3 sm:flex-row">
             <Button href="/cursos" variant="primary" size="lg">Explorar cursos</Button>

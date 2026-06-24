@@ -45,6 +45,6 @@ featured: true
 order: 2
 ---
 
-La ciberseguridad es uno de los sectores con mayor demanda de profesionales y menor oferta formativa especializada. Este curso te lleva desde los conceptos básicos de seguridad hasta el conocimiento de las amenazas, el malware y las herramientas de protección que se usan a nivel profesional, con tutorías semanales en directo y un tutor especializado que te acompaña en todo el proceso.
+La ciberseguridad es uno de los sectores con mayor demanda de profesionales y menor oferta formativa especializada. Este curso te lleva desde los conceptos básicos de seguridad hasta el conocimiento de las amenazas, el malware y las herramientas de protección que se usan a nivel profesional, con tutorías semanales y un tutor especializado que te acompaña en todo el proceso.
 
 Trabajarás con casos y entornos reales para que, al terminar, tengas tanto el conocimiento como la práctica que las empresas buscan en este sector.

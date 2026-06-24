@@ -31,7 +31,7 @@ Vídeos cortos, contenidos en redes, "tips" rápidos... son útiles para mantene
 
 ## El acompañamiento real marca la diferencia
 
-Con tanto contenido gratuito disponible, lo que de verdad diferencia una formación es el acompañamiento: tutor asignado, tutorías en directo, proyectos reales y una comunidad con la que avanzar. La información ya no es escasa; el acompañamiento y la estructura, sí.
+Con tanto contenido gratuito disponible, lo que de verdad diferencia una formación es el acompañamiento: tutor asignado, tutorías semanales, proyectos reales y una comunidad con la que avanzar. La información ya no es escasa; el acompañamiento y la estructura, sí.
 
 ## Aprender a adaptarse, la competencia más demandada
 

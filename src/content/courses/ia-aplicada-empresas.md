@@ -37,8 +37,8 @@ faq:
     answer: "No. Es un curso de iniciación pensado para empezar desde cero, sin perfil técnico, aunque llega hasta el prompt engineering aplicado al trabajo profesional."
   - question: "¿El curso cubre el uso ético y legal de la IA?"
     answer: "Sí, dedicamos una unidad completa a la ética, la privacidad y el marco legal básico del uso de la IA en el entorno profesional."
-  - question: "¿Las tutorías son en directo?"
-    answer: "Sí, tienes tutorías semanales en directo con tu tutora, además de poder resolver dudas en cualquier momento."
+  - question: "¿Cómo funcionan las tutorías?"
+    answer: "Tienes tutorías semanales con tu tutora asignada, además de poder resolver dudas en cualquier momento."
   - question: "¿Obtengo certificado al finalizar?"
     answer: "Sí, recibirás un diploma de Esmera Online al completar el curso y el proyecto final."
 relatedCourses:
@@ -51,4 +51,4 @@ order: 1
 
 Este curso está pensado para que comprendas, apliques e integres la IA generativa y ChatGPT en tu trabajo: desde los conceptos básicos hasta el prompt engineering aplicado a la productividad, la creatividad y la toma de decisiones, siempre con un uso ético y responsable de la tecnología.
 
-Aprenderás de forma práctica, con tutorías semanales en directo y un proyecto final aplicado a una tarea real de tu trabajo o estudio.
+Aprenderás de forma práctica, con tutorías semanales con tu tutor asignado y un proyecto final aplicado a una tarea real de tu trabajo o estudio.

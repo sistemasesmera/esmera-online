@@ -17,7 +17,8 @@ interface Props {
     | "clock"
     | "chart"
     | "target"
-    | "alert";
+    | "alert"
+    | "brush";
   class?: string;
 }
 
@@ -80,6 +81,10 @@ const paths: Record<string, string[]> = {
     "M12 12.01h.01",
   ],
   alert: ["M12 4.5l8.5 14.5h-17z", "M12 10v3.6", "M12 16.5h.01"],
+  brush: [
+    "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z",
+    "M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+  ],
 };
 ---
 

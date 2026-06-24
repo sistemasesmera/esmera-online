@@ -27,4 +27,4 @@ featured: true
 order: 6
 ---
 
-Formación profesional online para convertirte en técnica de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor asignado y tutorías semanales en directo.
+Formación profesional online para convertirte en técnica de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales.

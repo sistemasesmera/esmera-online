@@ -56,8 +56,8 @@ faq:
     answer: "A emprendedores y autónomos, profesionales en activo que quieren ampliar sus competencias digitales, personas en búsqueda de empleo y profesionales que buscan reinventarse hacia el mundo digital. No necesitas experiencia previa."
   - question: "¿Sirve este curso si quiero emprender mi propio negocio?"
     answer: "Sí, el proyecto final está orientado a que puedas aplicarlo directamente a tu propio negocio o idea."
-  - question: "¿Qué pasa si me pierdo una tutoría en directo?"
-    answer: "Todas las tutorías quedan grabadas y disponibles para verlas cuando quieras."
+  - question: "¿Qué pasa si no puedo asistir a una tutoría?"
+    answer: "No hay problema, tu tutor se adapta a ti. Coordináis el momento que mejor os venga."
   - question: "¿Hay acompañamiento personalizado?"
     answer: "Sí, cuentas con un tutor asignado y seguimiento durante todo el curso."
 relatedCourses:

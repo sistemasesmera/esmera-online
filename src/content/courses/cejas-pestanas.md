@@ -27,4 +27,4 @@ featured: true
 order: 5
 ---
 
-Formación profesional online especializada en el diseño de cejas y tratamiento de pestañas. Un programa práctico con tutor asignado y tutorías semanales en directo para que puedas ejercer como profesional de la estética facial.
+Formación profesional online especializada en el diseño de cejas y tratamiento de pestañas. Un programa práctico con tutor personalizado y tutorías semanales para que puedas ejercer como profesional de la estética facial.
