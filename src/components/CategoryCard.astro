@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { category, courseCount } = Astro.props;
-const iconName = (category.data.icon as "sparkles" | "shield" | "megaphone") ?? "sparkles";
+const iconName = (category.data.icon as "sparkles" | "shield" | "megaphone" | "award" | "users" | "briefcase" | "compass" | "chart" | "target" | "clock" | "bot" | "calendar") ?? "sparkles";
 ---
 
 <a
