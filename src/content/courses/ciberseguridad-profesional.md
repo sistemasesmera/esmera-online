@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "57 horas"
 modality: "Online"
 tutor: "diego-salas"
-coverImage: "./ciberseguridad-profesional-cover.jpg"
+coverImage: "./ciberseguridad.png"
 objectives:
   - text: "Comprender los conceptos clave de seguridad y de dónde proceden los ataques informáticos."
     icon: "shield"

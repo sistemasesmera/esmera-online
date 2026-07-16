@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "50 horas"
 modality: "Online"
 tutor: "carlos-rivero"
-coverImage: "./marketing-digital-cover.jpg"
+coverImage: "./marketing-digital.png"
 objectives:
   - text: "Analizar al usuario digital con técnicas de segmentación y Buyer Persona."
     icon: "users"

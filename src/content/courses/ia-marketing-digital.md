@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "60 horas"
 modality: "Online"
 tutor: "carlos-rivero"
-coverImage: "./ia-marketing-digital-cover.jpg"
+coverImage: "./ia-en-el-marketing.png"
 objectives:
   - text: "Comprender los fundamentos de la IA generativa y los modelos de lenguaje (LLM)."
     icon: "bot"

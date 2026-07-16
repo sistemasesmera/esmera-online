@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "200 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas-esmera-cover.jpg"
+coverImage: "./unas.png"
 objectives:
   - text: "Dominar las técnicas de uñas acrílicas, gel y semipermanente."
     icon: "sparkles"

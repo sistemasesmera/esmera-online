@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "60 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-pestanas-cover.jpg"
+coverImage: "./cejas-y-pestanas.png"
 objectives:
   - text: "Dominar las técnicas de diseño y perfilado de cejas según la morfología facial."
     icon: "sparkles"

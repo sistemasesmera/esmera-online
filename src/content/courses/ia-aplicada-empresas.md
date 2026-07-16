@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "30 horas"
 modality: "Online"
 tutor: "laura-mendez"
-coverImage: "./ia-aplicada-empresas-cover.jpg"
+coverImage: "./chatgpt.png"
 objectives:
   - text: "Comprender qué es la IA generativa y cómo funciona ChatGPT en el ámbito profesional."
     icon: "bot"
