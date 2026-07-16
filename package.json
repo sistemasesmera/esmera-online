@@ -17,6 +17,7 @@
     "@fontsource-variable/montserrat": "^5.2.8",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.7",
+    "intl-tel-input": "^29.1.2",
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {

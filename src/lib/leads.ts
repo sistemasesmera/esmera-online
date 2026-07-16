@@ -1,31 +1,49 @@
-// Single integration point for lead submissions.
-// There is no backend/CRM wired up yet (decision pending) — until then, leads
-// are handed off via a pre-filled mailto so nothing is silently lost.
-// Once a CRM is chosen, replace the body of `submitLead` with a fetch() call
-// to its API/webhook; no caller needs to change.
-
-export const LEAD_NOTIFICATION_EMAIL = "info@esmeraonline.com";
+const CRM_URL = import.meta.env.PUBLIC_CRM_URL as string;
+const CRM_API_KEY = import.meta.env.PUBLIC_CRM_API_KEY as string;
 
 export interface LeadPayload {
   name: string;
-  email: string;
+  email?: string;
   phone: string;
   courseOfInterest?: string;
   message?: string;
 }
 
-export function submitLead(payload: LeadPayload) {
-  const subject = encodeURIComponent(
-    `Nueva solicitud de información${payload.courseOfInterest ? ` — ${payload.courseOfInterest}` : ""}`,
-  );
-  const bodyLines = [
-    `Nombre: ${payload.name}`,
-    `Email: ${payload.email}`,
-    `Teléfono: ${payload.phone}`,
-    payload.courseOfInterest ? `Curso de interés: ${payload.courseOfInterest}` : null,
-    payload.message ? `Mensaje: ${payload.message}` : null,
-  ].filter(Boolean);
-  const body = encodeURIComponent(bodyLines.join("\n"));
+export type LeadResult =
+  | { ok: true }
+  | { ok: false; duplicate: true; error: "duplicate_lead" | "already_student" }
+  | { ok: false; duplicate: false };
 
-  window.location.href = `mailto:${LEAD_NOTIFICATION_EMAIL}?subject=${subject}&body=${body}`;
+export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
+  try {
+    const res = await fetch(`${CRM_URL}/api/public/leads`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": CRM_API_KEY,
+      },
+      body: JSON.stringify({
+        full_name: payload.name,
+        phone: payload.phone,
+        email: payload.email || undefined,
+        source: "web",
+        interested_course: payload.courseOfInterest || undefined,
+        notes: payload.message || undefined,
+      }),
+    });
+
+    if (res.status === 201) return { ok: true };
+
+    if (res.status === 409) {
+      const data = await res.json().catch(() => ({}));
+      return { ok: false, duplicate: true, error: data.error };
+    }
+
+    const text = await res.text().catch(() => "");
+    console.error("[leads] unexpected status:", res.status, text);
+    return { ok: false, duplicate: false };
+  } catch (err) {
+    console.error("[leads] fetch error:", err);
+    return { ok: false, duplicate: false };
+  }
 }

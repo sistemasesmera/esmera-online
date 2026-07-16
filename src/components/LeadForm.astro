@@ -33,6 +33,7 @@ const labelClass = isBrand
 
 <div
   class={`relative overflow-hidden rounded-3xl p-8 shadow-xl sm:p-10 ${isBrand ? "bg-brand-600 text-white shadow-brand-900/20" : "border border-ink-100 bg-white text-ink-900 shadow-ink-900/5"} ${className}`}
+  data-variant={variant}
 >
   {
     isBrand && (
@@ -47,6 +48,15 @@ const labelClass = isBrand
     <h3 class={`font-display text-2xl font-semibold ${isBrand ? "text-white" : "text-ink-900"}`}>{title}</h3>
     <p class={`mt-2 text-sm leading-relaxed ${isBrand ? "text-white/85" : "text-ink-500"}`}>{subtitle}</p>
 
+    <div id="lead-form-success" class="hidden mt-8 py-8 flex flex-col items-center gap-4 text-center">
+      <span class={`flex h-20 w-20 items-center justify-center rounded-full ${isBrand ? "bg-white/20" : "bg-brand-50"}`}>
+        <svg class={`h-10 w-10 ${isBrand ? "text-white" : "text-brand-600"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </span>
+      <p id="lead-success-msg" class={`text-sm leading-relaxed ${isBrand ? "text-white/85" : "text-ink-500"}`}></p>
+    </div>
+
     <form id="lead-form" class="mt-8 space-y-4" novalidate>
       {presetCourse && <input type="hidden" name="courseOfInterest" value={presetCourse} />}
 
@@ -55,15 +65,15 @@ const labelClass = isBrand
         <input id="lead-name" name="name" type="text" required class={inputClass} placeholder="Tu nombre" />
       </div>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <label for="lead-email" class={labelClass}>Email</label>
-          <input id="lead-email" name="email" type="email" required class={inputClass} placeholder="tu@email.com" />
-        </div>
-        <div>
-          <label for="lead-phone" class={labelClass}>Teléfono</label>
-          <input id="lead-phone" name="phone" type="tel" required class={inputClass} placeholder="600 000 000" />
-        </div>
+      <div>
+        <label for="lead-phone" class={labelClass}>Teléfono</label>
+        <input id="lead-phone" name="phone" type="tel" required class={inputClass} placeholder="612 345 678" />
+        <p id="lead-phone-error" class={`mt-1 hidden text-xs ${isBrand ? "text-white/70" : "text-red-500"}`}>Introduce un número de teléfono válido.</p>
+      </div>
+
+      <div>
+        <label for="lead-email" class={labelClass}>Email <span class={isBrand ? "text-white/50" : "text-ink-400"}>(opcional)</span></label>
+        <input id="lead-email" name="email" type="email" class={inputClass} placeholder="tu@email.com" />
       </div>
 
       {
@@ -97,8 +107,8 @@ const labelClass = isBrand
         type="submit"
         class={
           isBrand
-            ? "w-full rounded-lg bg-white px-6 py-3 font-display text-sm font-semibold text-brand-700 shadow-lg shadow-brand-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90"
-            : "w-full rounded-lg bg-brand-600 px-6 py-3 font-display text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_8px_20px_-10px_var(--color-brand-700)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700"
+            ? "w-full rounded-lg bg-white px-6 py-3 font-display text-sm font-semibold text-brand-700 shadow-lg shadow-brand-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 disabled:opacity-60 disabled:cursor-not-allowed"
+            : "w-full rounded-lg bg-brand-600 px-6 py-3 font-display text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_8px_20px_-10px_var(--color-brand-700)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed"
         }
       >
         {showCourseField ? "Solicitar información" : "Enviar mensaje"}
@@ -116,32 +126,109 @@ const labelClass = isBrand
   </div>
 </div>
 
+<style is:global>
+  /* intl-tel-input — layout */
+  .iti { width: 100%; }
+  .iti__selected-flag {
+    border-radius: 0.5rem 0 0 0.5rem;
+    padding-inline: 0.75rem;
+  }
+
+  /* Dropdown: siempre texto oscuro sobre fondo blanco, independiente del tema */
+  .iti__country-list {
+    z-index: 50;
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .iti__country-list .iti__country-name,
+  .iti__country-list .iti__dial-code {
+    color: #111827 !important;
+  }
+  .iti__country-list .iti__country.iti__highlight,
+  .iti__country-list .iti__country:hover {
+    background: #f3f4f6 !important;
+  }
+  .iti__search-input {
+    color: #111827 !important;
+    background: #f9fafb !important;
+    border-color: #e5e7eb !important;
+  }
+
+  /* Variante brand: flag button sobre fondo oscuro */
+  [data-variant="brand"] .iti__selected-flag {
+    background: rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  [data-variant="brand"] .iti__selected-flag:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  [data-variant="brand"] .iti__selected-dial-code {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  [data-variant="brand"] .iti__arrow {
+    border-top-color: rgba(255, 255, 255, 0.6);
+  }
+</style>
+
 <script>
+  import intlTelInput from "intl-tel-input/intlTelInputWithUtils";
+  import "intl-tel-input/styles";
   import { submitLead } from "../lib/leads";
 
   function initLeadForms() {
-    // <main> is swapped on every View Transitions navigation, so forms are
-    // re-queried (and re-bound) on astro:page-load rather than once at parse time.
     document.querySelectorAll<HTMLFormElement>("#lead-form").forEach((form) => {
       if (form.dataset.bound) return;
       form.dataset.bound = "true";
 
+      const phoneInput = form.querySelector<HTMLInputElement>("#lead-phone");
+      const phoneError = form.querySelector<HTMLParagraphElement>("#lead-phone-error");
+      const wrapper = form.closest<HTMLElement>(".relative");
+      const successPanel = wrapper?.querySelector<HTMLElement>("#lead-form-success");
+      const successMsg = wrapper?.querySelector<HTMLElement>("#lead-success-msg");
       const status = form.querySelector<HTMLParagraphElement>("#lead-form-status");
+      const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
 
-      form.addEventListener("submit", (event) => {
+      const iti = phoneInput
+        ? intlTelInput(phoneInput, { initialCountry: "es", strictMode: true })
+        : null;
+
+      function showSuccess(msg: string) {
+        form.classList.add("hidden");
+        if (successMsg) successMsg.textContent = msg;
+        if (successPanel) successPanel.classList.remove("hidden");
+      }
+
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const data = new FormData(form);
 
-        submitLead({
+        if (iti && !iti.isValidNumber()) {
+          phoneError?.classList.remove("hidden");
+          phoneInput?.focus();
+          return;
+        }
+        phoneError?.classList.add("hidden");
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (status) status.textContent = "Enviando...";
+
+        const result = await submitLead({
           name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? ""),
-          phone: String(data.get("phone") ?? ""),
+          email: String(data.get("email") ?? "") || undefined,
+          phone: iti ? iti.getNumber() : String(data.get("phone") ?? ""),
           courseOfInterest: String(data.get("courseOfInterest") ?? "") || undefined,
           message: String(data.get("message") ?? "") || undefined,
         });
 
-        if (status) {
-          status.textContent = "Abriendo tu cliente de correo para enviar tu solicitud...";
+        if (result.ok) {
+          showSuccess("¡Recibido! Un asesor se pondrá en contacto contigo pronto.");
+        } else if (result.duplicate) {
+          showSuccess("Ya tenemos tus datos. Te contactaremos en breve, ¡estate atento al teléfono!");
+        } else {
+          if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo o llámanos directamente.";
+          if (submitBtn) submitBtn.disabled = false;
         }
       });
     });

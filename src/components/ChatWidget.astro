@@ -76,11 +76,12 @@ import Icon from "./Icon.astro";
 <script>
   import { submitLead } from "../lib/leads";
 
-  type Step = "greeting" | "category" | "contact" | "done";
+  type Step = "greeting" | "category" | "contact_name" | "contact_phone" | "done";
 
   interface BotState {
     step: Step;
     category?: string;
+    contactName?: string;
   }
 
   const CATEGORY_INFO: Record<string, string> = {
@@ -138,11 +139,11 @@ import Icon from "./Icon.astro";
     }
 
     function askForContact() {
-      state.step = "contact";
-      addMessage("Genial, déjame tu email y un asesor te contactará para darte todos los detalles.", "bot");
+      state.step = "contact_name";
+      addMessage("Perfecto. ¿Cómo te llamas?", "bot");
       setQuickReplies([]);
-      input?.setAttribute("type", "email");
-      input?.setAttribute("placeholder", "tu@email.com");
+      input?.setAttribute("type", "text");
+      input?.setAttribute("placeholder", "Tu nombre completo");
     }
 
     function handleUserChoice(option: string) {
@@ -162,24 +163,46 @@ import Icon from "./Icon.astro";
       }
     }
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const value = input.value.trim();
       if (!value) return;
 
-      if (state.step === "contact") {
-        addMessage(value, "user");
-        submitLead({ name: "Visitante del chat", email: value, phone: "", courseOfInterest: state.category });
-        addMessage("¡Listo! Hemos abierto tu cliente de correo para enviar tu solicitud. Un asesor te contactará pronto.", "bot");
-        state.step = "done";
-        input.value = "";
-        input.setAttribute("type", "text");
-        input.setAttribute("placeholder", "Escribe tu mensaje...");
+      addMessage(value, "user");
+      input.value = "";
+
+      if (state.step === "contact_name") {
+        state.contactName = value;
+        state.step = "contact_phone";
+        addMessage(`Encantado, ${value.split(" ")[0]}. ¿Y tu número de teléfono?`, "bot");
+        input.setAttribute("type", "tel");
+        input.setAttribute("placeholder", "600 000 000");
         return;
       }
 
-      addMessage(value, "user");
-      input.value = "";
+      if (state.step === "contact_phone") {
+        const result = await submitLead({
+          name: state.contactName ?? "Visitante del chat",
+          phone: value,
+          courseOfInterest: state.category,
+        });
+
+        state.step = "done";
+        input.setAttribute("type", "text");
+        input.setAttribute("placeholder", "Escribe tu mensaje...");
+
+        if (result.ok) {
+          addMessage("✅ ¡Listo! Un asesor te llamará pronto.", "bot");
+          setTimeout(closePanel, 2500);
+        } else if ("duplicate" in result && result.duplicate) {
+          addMessage("✅ Ya tenemos tus datos. Te contactaremos en breve.", "bot");
+          setTimeout(closePanel, 2500);
+        } else {
+          addMessage("Vaya, algo ha fallado. Puedes llamarnos directamente o intentarlo de nuevo.", "bot");
+        }
+        return;
+      }
+
       addMessage("Gracias por tu mensaje. Para ayudarte mejor, cuéntame qué te interesa:", "bot");
       setQuickReplies(["Inteligencia Artificial", "Ciberseguridad", "Marketing Digital", "Quiero que me contacten"]);
     });
