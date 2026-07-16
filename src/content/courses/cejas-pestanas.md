@@ -4,7 +4,7 @@ internalCode: "ESMERA001"
 shortDescription: "Aprende las técnicas profesionales de diseño de cejas y tratamiento de pestañas para ejercer como especialista en estética facial."
 categories: ["imagen-personal"]
 level: "Iniciación"
-duration: "50 horas"
+duration: "60 horas"
 modality: "Online"
 tutor: "equipo-esmera"
 coverImage: "./cejas-pestanas-cover.jpg"

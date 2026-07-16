@@ -8,7 +8,7 @@ import CategoryCard from "../components/CategoryCard.astro";
 import Icon from "../components/Icon.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import heroImage from "../assets/hero/hero-study.jpg";
+import heroImage from "../assets/hero/hero-study.png";
 
 const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
 const courses = await getCollection("courses");
