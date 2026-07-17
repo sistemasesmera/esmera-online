@@ -68,6 +68,8 @@ const organizationJsonLd = {
       import "../lib/reveal";
     </script>
 
+    <script src="https://app.esmeraonline.com/api/widget.js" defer></script>
+
     <slot name="head" />
   </head>
   <body class="bg-white text-ink-900 antialiased">
@@ -76,7 +78,6 @@ const organizationJsonLd = {
       <slot />
     </main>
     <Footer transition:persist />
-    <script src="https://app.esmeraonline.com/api/widget.js" defer></script>
     <LeadModal transition:persist />
     <CookieNotice transition:persist />
   </body>
