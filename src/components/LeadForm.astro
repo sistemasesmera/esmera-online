@@ -202,7 +202,7 @@ const labelClass = isBrand
       const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
 
       const iti = phoneInput
-        ? intlTelInput(phoneInput, { initialCountry: "es" })
+        ? intlTelInput(phoneInput, { initialCountry: "es", dropdownContainer: document.body })
         : null;
 
       function showPanel(panel: HTMLElement | null | undefined) {
