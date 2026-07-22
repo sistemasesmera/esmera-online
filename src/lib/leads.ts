@@ -27,7 +27,7 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
         phone: payload.phone,
         email: payload.email || undefined,
         source: "web",
-        interested_course: payload.courseOfInterest || undefined,
+        interested_course: payload.courseOfInterest ? `Web:${payload.courseOfInterest}` : undefined,
         notes: payload.message || undefined,
       }),
     });
