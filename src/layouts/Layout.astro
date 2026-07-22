@@ -68,7 +68,18 @@ const organizationJsonLd = {
       import "../lib/reveal";
     </script>
 
-    <script src="https://app.esmeraonline.com/api/widget.js" defer></script>
+    <script is:inline>
+      function loadEsmeraWidget() {
+        const old = document.getElementById("esmera-widget-script");
+        if (old) old.remove();
+        const s = document.createElement("script");
+        s.id = "esmera-widget-script";
+        s.src = "https://app.esmeraonline.com/api/widget.js";
+        document.head.appendChild(s);
+      }
+      loadEsmeraWidget();
+      document.addEventListener("astro:page-load", loadEsmeraWidget);
+    </script>
 
     <slot name="head" />
   </head>
