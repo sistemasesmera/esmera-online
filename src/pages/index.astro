@@ -12,7 +12,8 @@ import heroImage from "../assets/hero/hero-study.png";
 
 const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
 const courses = await getCollection("courses");
-const featuredCourses = courses.filter((course) => course.data.featured).sort((a, b) => a.data.order - b.data.order);
+const catalogIds = ["cejas-pestanas", "unas-esmera", "manicura-pedicura"];
+const featuredCourses = catalogIds.map((id) => courses.find((c) => c.id === id)).filter(Boolean);
 
 const courseCountByCategory = new Map<string, number>();
 for (const course of courses) {
@@ -205,7 +206,7 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
         <Button href="/cursos" variant="ghost">Ver todos los cursos →</Button>
       </div>
 
-      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {
           featuredCourses.map((course, index) => (
             <div data-reveal style={delayStyle(index % 4)}>
