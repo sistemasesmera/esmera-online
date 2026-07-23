@@ -118,7 +118,12 @@ const breadcrumbJsonLd = {
             )
           }
 
-          <div class="mt-8">
+          <div class="mt-8 flex flex-wrap items-center gap-5">
+            {course.data.price !== undefined && (
+              <span class="font-display text-3xl font-bold text-ink-900">
+                {course.data.price} <span class="text-xl font-medium text-ink-400">€</span>
+              </span>
+            )}
             <Button href="#informacion" variant="primary" size="lg">Solicitar información</Button>
           </div>
         </div>
@@ -240,7 +245,7 @@ const breadcrumbJsonLd = {
         </div>
 
         <aside class="lg:col-span-1">
-          <div data-reveal style="--reveal-delay: 150ms" class="sticky top-24 space-y-6" id="informacion">
+          <div class="sticky top-24 space-y-6" id="informacion">
             <LeadForm
               presetCourse={course.data.title}
               title="Solicita información"

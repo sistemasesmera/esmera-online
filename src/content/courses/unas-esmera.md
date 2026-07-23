@@ -23,6 +23,7 @@ certificate: "Diploma privado"
 faq: []
 relatedCourses:
   - "cejas-pestanas"
+price: 599
 featured: true
 order: 6
 ---

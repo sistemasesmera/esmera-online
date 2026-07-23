@@ -65,6 +65,7 @@ faq:
 relatedCourses:
   - "ia-aplicada-empresas"
   - "marketing-digital"
+price: 499
 featured: true
 order: 4
 ---

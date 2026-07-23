@@ -23,6 +23,7 @@ certificate: "Diploma privado"
 faq: []
 relatedCourses:
   - "unas-esmera"
+price: 699
 featured: true
 order: 5
 ---

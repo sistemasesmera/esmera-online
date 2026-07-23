@@ -53,6 +53,9 @@ const totalHours = course.data.duration.split(" · ")[0];
 
     <div class="mt-5 flex items-center justify-between border-t border-ink-100 pt-4 font-mono text-xs text-ink-500">
       <span>{totalHours}</span>
+      {course.data.price !== undefined && (
+        <span class="font-semibold text-brand-600">{course.data.price} €</span>
+      )}
     </div>
   </div>
 </a>

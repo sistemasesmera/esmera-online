@@ -116,6 +116,7 @@ const courses = defineCollection({
         }),
       ),
       relatedCourses: z.array(reference("courses")).default([]),
+      price: z.number().optional(),
       featured: z.boolean().default(false),
       order: z.number().default(0),
     }),

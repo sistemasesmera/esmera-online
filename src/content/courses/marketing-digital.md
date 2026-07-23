@@ -63,7 +63,7 @@ faq:
 relatedCourses:
   - "ia-marketing-digital"
   - "ia-aplicada-empresas"
-  - "ciberseguridad-profesional"
+price: 499
 featured: true
 order: 3
 ---
