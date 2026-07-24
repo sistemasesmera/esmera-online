@@ -2,12 +2,12 @@
 title: "Decoración de Uñas 3D"
 internalCode: "ESMERA016"
 shortDescription: "Aprende a crear decoraciones en relieve y figuras 3D sobre uñas con acrílico, gel y otros materiales para ofrecer diseños únicos y creativos."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Intermedio"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./decoracion-3d.png"
 objectives:
   - text: "Dominar el modelado de formas en relieve con acrílico de decoración."
     icon: "sparkles"

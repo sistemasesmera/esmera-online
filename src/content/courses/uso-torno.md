@@ -2,12 +2,12 @@
 title: "Uso del Torno para Uñas"
 internalCode: "ESMERA011"
 shortDescription: "Aprende a manejar el torno eléctrico para uñas con seguridad y precisión: preparación de la superficie, limado y pulido profesional."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./uso-de-torno.png"
 objectives:
   - text: "Conocer los distintos tipos de fresas y su uso correcto según la zona de trabajo."
     icon: "briefcase"

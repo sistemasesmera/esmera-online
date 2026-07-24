@@ -2,12 +2,12 @@
 title: "Decoración de Uñas Básica y Avanzada"
 internalCode: "ESMERA018"
 shortDescription: "Programa completo de nail art: desde las técnicas básicas de esmaltado y decoración hasta diseños avanzados con acuarela, marble, chrome y nail art artístico."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "40 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./decoracion-basica-y-avanzada.png"
 objectives:
   - text: "Dominar las técnicas básicas de esmaltado, francesas y degradados."
     icon: "sparkles"

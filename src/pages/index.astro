@@ -6,11 +6,12 @@ import Button from "../components/ui/Button.astro";
 import CourseCard from "../components/CourseCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import Icon from "../components/Icon.astro";
+import { Icon as HeroIcon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero/hero-study.png";
 
-const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
+const categories = (await getCollection("categories")).filter((c) => !c.data.parent).sort((a, b) => a.data.order - b.data.order);
 const courses = await getCollection("courses");
 const catalogIds = ["cejas-pestanas", "unas-esmera", "manicura-pedicura"];
 const featuredCourses = catalogIds.map((id) => courses.find((c) => c.id === id)).filter(Boolean);
@@ -43,8 +44,8 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
 ---
 
 <Layout
-  title="Esmera Online — Conviértete en el profesional que el mercado pide"
-  description="Formación profesional online con tutor personalizado, tutorías semanales y proyectos reales. Especialidades en IA y Marketing Digital."
+  title="Esmera Online — Hazte profesional en lo que te apasiona"
+  description="Formación online con tutor propio, tutorías semanales y certificado incluido. Imagen personal, inteligencia artificial y marketing digital."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden bg-white py-20 sm:py-28">
@@ -77,21 +78,17 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
     <Container class="relative">
       <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div>
-          <span data-reveal style={delayStyle(0)} class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 font-mono text-xs font-medium text-brand-700">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
-            Tu futuro profesional empieza aquí
-          </span>
-          <h1 data-reveal style={delayStyle(1)} class="mt-5 font-display text-4xl font-bold tracking-tight text-ink-900 sm:text-6xl">
-            Conviértete en el profesional<br />
+          <h1 data-reveal style={delayStyle(0)} class="mt-5 font-display text-4xl font-bold tracking-tight text-ink-900 sm:text-6xl">
+            Hazte profesional en lo que te apasiona.<br />
             <span class="relative text-brand-600">
-              que el mercado pide.
+              Empieza a trabajar.
               <svg viewBox="0 0 360 12" preserveAspectRatio="none" class="absolute -bottom-1 left-0 h-2.5 w-full text-brand-300/70 sm:-bottom-2">
                 <path d="M2 9.5C60 2 280 1 358 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
               </svg>
             </span>
           </h1>
           <p data-reveal style={delayStyle(2)} class="mt-7 max-w-xl text-lg font-normal leading-relaxed text-ink-500">
-            Formación profesional online con tutor personalizado, tutorías semanales y proyectos reales. Especialidades en IA y Marketing Digital.
+            Formación 100% online con tutor propio desde el primer día. Tutorías semanales, seguimiento personalizado y certificado incluido — sin excusas para no empezar.
           </p>
           <div data-reveal style={delayStyle(3)} class="mt-10 flex flex-col items-start gap-3 sm:flex-row">
             <Button href="/cursos" variant="primary" size="lg">Explorar cursos</Button>
@@ -113,19 +110,20 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
   </section>
 
   <!-- Métricas -->
-  <section class="border-y border-ink-100 bg-ink-50/50 py-12">
+  <section class="py-12">
     <Container>
-      <div class="grid grid-cols-2 gap-8 lg:grid-cols-4">
+      <div class="grid grid-cols-2 divide-x divide-y divide-ink-100 border border-ink-100 rounded-2xl overflow-hidden lg:grid-cols-4 lg:divide-y-0">
         {
           [
-            { value: "+1.000", label: "Alumnos formados" },
-            { value: "+20", label: "Cursos disponibles" },
-            { value: "4,9/5", label: "Valoración media" },
-            { value: "96%", label: "Satisfacción del alumno" },
+            { value: "+1.000", label: "Alumnos formados",        heroicon: "heroicons:user-group" },
+            { value: "+20",    label: "Cursos disponibles",      heroicon: "heroicons:academic-cap" },
+            { value: "4,9/5", label: "Valoración media",         heroicon: "heroicons:star" },
+            { value: "96%",   label: "Satisfacción del alumno",  heroicon: "heroicons:heart" },
           ].map((stat, index) => (
-            <div data-reveal style={delayStyle(index)} class="flex flex-col items-center gap-1 text-center">
-              <span class="font-display text-3xl font-bold text-brand-600 sm:text-4xl">{stat.value}</span>
-              <span class="text-sm text-ink-500">{stat.label}</span>
+            <div data-reveal style={delayStyle(index)} class="flex flex-col gap-3 p-8">
+              <HeroIcon name={stat.heroicon} class="h-8 w-8 text-brand-500" />
+              <span class="font-display text-4xl font-bold text-ink-900">{stat.value}</span>
+              <span class="text-sm leading-snug text-ink-500">{stat.label}</span>
             </div>
           ))
         }

@@ -2,12 +2,12 @@
 title: "Uñas de Gel"
 internalCode: "ESMERA012"
 shortDescription: "Aprende a aplicar, modelar y mantener uñas de gel: desde la preparación natural hasta el curado en lámpara y el acabado profesional."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./unas-gel.png"
 objectives:
   - text: "Preparar la uña natural correctamente antes de la aplicación del gel."
     icon: "sparkles"

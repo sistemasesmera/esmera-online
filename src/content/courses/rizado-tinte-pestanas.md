@@ -2,12 +2,12 @@
 title: "Rizado y Tinte de Pestañas"
 internalCode: "ESMERA004"
 shortDescription: "Domina las técnicas de rizado y tinte de pestañas para intensificar la mirada sin extensiones, con resultados naturales y seguros."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./rizado-tinte-pestanas.png"
+coverImage: "./rizado-y-tinte-de-pestanas.png"
 objectives:
   - text: "Seleccionar el producto de rizado y tinte adecuado según el tipo de pestaña."
     icon: "briefcase"

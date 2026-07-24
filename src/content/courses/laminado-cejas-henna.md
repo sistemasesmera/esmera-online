@@ -2,12 +2,12 @@
 title: "Laminado de Cejas y Tinte con Henna"
 internalCode: "ESMERA008"
 shortDescription: "Aprende a realizar el laminado de cejas y el tinte con henna para ofrecer cejas con volumen, forma perfecta y color uniforme."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./laminado-cejas-henna.png"
+coverImage: "./laminado-de-cejas-y-henna.png"
 objectives:
   - text: "Dominar el proceso de laminado para restructurar y fijar el pelo de la ceja."
     icon: "sparkles"

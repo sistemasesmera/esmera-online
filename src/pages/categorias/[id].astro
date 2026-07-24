@@ -10,13 +10,28 @@ export const getStaticPaths = (async () => {
   const categories = await getCollection("categories");
   const courses = await getCollection("courses");
 
-  return categories.map((category) => ({
-    params: { id: category.id },
-    props: { category, courses: courses.filter((course) => course.data.categories.some((c) => c.id === category.id)) },
-  }));
+  return categories.map((category) => {
+    const children = categories.filter((c) => c.data.parent === category.id).sort((a, b) => a.data.order - b.data.order);
+    const childIds = new Set(children.map((c) => c.id));
+
+    const directCourses = courses.filter((course) =>
+      course.data.categories.some((c) => c.id === category.id)
+    ).sort((a, b) => a.data.order - b.data.order);
+
+    const childCourses = courses.filter((course) =>
+      course.data.categories.some((c) => childIds.has(c.id))
+    ).sort((a, b) => a.data.order - b.data.order);
+
+    const allCourses = children.length > 0 ? childCourses : directCourses;
+
+    return {
+      params: { id: category.id },
+      props: { category, children, courses: allCourses },
+    };
+  });
 }) satisfies GetStaticPaths;
 
-const { category, courses } = Astro.props;
+const { category, children, courses } = Astro.props;
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
@@ -36,7 +51,6 @@ const breadcrumbJsonLd = {
 
   <section class="relative overflow-hidden border-b border-ink-100 bg-gradient-to-b from-brand-50 to-white py-16 sm:py-20">
     <div class="absolute inset-x-0 top-0 -z-10 h-full bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
-
     <Container class="relative">
       <div data-reveal>
         <Eyebrow>Categoría</Eyebrow>
@@ -48,19 +62,71 @@ const breadcrumbJsonLd = {
 
   <section class="py-16">
     <Container>
-      {
-        courses.length > 0 ? (
-          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course, index) => (
-              <div data-reveal style={`--reveal-delay: ${(index % 3) * 80}ms`}>
+      {children.length > 0 && (
+        <div class="mb-8 flex flex-wrap gap-2">
+          <button
+            data-filter="all"
+            class="filter-btn rounded-full border border-brand-500 bg-brand-500 px-4 py-1.5 font-mono text-xs font-semibold text-white transition-colors"
+          >
+            Todos
+          </button>
+          {children.map((child) => (
+            <button
+              data-filter={child.id}
+              class="filter-btn rounded-full border border-ink-200 bg-white px-4 py-1.5 font-mono text-xs font-semibold text-ink-600 transition-colors hover:border-brand-400 hover:text-brand-600"
+            >
+              {child.data.name}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {courses.length > 0 ? (
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {courses.map((course, index) => {
+            const subcat = course.data.categories[0]?.id ?? "";
+            return (
+              <div
+                data-reveal
+                data-course-filter={subcat}
+                style={`--reveal-delay: ${(index % 3) * 80}ms`}
+              >
                 <CourseCard course={course} />
               </div>
-            ))}
-          </div>
-        ) : (
-          <p data-reveal class="text-ink-500">Próximamente nuevos cursos en esta categoría.</p>
-        )
-      }
+            );
+          })}
+        </div>
+      ) : (
+        <p data-reveal class="text-ink-500">Próximamente nuevos cursos en esta categoría.</p>
+      )}
     </Container>
   </section>
 </Layout>
+
+<script>
+  function initFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const cards = document.querySelectorAll<HTMLElement>("[data-course-filter]");
+    if (!buttons.length) return;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter!;
+
+        buttons.forEach((b) => {
+          b.classList.remove("bg-brand-500", "border-brand-500", "text-white");
+          b.classList.add("bg-white", "border-ink-200", "text-ink-600");
+        });
+        btn.classList.add("bg-brand-500", "border-brand-500", "text-white");
+        btn.classList.remove("bg-white", "border-ink-200", "text-ink-600");
+
+        cards.forEach((card) => {
+          const match = filter === "all" || card.dataset.courseFilter === filter;
+          card.style.display = match ? "" : "none";
+        });
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initFilters);
+</script>

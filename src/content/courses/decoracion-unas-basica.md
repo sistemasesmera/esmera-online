@@ -2,12 +2,12 @@
 title: "Decoración de Uñas Básica"
 internalCode: "ESMERA017"
 shortDescription: "Introduce al nail art profesional: esmaltado perfecto, francesas, degradados, stamping y decoraciones básicas para ofrecer resultados atractivos desde el primer día."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./decoracion-basica.png"
 objectives:
   - text: "Aplicar el esmalte con precisión y conseguir un esmaltado limpio y duradero."
     icon: "sparkles"

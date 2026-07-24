@@ -2,12 +2,12 @@
 title: "Reconstrucción de Uñas Mordidas"
 internalCode: "ESMERA015"
 shortDescription: "Aprende a reconstruir uñas mordidas o dañadas con técnicas profesionales de gel o acrílico, recuperando la forma, longitud y estética natural."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./reconstrucion-unas-mordidas.png"
 objectives:
   - text: "Evaluar el estado de la uña mordida y elegir la técnica de reconstrucción adecuada."
     icon: "target"

@@ -2,12 +2,12 @@
 title: "Uñas Acrigel"
 internalCode: "ESMERA014"
 shortDescription: "Aprende la técnica del acrigel, que combina la flexibilidad del gel con la resistencia del acrílico para conseguir uñas perfectas y duraderas."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./unas-acrigel.png"
 objectives:
   - text: "Comprender las diferencias entre acrílico, gel y acrigel y cuándo usar cada técnica."
     icon: "briefcase"

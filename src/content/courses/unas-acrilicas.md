@@ -2,12 +2,12 @@
 title: "Uñas Acrílicas"
 internalCode: "ESMERA013"
 shortDescription: "Domina la técnica de uñas acrílicas: mezcla de polvo y líquido, modelado con molde o tip, y acabado profesional resistente y duradero."
-categories: ["imagen-personal"]
+categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./unas-acrilicas.png"
 objectives:
   - text: "Entender la química del acrílico y la proporción correcta de polvo y líquido."
     icon: "briefcase"

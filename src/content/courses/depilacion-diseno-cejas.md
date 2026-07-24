@@ -2,12 +2,12 @@
 title: "Depilación y Diseño de Cejas"
 internalCode: "ESMERA005"
 shortDescription: "Aprende a diseñar y depilar cejas con criterio estético profesional, adaptando la forma a cada morfología facial."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./depilacion-diseno-cejas.png"
+coverImage: "./depilacion-diseno-de-cejas.png"
 objectives:
   - text: "Analizar la morfología facial para determinar el diseño de cejas más favorecedora."
     icon: "target"

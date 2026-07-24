@@ -2,12 +2,12 @@
 title: "Lifting de Pestañas"
 internalCode: "ESMERA003"
 shortDescription: "Aprende a realizar el lifting de pestañas profesional: curvado, fijación y cuidado del resultado para ofrecer una mirada natural y duradera."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./lifting-pestanas.png"
+coverImage: "./lifting-de-pestanas.png"
 objectives:
   - text: "Conocer los materiales, productos y herramientas necesarios para el lifting."
     icon: "briefcase"

@@ -8,6 +8,7 @@ const categories = defineCollection({
     description: z.string(),
     icon: z.string().optional(),
     order: z.number().default(0),
+    parent: z.string().optional(),
   }),
 });
 

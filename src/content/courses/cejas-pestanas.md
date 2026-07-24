@@ -2,7 +2,7 @@
 title: "Curso Profesional de Cejas y Pestañas"
 internalCode: "ESMERA001"
 shortDescription: "Aprende las técnicas profesionales de diseño de cejas y tratamiento de pestañas para ejercer como especialista en estética facial."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "60 horas"
 modality: "Online"

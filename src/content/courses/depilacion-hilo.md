@@ -2,12 +2,12 @@
 title: "Depilación con Hilo"
 internalCode: "ESMERA006"
 shortDescription: "Aprende la técnica milenaria de depilación con hilo para el diseño de cejas y el vello facial, con precisión y sin químicos."
-categories: ["imagen-personal"]
+categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./depilacion-hilo.png"
+coverImage: "./depilacion-con-hilo.png"
 objectives:
   - text: "Dominar la mecánica de la técnica de depilación con hilo de forma correcta."
     icon: "sparkles"
