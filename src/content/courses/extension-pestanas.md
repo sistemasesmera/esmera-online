@@ -4,7 +4,7 @@ internalCode: "ESMERA009"
 shortDescription: "Domina la extensión de pestañas en sus dos técnicas más demandadas: la clásica pelo a pelo y el volumen ruso, para ofrecer resultados personalizados."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"
-duration: "20 horas"
+duration: "40 horas"
 modality: "Online"
 tutor: "equipo-esmera"
 coverImage: "./extension-pelo-a-pelo.png"
