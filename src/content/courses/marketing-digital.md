@@ -60,9 +60,7 @@ faq:
     answer: "No hay problema, tu tutor se adapta a ti. Coordináis el momento que mejor os venga."
   - question: "¿Hay acompañamiento personalizado?"
     answer: "Sí, cuentas con un tutor asignado y seguimiento durante todo el curso."
-relatedCourses:
-  - "ia-marketing-digital"
-  - "ia-aplicada-empresas"
+relatedCourses: []
 price: 499
 featured: true
 order: 3
