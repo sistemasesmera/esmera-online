@@ -124,7 +124,14 @@ const breadcrumbJsonLd = {
                 {course.data.price} <span class="text-xl font-medium text-ink-400">€</span>
               </span>
             )}
-            <Button href="#informacion" variant="primary" size="lg">Solicitar información</Button>
+            {course.data.stripePaymentLink ? (
+              <>
+                <Button href={course.data.stripePaymentLink} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">Matricularme ahora</Button>
+                <Button href="#informacion" variant="secondary" size="lg">¿Tienes dudas?</Button>
+              </>
+            ) : (
+              <Button href="#informacion" variant="primary" size="lg">Solicitar información</Button>
+            )}
           </div>
         </div>
 
@@ -246,10 +253,28 @@ const breadcrumbJsonLd = {
 
         <aside class="lg:col-span-1">
           <div class="sticky top-24 space-y-6" id="informacion">
+            {course.data.stripePaymentLink && (
+              <div class="rounded-3xl border border-brand-200 bg-brand-50 p-6">
+                <p class="font-display text-lg font-semibold text-ink-900">Reserva tu plaza ahora</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-500">Pago seguro con tarjeta. Administración te contactará para el contrato y el acceso al curso.</p>
+                {course.data.price !== undefined && (
+                  <p class="mt-4 font-display text-3xl font-bold text-ink-900">
+                    {course.data.price} <span class="text-xl font-medium text-ink-400">€</span>
+                  </p>
+                )}
+                <Button href={course.data.stripePaymentLink} variant="primary" size="lg" class="mt-4 w-full text-center" target="_blank" rel="noopener noreferrer">
+                  Matricularme ahora
+                </Button>
+                <p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-400">
+                  <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                  Pago procesado por Stripe
+                </p>
+              </div>
+            )}
             <LeadForm
               presetCourse={course.data.title}
-              title="Solicita información"
-              subtitle="Te contamos fechas, precio y todo lo que necesitas para empezar."
+              title="¿Tienes dudas?"
+              subtitle="Cuéntanos qué necesitas y te respondemos en menos de 24h."
               variant="brand"
             />
           </div>

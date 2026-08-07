@@ -24,6 +24,7 @@ faq: []
 relatedCourses:
   - "unas-esmera"
 price: 699
+stripePaymentLink: "https://buy.stripe.com/test_bJebJ3fEW4NK0jH8Qw28800"
 featured: true
 order: 5
 ---

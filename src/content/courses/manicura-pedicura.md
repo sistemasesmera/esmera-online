@@ -4,7 +4,7 @@ internalCode: "ESMERA010"
 shortDescription: "Domina las técnicas profesionales de manicura y pedicura: preparación, tratamiento de cutículas, esmaltado y cuidado completo de manos y pies."
 categories: ["unas"]
 level: "Iniciación"
-duration: "40 horas"
+duration: "90 horas"
 modality: "Online"
 tutor: "equipo-esmera"
 coverImage: "./manicura-y-pedicura.png"
