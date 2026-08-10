@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "200 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./unas.png"
+coverImage: "./unas-envivo.png"
 objectives:
   - text: "Dominar las técnicas profesionales de manicura, pedicura y decoración de uñas."
     icon: "sparkles"

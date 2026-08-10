@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-y-pestanas.png"
+coverImage: "./microblading.png"
 objectives:
   - text: "Conocer los fundamentos del microblading y la técnica pelo a pelo manual."
     icon: "sparkles"

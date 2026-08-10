@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-y-pestanas.png"
+coverImage: "./micro-areola.png"
 objectives:
   - text: "Conocer los fundamentos de la micropigmentación aplicada a la reconstrucción de areolas."
     icon: "sparkles"

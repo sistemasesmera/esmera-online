@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "50 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-y-pestanas.png"
+coverImage: "./micropigmentacion.png"
 objectives:
   - text: "Formación personalizada 1:1 con tu tutor durante todo el proceso de aprendizaje."
     icon: "users"

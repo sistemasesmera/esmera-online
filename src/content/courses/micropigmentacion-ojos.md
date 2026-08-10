@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-y-pestanas.png"
+coverImage: "./micro-ojos.png"
 objectives:
   - text: "Conocer los fundamentos de la micropigmentación en la zona ocular."
     icon: "sparkles"

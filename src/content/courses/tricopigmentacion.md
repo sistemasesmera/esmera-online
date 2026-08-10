@@ -7,7 +7,7 @@ level: "Iniciación"
 duration: "20 horas"
 modality: "Online"
 tutor: "equipo-esmera"
-coverImage: "./cejas-y-pestanas.png"
+coverImage: "./tricopigmentacion.png"
 objectives:
   - text: "Conocer los fundamentos de la tricopigmentación y su aplicación en cuero cabelludo."
     icon: "sparkles"
