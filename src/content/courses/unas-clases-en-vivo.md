@@ -22,7 +22,17 @@ objectives:
 contents: []
 hasFinalProject: false
 certificate: "Diploma privado"
-faq: []
+faq:
+  - question: "¿Necesito experiencia previa para hacer este curso?"
+    answer: "No, el curso está diseñado desde cero. Empezamos por las bases y vamos avanzando paso a paso hasta las técnicas más demandadas."
+  - question: "¿En qué consisten las clases en vivo?"
+    answer: "Son 24 horas de sesiones en directo con la profesora donde podrás practicar, hacer preguntas en tiempo real y recibir feedback personalizado sobre tu técnica."
+  - question: "¿Tendré un tutor asignado además de las clases en vivo?"
+    answer: "Sí, además de las sesiones en vivo contarás con un tutor personal durante todo el curso para resolver dudas en cualquier momento."
+  - question: "¿Cuánto tiempo tengo para completar el curso?"
+    answer: "Tienes acceso flexible para organizarte a tu ritmo. Las clases en vivo se programan con antelación para que puedas planificarte."
+  - question: "¿Qué certificado obtengo al terminar?"
+    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como técnica de uñas profesional."
 relatedCourses:
   - "unas-esmera"
 price: 1199

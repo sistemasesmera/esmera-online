@@ -20,7 +20,17 @@ objectives:
 contents: []
 hasFinalProject: false
 certificate: "Diploma privado"
-faq: []
+faq:
+  - question: "¿Necesito experiencia previa para hacer este curso?"
+    answer: "No, el curso está diseñado desde cero. Empezamos por las bases y vamos avanzando paso a paso hasta las técnicas más demandadas."
+  - question: "¿Tendré un tutor asignado?"
+    answer: "Sí, contarás con un tutor personal durante todo el curso para resolver tus dudas y guiarte en tu aprendizaje."
+  - question: "¿Cuánto tiempo tengo para completar el curso?"
+    answer: "Tienes acceso flexible para organizarte a tu ritmo, sin fechas límite estrictas."
+  - question: "¿Qué certificado obtengo al terminar?"
+    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como técnica de uñas profesional."
+  - question: "¿Podré trabajar como técnica de uñas al terminar?"
+    answer: "Sí, el programa está orientado a la empleabilidad real. Al finalizar tendrás los conocimientos y la práctica necesarios para ejercer de forma profesional."
 relatedCourses:
   - "cejas-pestanas"
 price: 599
