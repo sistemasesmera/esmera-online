@@ -24,6 +24,7 @@ faq: []
 relatedCourses:
   - "micropigmentacion"
 price: 750
+stripePaymentLink: "https://buy.stripe.com/fZu28t64meokgiF3wc2880b"
 featured: false
 order: 22
 ---

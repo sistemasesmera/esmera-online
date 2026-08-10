@@ -25,6 +25,7 @@ relatedCourses:
   - "depilacion-hilo"
   - "laminado-cejas-henna"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/7sY8wR78q3JG1nL8Qw2880h"
 featured: true
 order: 8
 ---

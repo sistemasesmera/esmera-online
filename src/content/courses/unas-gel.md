@@ -25,6 +25,7 @@ relatedCourses:
   - "unas-acrilicas"
   - "unas-acrigel"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/3cI6oJ50ifsogiFc2I28803"
 featured: false
 order: 14
 ---

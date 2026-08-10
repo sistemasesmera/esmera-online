@@ -62,6 +62,7 @@ faq:
     answer: "Sí, cuentas con un tutor asignado y seguimiento durante todo el curso."
 relatedCourses: []
 price: 499
+stripePaymentLink: "https://buy.stripe.com/fZufZj2Saa840jH3wc2880g"
 featured: true
 order: 26
 ---

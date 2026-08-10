@@ -25,6 +25,7 @@ relatedCourses:
   - "unas-esmera"
   - "decoracion-unas-basica"
 price: 349
+stripePaymentLink: "https://buy.stripe.com/3cI3cxakCeok2rP2s82880s"
 featured: false
 order: 12
 ---

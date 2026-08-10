@@ -25,6 +25,7 @@ relatedCourses:
   - "decoracion-unas-basica-avanzada"
   - "manicura-pedicura"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/7sY7sNgJ0a84c2peaQ2880k"
 featured: false
 order: 18
 ---

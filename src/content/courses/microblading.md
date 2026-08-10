@@ -25,6 +25,7 @@ relatedCourses:
   - "micropigmentacion"
   - "micropigmentacion-cejas"
 price: 750
+stripePaymentLink: "https://buy.stripe.com/eVqfZj8cu940d6t9UA2880r"
 featured: false
 order: 28
 ---

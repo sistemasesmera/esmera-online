@@ -25,6 +25,7 @@ relatedCourses:
   - "unas-gel"
   - "unas-acrigel"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/aFacN79gy1By3vT9UA2880o"
 featured: false
 order: 15
 ---

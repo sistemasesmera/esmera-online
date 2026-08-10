@@ -25,6 +25,7 @@ relatedCourses:
   - "depilacion-diseno-cejas"
   - "planchado-cejas-henna"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/fZu7sN64m0xu1nL9UA2880i"
 featured: true
 order: 9
 ---

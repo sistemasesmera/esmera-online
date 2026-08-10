@@ -25,6 +25,7 @@ relatedCourses:
   - "rizado-tinte-pestanas"
   - "extension-pestanas"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/cNi7sN2Sa1By1nL2s82880d"
 featured: true
 order: 4
 ---

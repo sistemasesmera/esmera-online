@@ -25,6 +25,7 @@ relatedCourses:
   - "unas-esmera"
   - "unas-gel"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/7sY7sN2Sa4NK9Uh1o428802"
 featured: false
 order: 13
 ---

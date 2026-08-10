@@ -25,6 +25,7 @@ certificate: "Diploma privado"
 faq: []
 relatedCourses: []
 price: 2300
+stripePaymentLink: "https://buy.stripe.com/8x2eVfgJ0a847M96Io2880q"
 featured: false
 order: 21
 ---

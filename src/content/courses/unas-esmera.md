@@ -24,6 +24,7 @@ faq: []
 relatedCourses:
   - "cejas-pestanas"
 price: 599
+stripePaymentLink: "https://buy.stripe.com/5kQ28teAS3JG7M91o42880m"
 featured: true
 order: 10
 ---

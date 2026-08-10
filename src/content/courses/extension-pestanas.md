@@ -25,6 +25,7 @@ relatedCourses:
   - "lifting-pestanas"
   - "rizado-tinte-pestanas"
 price: 159
+stripePaymentLink: "https://buy.stripe.com/5kQ6oJ2Saeok7M9d6M2880f"
 featured: true
 order: 3
 ---

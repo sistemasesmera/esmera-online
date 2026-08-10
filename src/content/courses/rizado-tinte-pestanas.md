@@ -25,6 +25,7 @@ relatedCourses:
   - "lifting-pestanas"
   - "extension-pestanas"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/8x25kF3Webc85E1d6M28806"
 featured: true
 order: 5
 ---

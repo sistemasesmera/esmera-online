@@ -25,6 +25,7 @@ relatedCourses:
   - "decoracion-unas-basica-avanzada"
   - "decoracion-unas-basica"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/28E28t9gy6VS9Uh2s82880p"
 featured: false
 order: 20
 ---

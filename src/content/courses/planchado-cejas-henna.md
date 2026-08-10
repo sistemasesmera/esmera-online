@@ -25,6 +25,7 @@ relatedCourses:
   - "laminado-cejas-henna"
   - "depilacion-diseno-cejas"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/28E5kF64m6VS9Uh2s828808"
 featured: true
 order: 7
 ---

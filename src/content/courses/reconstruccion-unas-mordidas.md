@@ -25,6 +25,7 @@ relatedCourses:
   - "unas-gel"
   - "unas-acrilicas"
 price: 49
+stripePaymentLink: "https://buy.stripe.com/8x228t78qgwsc2paYE28807"
 featured: false
 order: 17
 ---
