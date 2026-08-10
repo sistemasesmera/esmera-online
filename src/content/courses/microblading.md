@@ -1,6 +1,6 @@
 ---
 title: "Microblading"
-internalCode: "ESMERA027"
+internalCode: "MBL1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

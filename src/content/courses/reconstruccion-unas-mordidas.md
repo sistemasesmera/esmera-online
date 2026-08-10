@@ -1,6 +1,6 @@
 ---
 title: "Reconstrucción de Uñas Mordidas"
-internalCode: "ESMERA015"
+internalCode: "RUM1"
 shortDescription: "Aprende a reconstruir uñas mordidas o dañadas con técnicas profesionales de gel o acrílico, recuperando la forma, longitud y estética natural."
 categories: ["unas"]
 level: "Iniciación"

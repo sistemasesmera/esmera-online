@@ -1,6 +1,6 @@
 ---
 title: "Decoración de Uñas Básica y Avanzada"
-internalCode: "ESMERA018"
+internalCode: "DUBA1"
 shortDescription: "Programa completo de nail art: desde las técnicas básicas de esmaltado y decoración hasta diseños avanzados con acuarela, marble, chrome y nail art artístico."
 categories: ["unas"]
 level: "Iniciación"

@@ -1,6 +1,6 @@
 ---
 title: "Micropigmentación de Cejas"
-internalCode: "ESMERA022"
+internalCode: "MCE1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

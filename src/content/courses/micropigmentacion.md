@@ -1,6 +1,6 @@
 ---
 title: "Curso de Micropigmentación"
-internalCode: "ESMERA021"
+internalCode: "CMICRO1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

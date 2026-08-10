@@ -1,6 +1,6 @@
 ---
 title: "Depilación con Hilo"
-internalCode: "ESMERA006"
+internalCode: "DCH1"
 shortDescription: "Aprende la técnica milenaria de depilación con hilo para el diseño de cejas y el vello facial, con precisión y sin químicos."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

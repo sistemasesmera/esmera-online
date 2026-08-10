@@ -1,6 +1,6 @@
 ---
 title: "Uso del Torno para Uñas"
-internalCode: "ESMERA011"
+internalCode: "TOR1"
 shortDescription: "Aprende a manejar el torno eléctrico para uñas con seguridad y precisión: preparación de la superficie, limado y pulido profesional."
 categories: ["unas"]
 level: "Iniciación"

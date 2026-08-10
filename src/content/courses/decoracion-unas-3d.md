@@ -1,6 +1,6 @@
 ---
 title: "Decoración de Uñas 3D"
-internalCode: "ESMERA016"
+internalCode: "DU3D1"
 shortDescription: "Aprende a crear decoraciones en relieve y figuras 3D sobre uñas con acrílico, gel y otros materiales para ofrecer diseños únicos y creativos."
 categories: ["unas"]
 level: "Intermedio"

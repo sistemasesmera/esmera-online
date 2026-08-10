@@ -1,6 +1,6 @@
 ---
 title: "Rizado y Tinte de Pestañas"
-internalCode: "ESMERA004"
+internalCode: "RTP1"
 shortDescription: "Domina las técnicas de rizado y tinte de pestañas para intensificar la mirada sin extensiones, con resultados naturales y seguros."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

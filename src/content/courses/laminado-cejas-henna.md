@@ -1,6 +1,6 @@
 ---
 title: "Laminado de Cejas y Tinte con Henna"
-internalCode: "ESMERA008"
+internalCode: "LCH1"
 shortDescription: "Aprende a realizar el laminado de cejas y el tinte con henna para ofrecer cejas con volumen, forma perfecta y color uniforme."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

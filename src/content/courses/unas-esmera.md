@@ -1,6 +1,6 @@
 ---
 title: "Curso Profesional de Uñas Esmera"
-internalCode: "ESMERA002"
+internalCode: "CPUE1"
 shortDescription: "Conviértete en técnica de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo y acompañamiento real."
 categories: ["unas"]
 level: "Iniciación"

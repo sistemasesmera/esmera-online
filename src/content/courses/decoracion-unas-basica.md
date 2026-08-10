@@ -1,6 +1,6 @@
 ---
 title: "Decoración de Uñas Básica"
-internalCode: "ESMERA017"
+internalCode: "DUB1"
 shortDescription: "Introduce al nail art profesional: esmaltado perfecto, francesas, degradados, stamping y decoraciones básicas para ofrecer resultados atractivos desde el primer día."
 categories: ["unas"]
 level: "Iniciación"

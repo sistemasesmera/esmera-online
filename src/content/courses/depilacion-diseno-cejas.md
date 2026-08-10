@@ -1,6 +1,6 @@
 ---
 title: "Depilación y Diseño de Cejas"
-internalCode: "ESMERA005"
+internalCode: "DDC1"
 shortDescription: "Aprende a diseñar y depilar cejas con criterio estético profesional, adaptando la forma a cada morfología facial."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

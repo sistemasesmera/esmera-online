@@ -1,6 +1,6 @@
 ---
 title: "Micropigmentación de Areolas"
-internalCode: "ESMERA024"
+internalCode: "MAR1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

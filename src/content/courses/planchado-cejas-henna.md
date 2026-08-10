@@ -1,6 +1,6 @@
 ---
 title: "Planchado de Cejas y Tinte con Henna"
-internalCode: "ESMERA007"
+internalCode: "PCH1"
 shortDescription: "Combina el planchado de cejas con el tinte natural de henna para conseguir cejas perfectas, uniformes y con color duradero."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

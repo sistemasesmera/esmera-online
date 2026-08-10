@@ -1,6 +1,6 @@
 ---
 title: "Tricopigmentación"
-internalCode: "ESMERA026"
+internalCode: "TCP1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

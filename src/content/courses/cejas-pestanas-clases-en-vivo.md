@@ -1,6 +1,6 @@
 ---
 title: "Curso Profesional de Cejas y Pestañas + Clases en vivo"
-internalCode: "ESMERA019"
+internalCode: "CPCY-LIVE"
 shortDescription: ""
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

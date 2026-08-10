@@ -1,6 +1,6 @@
 ---
 title: "Extensión de Pestañas: Técnica Clásica + Volumen"
-internalCode: "ESMERA009"
+internalCode: "EPV1"
 shortDescription: "Domina la extensión de pestañas en sus dos técnicas más demandadas: la clásica pelo a pelo y el volumen ruso, para ofrecer resultados personalizados."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

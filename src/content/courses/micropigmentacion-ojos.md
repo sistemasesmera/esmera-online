@@ -1,6 +1,6 @@
 ---
 title: "Micropigmentación de Ojos"
-internalCode: "ESMERA025"
+internalCode: "MOJ1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

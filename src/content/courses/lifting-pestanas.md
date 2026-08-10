@@ -1,6 +1,6 @@
 ---
 title: "Lifting de Pestañas"
-internalCode: "ESMERA003"
+internalCode: "LTP1"
 shortDescription: "Aprende a realizar el lifting de pestañas profesional: curvado, fijación y cuidado del resultado para ofrecer una mirada natural y duradera."
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"

@@ -1,6 +1,6 @@
 ---
 title: "Curso Profesional de Uñas + Clases en vivo"
-internalCode: "ESMERA020"
+internalCode: "CPUE-LIVE"
 shortDescription: ""
 categories: ["unas"]
 level: "Iniciación"

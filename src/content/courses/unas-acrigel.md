@@ -1,6 +1,6 @@
 ---
 title: "Uñas Acrigel"
-internalCode: "ESMERA014"
+internalCode: "UAG1"
 shortDescription: "Aprende la técnica del acrigel, que combina la flexibilidad del gel con la resistencia del acrílico para conseguir uñas perfectas y duraderas."
 categories: ["unas"]
 level: "Iniciación"

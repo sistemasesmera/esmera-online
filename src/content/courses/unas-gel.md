@@ -1,6 +1,6 @@
 ---
 title: "Uñas de Gel"
-internalCode: "ESMERA012"
+internalCode: "UGE1"
 shortDescription: "Aprende a aplicar, modelar y mantener uñas de gel: desde la preparación natural hasta el curado en lámpara y el acabado profesional."
 categories: ["unas"]
 level: "Iniciación"

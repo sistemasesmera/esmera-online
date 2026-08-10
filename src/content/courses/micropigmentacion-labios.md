@@ -1,6 +1,6 @@
 ---
 title: "Micropigmentación de Labios"
-internalCode: "ESMERA023"
+internalCode: "MLA1"
 shortDescription: ""
 categories: ["micropigmentacion"]
 level: "Iniciación"

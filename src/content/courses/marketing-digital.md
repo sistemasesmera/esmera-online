@@ -1,6 +1,6 @@
 ---
 title: "Estrategias Marketing Digital"
-internalCode: "3436-38_R"
+internalCode: "EMD1"
 shortDescription: "Aprende a diseñar, ejecutar y medir estrategias de marketing digital como un profesional, con un programa práctico orientado a la empleabilidad real."
 categories: ["marketing"]
 level: "Iniciación"

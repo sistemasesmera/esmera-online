@@ -1,6 +1,6 @@
 ---
 title: "Manicura y Pedicura Profesional"
-internalCode: "ESMERA010"
+internalCode: "CMP1"
 shortDescription: "Domina las técnicas profesionales de manicura y pedicura: preparación, tratamiento de cutículas, esmaltado y cuidado completo de manos y pies."
 categories: ["unas"]
 level: "Iniciación"
