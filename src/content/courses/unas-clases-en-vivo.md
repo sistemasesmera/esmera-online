@@ -1,7 +1,7 @@
 ---
 title: "Curso Profesional de Uñas + Clases en vivo"
 internalCode: "CPUE-LIVE"
-shortDescription: "Todo lo del Curso Profesional de Uñas Esmera, más 24 horas de clases en vivo con la profesora para practicar, resolver dudas y avanzar más rápido."
+shortDescription: "Conviértete en técnica de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo, acompañamiento real y 24 horas de clases en vivo con la profesora."
 categories: ["unas"]
 level: "Iniciación"
 duration: "200 horas"
