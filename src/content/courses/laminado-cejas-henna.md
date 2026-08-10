@@ -26,7 +26,7 @@ relatedCourses:
   - "depilacion-diseno-cejas"
 price: 49
 featured: true
-order: 12
+order: 6
 ---
 
 Aprende el laminado de cejas combinado con tinte de henna: un tratamiento de alto impacto estético que restructura, fija y colorea las cejas en una sola sesión. Técnica muy demandada en los centros de estética actuales.

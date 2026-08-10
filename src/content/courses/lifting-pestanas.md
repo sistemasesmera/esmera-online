@@ -26,7 +26,7 @@ relatedCourses:
   - "extension-pestanas"
 price: 49
 featured: true
-order: 7
+order: 4
 ---
 
 Formación online especializada en lifting de pestañas. Aprenderás a trabajar con seguridad en la zona ocular, dominar las curvaturas y ofrecer resultados duraderos y naturales a tus clientas.

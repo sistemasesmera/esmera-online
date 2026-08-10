@@ -26,7 +26,7 @@ relatedCourses:
   - "unas-acrigel"
 price: 49
 featured: false
-order: 17
+order: 15
 ---
 
 Formación completa en uñas acrílicas: desde la química del producto hasta el modelado con molde o tip, el acabado y el mantenimiento. Una de las técnicas más demandadas en los centros de uñas profesionales.

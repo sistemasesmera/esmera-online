@@ -26,7 +26,7 @@ relatedCourses:
   - "unas-acrilicas"
 price: 49
 featured: false
-order: 18
+order: 16
 ---
 
 El acrigel combina lo mejor del acrílico y el gel en una sola técnica: flexibilidad, ligereza y una resistencia excepcional. Aprenderás a aplicarlo con molde, curarlo y acabarlo con un resultado profesional.

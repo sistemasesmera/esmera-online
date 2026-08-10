@@ -63,7 +63,7 @@ faq:
 relatedCourses: []
 price: 499
 featured: true
-order: 3
+order: 26
 ---
 
 El marketing digital es una de las habilidades más demandadas por las empresas hoy en día. Este programa te lleva desde los fundamentos hasta la gestión avanzada de campañas, redes sociales y publicidad online, con un enfoque 100% práctico y orientado a resultados.

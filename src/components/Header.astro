@@ -5,11 +5,15 @@ import Container from "./ui/Container.astro";
 import Icon from "./Icon.astro";
 import { getCollection } from "astro:content";
 
-const categories = (await getCollection("categories")).filter((c) => !c.data.parent).sort((a, b) => a.data.order - b.data.order);
+const allCategories = await getCollection("categories");
+const topCategories = allCategories.filter((c) => !c.data.parent).sort((a, b) => a.data.order - b.data.order);
+const categoriesWithChildren = topCategories.map((parent) => ({
+  parent,
+  children: allCategories.filter((c) => c.data.parent === parent.id).sort((a, b) => a.data.order - b.data.order),
+}));
 
 const navLinks = [
   { href: "/cursos", label: "Cursos" },
-  { href: "/certificados-de-profesionalidad", label: "Certificados" },
   { href: "/blog", label: "Blog" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -37,19 +41,36 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
           class="invisible absolute left-1/2 top-full grid w-80 -translate-x-1/2 translate-y-1 grid-cols-1 gap-0.5 rounded-2xl border border-ink-100 bg-white p-2 opacity-0 shadow-xl shadow-ink-900/10 transition-all duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
         >
           {
-            categories.map((category) => (
-              <a
-                href={`/categorias/${category.id}`}
-                class="group/item flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700"
-              >
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-150 group-hover/item:bg-white">
-                  <Icon name={(category.data.icon as "sparkles" | "shield" | "megaphone" | "award" | "users" | "briefcase" | "compass" | "chart" | "target" | "clock" | "bot" | "calendar" | "brush") ?? "sparkles"} class="h-4 w-4" />
-                </span>
-                <span>
-                  <span class="block">{category.data.name}</span>
-                  <span class="block text-xs font-normal text-ink-400">{category.data.description}</span>
-                </span>
-              </a>
+            categoriesWithChildren.map(({ parent, children }) => (
+              <div>
+                <a
+                  href={`/categorias/${parent.id}`}
+                  class="group/item flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700"
+                >
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-150 group-hover/item:bg-white">
+                    <Icon name={(parent.data.icon as "sparkles" | "shield" | "megaphone" | "award" | "users" | "briefcase" | "compass" | "chart" | "target" | "clock" | "bot" | "calendar" | "brush") ?? "sparkles"} class="h-4 w-4" />
+                  </span>
+                  <span>
+                    <span class="block">{parent.data.name}</span>
+                    <span class="block text-xs font-normal text-ink-400">{parent.data.description}</span>
+                  </span>
+                </a>
+                {children.length > 0 && (
+                  <div class="ml-4 border-l border-ink-100 pl-2">
+                    {children.map((child) => (
+                      <a
+                        href={`/categorias/${child.id}`}
+                        class="group/child flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink-600 transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700"
+                      >
+                        <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-brand-50 text-brand-500 transition-colors duration-150 group-hover/child:bg-white">
+                          <Icon name={(child.data.icon as "sparkles" | "shield" | "megaphone" | "award" | "users" | "briefcase" | "compass" | "chart" | "target" | "clock" | "bot" | "calendar" | "brush") ?? "sparkles"} class="h-3 w-3" />
+                        </span>
+                        {child.data.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))
           }
           <a
@@ -85,26 +106,15 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 
     <button
       id="mobile-menu-button"
-      class="relative inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-ink-700 lg:hidden"
+      class="inline-flex h-9 w-9 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full text-ink-700 lg:hidden"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
       <span class="sr-only">Abrir menú</span>
-      <span
-        class="absolute left-1/2 top-1/2 h-[1.5px] w-5 -translate-x-1/2 rounded-full bg-current transition-all duration-300"
-        style="transform: translate(-50%, -6px) rotate(0deg);"
-        data-menu-bar="top"
-      ></span>
-      <span
-        class="absolute left-1/2 top-1/2 h-[1.5px] w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition-all duration-300"
-        data-menu-bar="middle"
-      ></span>
-      <span
-        class="absolute left-1/2 top-1/2 h-[1.5px] w-5 -translate-x-1/2 rounded-full bg-current transition-all duration-300"
-        style="transform: translate(-50%, 5px) rotate(0deg);"
-        data-menu-bar="bottom"
-      ></span>
+      <span class="h-[2px] w-5 rounded-full bg-current transition-all duration-300" data-menu-bar="top"></span>
+      <span class="h-[2px] w-5 rounded-full bg-current transition-all duration-300" data-menu-bar="middle"></span>
+      <span class="h-[2px] w-5 rounded-full bg-current transition-all duration-300" data-menu-bar="bottom"></span>
     </button>
   </Container>
 
@@ -114,17 +124,34 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
   >
     <div class="overflow-hidden">
       <Container class="flex flex-col gap-1 py-4">
-        <p class="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wide text-ink-400">Categorías</p>
         {
-          categories.map((category) => (
-            <a
-              href={`/categorias/${category.id}`}
-              class="rounded-lg px-3 py-2 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50"
-              data-mobile-nav-link
-            >
-              {category.data.name}
-            </a>
-          ))
+          categoriesWithChildren.map(({ parent, children }) =>
+            children.length > 0 ? (
+              <>
+                <p class="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wide text-ink-400">{parent.data.name}</p>
+                {children.map((child) => (
+                  <a
+                    href={`/categorias/${child.id}`}
+                    class="rounded-lg px-3 py-2 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50"
+                    data-mobile-nav-link
+                  >
+                    {child.data.name}
+                  </a>
+                ))}
+              </>
+            ) : (
+              <>
+                <p class="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wide text-ink-400">Cursos</p>
+                <a
+                  href={`/categorias/${parent.id}`}
+                  class="rounded-lg px-3 py-2 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-brand-50"
+                  data-mobile-nav-link
+                >
+                  {parent.data.name}
+                </a>
+              </>
+            )
+          )
         }
         <div class="my-2 h-px bg-ink-100"></div>
         {
@@ -163,13 +190,13 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     bars?.forEach((bar) => {
       const role = bar.dataset.menuBar;
       if (open) {
-        if (role === "top") bar.style.transform = "translate(-50%, 0) rotate(45deg)";
+        if (role === "top") bar.style.transform = "translateY(7px) rotate(45deg)";
         if (role === "middle") bar.style.opacity = "0";
-        if (role === "bottom") bar.style.transform = "translate(-50%, 0) rotate(-45deg)";
+        if (role === "bottom") bar.style.transform = "translateY(-7px) rotate(-45deg)";
       } else {
-        if (role === "top") bar.style.transform = "translate(-50%, -6px) rotate(0deg)";
+        if (role === "top") bar.style.transform = "";
         if (role === "middle") bar.style.opacity = "1";
-        if (role === "bottom") bar.style.transform = "translate(-50%, 5px) rotate(0deg)";
+        if (role === "bottom") bar.style.transform = "";
       }
     });
   }

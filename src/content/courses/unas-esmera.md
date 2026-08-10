@@ -25,7 +25,7 @@ relatedCourses:
   - "cejas-pestanas"
 price: 599
 featured: true
-order: 6
+order: 10
 ---
 
 Formación profesional online para convertirte en técnica de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales.

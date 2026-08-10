@@ -26,7 +26,7 @@ relatedCourses:
   - "depilacion-diseno-cejas"
 price: 49
 featured: true
-order: 11
+order: 7
 ---
 
 Formación en el tratamiento combinado de planchado de cejas y tinte con henna. Aprenderás a reestructurar y fijar el vello de la ceja y a aplicar henna para un color natural y duradero.

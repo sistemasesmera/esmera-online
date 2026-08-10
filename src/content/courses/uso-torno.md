@@ -26,7 +26,7 @@ relatedCourses:
   - "unas-gel"
 price: 49
 featured: false
-order: 15
+order: 13
 ---
 
 Formación especializada en el uso del torno eléctrico para uñas. Aprenderás a seleccionar la fresa adecuada, manejar el aparato con seguridad y aplicarlo en la preparación y mantenimiento de todo tipo de uñas.

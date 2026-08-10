@@ -1,7 +1,7 @@
 ---
-title: "Curso Profesional de Cejas y Pestañas"
-internalCode: "ESMERA001"
-shortDescription: "Aprende las técnicas profesionales de diseño de cejas y tratamiento de pestañas para ejercer como especialista en estética facial."
+title: "Curso Profesional de Cejas y Pestañas + Clases en vivo"
+internalCode: "ESMERA019"
+shortDescription: ""
 categories: ["cejas-y-pestanas"]
 level: "Iniciación"
 duration: "60 horas"
@@ -22,11 +22,9 @@ hasFinalProject: false
 certificate: "Diploma privado"
 faq: []
 relatedCourses:
-  - "unas-esmera"
-price: 699
-stripePaymentLink: "https://buy.stripe.com/test_bJebJ3fEW4NK0jH8Qw28800"
-featured: true
-order: 1
+  - "cejas-pestanas"
+price: 999
+featured: false
+order: 2
 ---
 
-Formación profesional online especializada en el diseño de cejas y tratamiento de pestañas. Un programa práctico con tutor personalizado y tutorías semanales para que puedas ejercer como profesional de la estética facial.

@@ -26,7 +26,7 @@ relatedCourses:
   - "decoracion-unas-basica"
 price: 349
 featured: false
-order: 14
+order: 12
 ---
 
 Formación profesional en manicura y pedicura que te prepara para ofrecer un servicio completo y de calidad: desde la preparación e higiene hasta el tratamiento de cutículas, esmaltado y cuidado de manos y pies.

@@ -26,7 +26,7 @@ relatedCourses:
   - "unas-acrilicas"
 price: 49
 featured: false
-order: 19
+order: 17
 ---
 
 Especialización en la reconstrucción de uñas mordidas o dañadas. Aprenderás a valorar cada caso, elegir la técnica correcta y devolver a la uña su forma, longitud y aspecto natural con resultados duraderos.

@@ -26,7 +26,7 @@ relatedCourses:
   - "rizado-tinte-pestanas"
 price: 159
 featured: true
-order: 13
+order: 3
 ---
 
 Formación completa en extensión de pestañas que cubre las dos técnicas más solicitadas en el sector: la clásica pelo a pelo para un resultado natural, y el volumen ruso para miradas más espectaculares. Ambas en un solo programa.

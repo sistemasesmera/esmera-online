@@ -26,7 +26,7 @@ relatedCourses:
   - "laminado-cejas-henna"
 price: 49
 featured: true
-order: 9
+order: 8
 ---
 
 Formación profesional en depilación y diseño de cejas. Aprenderás a leer la morfología facial, elegir la forma ideal y aplicar diferentes técnicas de depilación con seguridad y criterio estético.

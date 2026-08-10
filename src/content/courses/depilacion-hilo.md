@@ -26,7 +26,7 @@ relatedCourses:
   - "planchado-cejas-henna"
 price: 49
 featured: true
-order: 10
+order: 9
 ---
 
 Aprende la técnica de depilación con hilo, uno de los métodos más precisos y naturales para el diseño de cejas y el tratamiento del vello facial. Sin químicos, sin calor, con resultados muy limpios.

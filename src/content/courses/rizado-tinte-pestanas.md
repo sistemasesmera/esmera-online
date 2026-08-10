@@ -26,7 +26,7 @@ relatedCourses:
   - "extension-pestanas"
 price: 49
 featured: true
-order: 8
+order: 5
 ---
 
 Aprende a combinar el rizado y el tinte de pestañas en un solo tratamiento profesional. Un servicio muy demandado que intensifica la mirada de forma natural y duradera.

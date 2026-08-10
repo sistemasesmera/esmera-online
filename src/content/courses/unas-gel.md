@@ -26,7 +26,7 @@ relatedCourses:
   - "unas-acrigel"
 price: 49
 featured: false
-order: 16
+order: 14
 ---
 
 Aprende a trabajar con gel para uñas de forma profesional: preparación, aplicación, modelado y curado en lámpara, hasta conseguir un resultado duradero y de calidad. Incluye técnicas de relleno y mantenimiento.

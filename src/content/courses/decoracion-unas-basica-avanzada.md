@@ -26,7 +26,7 @@ relatedCourses:
   - "decoracion-unas-3d"
 price: 99
 featured: false
-order: 22
+order: 19
 ---
 
 El programa más completo de nail art: arrancas desde cero con las técnicas esenciales y avanzas hasta los diseños más sofisticados — acuarela, marble, chrome, nail art artístico — con todo el acompañamiento de tu tutor.

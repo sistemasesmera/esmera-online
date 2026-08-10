@@ -26,7 +26,7 @@ relatedCourses:
   - "manicura-pedicura"
 price: 49
 featured: false
-order: 21
+order: 18
 ---
 
 Primer paso en el mundo del nail art profesional. Aprenderás a conseguir un esmaltado perfecto y a realizar las técnicas de decoración más demandadas: francesas, degradados, stamping y combinaciones de color.
