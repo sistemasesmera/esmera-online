@@ -109,51 +109,43 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
     </Container>
   </section>
 
-  <!-- Métricas -->
-  <section class="py-12">
+  <!-- Confianza -->
+  <section class="border-y border-ink-100 py-14">
     <Container>
-      <div class="grid grid-cols-2 divide-x divide-y divide-ink-100 border border-ink-100 rounded-2xl overflow-hidden lg:grid-cols-4 lg:divide-y-0">
+      <!-- Métricas -->
+      <div data-reveal class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
         {
           [
-            { value: "+1.000", label: "Alumnos formados",        heroicon: "heroicons:user-group" },
-            { value: "+20",    label: "Cursos disponibles",      heroicon: "heroicons:academic-cap" },
-            { value: "4,9/5", label: "Valoración media",         heroicon: "heroicons:star" },
-            { value: "96%",   label: "Satisfacción del alumno",  heroicon: "heroicons:heart" },
+            { value: "+1.000", label: "alumnos formados" },
+            { value: "4,9/5",  label: "valoración media" },
+            { value: "96%",    label: "satisfacción del alumno" },
           ].map((stat, index) => (
-            <div data-reveal style={delayStyle(index)} class="flex flex-col gap-3 p-8">
-              <HeroIcon name={stat.heroicon} class="h-8 w-8 text-brand-500" />
-              <span class="font-display text-4xl font-bold text-ink-900">{stat.value}</span>
-              <span class="text-sm leading-snug text-ink-500">{stat.label}</span>
+            <div class="flex items-baseline gap-2">
+              <span class="font-display text-3xl font-bold text-ink-900">{stat.value}</span>
+              <span class="text-sm text-ink-500">{stat.label}</span>
             </div>
           ))
         }
       </div>
-    </Container>
-  </section>
 
-  <!-- Avales -->
-  <section class="border-y border-ink-100 py-10">
-    <Container>
-      <div class="flex flex-col items-center gap-8">
-        <p class="text-xs font-semibold uppercase tracking-widest text-ink-400">Avalado y reconocido por</p>
-        <div class="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
-          <img
-            src="/fundae.png"
-            alt="FUNDAE — Fundación Estatal para la Formación en el Empleo"
-            class="h-16 w-auto object-contain"
-          />
-          <img
-            src="/Logo ANCYPEL rojo texto fondo blanco.png"
-            alt="ANCYPEL — Asociación Nacional de Centros y Profesionales de Estética y Belleza"
-            class="h-16 w-auto object-contain"
-          />
-          <img
-            src="/sepelogo.png"
-            alt="SEPE — Servicio Público de Empleo Estatal"
-            class="h-16 w-auto object-contain"
-          />
-        </div>
+      <!-- Separador -->
+      <div class="my-10 flex items-center gap-4">
+        <div class="h-px flex-1 bg-ink-100"></div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-ink-400">Formación con estándares de calidad reconocidos</p>
+        <div class="h-px flex-1 bg-ink-100"></div>
       </div>
+
+      <!-- Logos -->
+      <div data-reveal class="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+        <img src="/fundae.png" alt="FUNDAE" class="h-16 w-auto object-contain" />
+        <img src="/Logo ANCYPEL rojo texto fondo blanco.png" alt="ANCYPEL" class="h-16 w-auto object-contain" />
+        <img src="/sepelogo.png" alt="SEPE" class="h-16 w-auto object-contain" />
+      </div>
+
+      <!-- Sellos de texto -->
+      <p data-reveal class="mt-8 text-center text-xs text-ink-400">
+        ANCYPEL · ISO 21001 · UNE 66181 · Registro oficial de formación
+      </p>
     </Container>
   </section>
 
@@ -263,4 +255,8 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
     </Container>
   </section>
 
+
+<script is:inline>
+  oaiq("measure", "page_viewed", { type: "contents" });
+</script>
 </Layout>
