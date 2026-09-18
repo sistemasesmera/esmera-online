@@ -67,7 +67,7 @@ skills:
   - "Usar subagentes y equipos de agentes para tareas complejas y paralelas"
 relatedCourses:
   - "intro-chatgpt-gemini-copilot"
-price: 175
+price: 249
 featured: true
 order: 2
 ---
