@@ -148,19 +148,22 @@ const breadcrumbJsonLd = {
           </div>
 
           <script>
-            const checkbox = document.getElementById("terms-checkbox") as HTMLInputElement | null;
-            const buyBtn   = document.getElementById("buy-btn");
-            if (checkbox && buyBtn) {
+            function wireCheckbox(checkboxId: string, btnId: string) {
+              const checkbox = document.getElementById(checkboxId) as HTMLInputElement | null;
+              const btn      = document.getElementById(btnId);
+              if (!checkbox || !btn) return;
               checkbox.addEventListener("change", () => {
                 if (checkbox.checked) {
-                  buyBtn.classList.remove("pointer-events-none", "opacity-40");
-                  buyBtn.removeAttribute("aria-disabled");
+                  btn.classList.remove("pointer-events-none", "opacity-40");
+                  btn.removeAttribute("aria-disabled");
                 } else {
-                  buyBtn.classList.add("pointer-events-none", "opacity-40");
-                  buyBtn.setAttribute("aria-disabled", "true");
+                  btn.classList.add("pointer-events-none", "opacity-40");
+                  btn.setAttribute("aria-disabled", "true");
                 }
               });
             }
+            wireCheckbox("terms-checkbox", "buy-btn");
+            wireCheckbox("terms-checkbox-sidebar", "buy-btn-sidebar");
           </script>
         </div>
 
@@ -356,9 +359,24 @@ const breadcrumbJsonLd = {
                 </ul>
                 {course.data.stripePaymentLink ? (
                   <>
-                    <Button href={course.data.stripePaymentLink} variant="primary" size="lg" class="mt-5 w-full text-center" target="_blank" rel="noopener noreferrer">
-                      Comprar curso
-                    </Button>
+                    <label class="mt-5 flex items-start gap-2.5 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        id="terms-checkbox-sidebar"
+                        class="mt-0.5 h-4 w-4 shrink-0 accent-brand-600 cursor-pointer"
+                      />
+                      <span class="text-xs text-ink-500">
+                        He leído y acepto los <a href="/terminos" target="_blank" class="text-brand-600 underline underline-offset-2 hover:text-brand-700">Términos y Condiciones</a>
+                      </span>
+                    </label>
+                    <a
+                      id="buy-btn-sidebar"
+                      href={course.data.stripePaymentLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-disabled="true"
+                      class="mt-3 flex w-full items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all pointer-events-none opacity-40 select-none"
+                    >Comprar curso</a>
                     <p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-400">
                       <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                       Pago seguro con Stripe
