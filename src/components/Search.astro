@@ -1,0 +1,112 @@
+---
+---
+
+<!-- Buscador desktop -->
+<div id="search-wrapper" class="relative">
+  <div class="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-white/60" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <path d="M21 21l-4.35-4.35" />
+    </svg>
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Buscar cursos..."
+      autocomplete="off"
+      spellcheck="false"
+      class="w-32 bg-transparent text-sm text-white placeholder-white/50 outline-none transition-[width] duration-200 focus:w-48"
+    />
+  </div>
+
+  <div id="search-results" class="absolute right-0 top-full mt-2 hidden w-80 overflow-hidden rounded-xl border border-ink-100 bg-white shadow-xl shadow-ink-900/15"></div>
+</div>
+
+<script>
+  import Fuse from "fuse.js";
+
+  type CourseItem = {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    duration: string;
+    level: string;
+    price?: number;
+  };
+
+  let fuse: Fuse<CourseItem> | null = null;
+  let loaded = false;
+
+  async function loadIndex() {
+    if (loaded) return;
+    loaded = true;
+    try {
+      const res  = await fetch("/search-data.json");
+      const data: CourseItem[] = await res.json();
+      fuse = new Fuse(data, {
+        keys: [
+          { name: "title",       weight: 0.6  },
+          { name: "description", weight: 0.25 },
+          { name: "category",    weight: 0.15 },
+        ],
+        threshold: 0.35,
+        includeScore: true,
+        minMatchCharLength: 2,
+      });
+    } catch {
+      loaded = false;
+    }
+  }
+
+  function resultHTML(items: Fuse.FuseResult<CourseItem>[]) {
+    return items.map(({ item }) => `
+      <a href="/cursos/${item.id}" class="flex items-center justify-between px-4 py-3 transition-colors hover:bg-brand-50 border-b border-ink-50 last:border-0">
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-ink-900 truncate">${item.title}</p>
+          <div class="mt-0.5 flex items-center gap-2">
+            <span class="text-xs text-brand-600">${item.category}</span>
+            <span class="text-xs text-ink-400">${item.duration}</span>
+            ${item.price !== undefined ? `<span class="text-xs font-medium text-ink-700">${item.price}€</span>` : ""}
+          </div>
+        </div>
+      </a>
+    `).join("");
+  }
+
+  function search(q: string, inputId: string, resultsId: string) {
+    const results = document.getElementById(resultsId);
+    if (!results) return;
+    if (!fuse || q.length < 2) { results.classList.add("hidden"); return; }
+    const hits = fuse.search(q).slice(0, 6);
+    results.innerHTML = hits.length
+      ? resultHTML(hits)
+      : `<p class="px-4 py-3 text-sm text-ink-400">Sin resultados.</p>`;
+    results.classList.remove("hidden");
+  }
+
+  function init() {
+    const input   = document.getElementById("search-input") as HTMLInputElement | null;
+    const wrapper = document.getElementById("search-wrapper");
+
+    input?.addEventListener("focus", loadIndex);
+    input?.addEventListener("input", (e) =>
+      search((e.target as HTMLInputElement).value.trim(), "search-input", "search-results")
+    );
+
+    document.addEventListener("click", (e) => {
+      if (wrapper && !wrapper.contains(e.target as Node)) {
+        document.getElementById("search-results")?.classList.add("hidden");
+      }
+    });
+
+    // Móvil (input dentro del menú hamburguesa)
+    const mobileInput = document.getElementById("search-input-mobile") as HTMLInputElement | null;
+    mobileInput?.addEventListener("focus", loadIndex);
+    mobileInput?.addEventListener("input", (e) =>
+      search((e.target as HTMLInputElement).value.trim(), "search-input-mobile", "search-results-mobile")
+    );
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

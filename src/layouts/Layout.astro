@@ -69,6 +69,19 @@ const organizationJsonLd = {
       import "../lib/reveal";
     </script>
 
+    <script>
+      // Guarda la URL anterior en sessionStorage para el botón Volver
+      function trackNavigation() {
+        const previous = sessionStorage.getItem("currentPage");
+        if (previous && previous !== window.location.href) {
+          sessionStorage.setItem("previousPage", previous);
+        }
+        sessionStorage.setItem("currentPage", window.location.href);
+      }
+      trackNavigation();
+      document.addEventListener("astro:page-load", trackNavigation);
+    </script>
+
     <script is:inline>
       function loadEsmeraWidget() {
         const old = document.getElementById("esmera-widget-script");

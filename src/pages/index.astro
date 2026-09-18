@@ -13,7 +13,7 @@ import heroImage from "../assets/hero/hero-study.png";
 
 const categories = (await getCollection("categories")).filter((c) => !c.data.parent).sort((a, b) => a.data.order - b.data.order);
 const courses = await getCollection("courses");
-const catalogIds = ["cejas-pestanas", "unas-esmera", "manicura-pedicura"];
+const catalogIds = ["prl-peluqueria-estetica", "prl-basico-peluqueria", "cejas-pestanas"];
 const featuredCourses = catalogIds.map((id) => courses.find((c) => c.id === id)).filter(Boolean);
 
 const courseCountByCategory = new Map<string, number>();
@@ -24,17 +24,17 @@ for (const course of courses) {
 }
 
 const journeySteps = [
-  { title: "Bienvenida personalizada", description: "Accedes de inmediato y un tutor de bienvenida te guía en tus primeros pasos." },
-  { title: "Tutor asignado", description: "Tienes un tutor de referencia que te acompaña durante todo el curso." },
-  { title: "Tutor personalizado", description: "Resuelves tus dudas con tu tutor asignado cada semana, a tu ritmo y sin presiones." },
-  { title: "Proyecto final aplicado", description: "Aplicas lo aprendido en un proyecto real que puedes mostrar en tu portfolio." },
-  { title: "Certificado profesional", description: "Terminas con un diploma o certificado profesional que demuestra tu nueva capacidad." },
+  { title: "Acceso inmediato", description: "En cuanto te matriculas accedes a la plataforma y puedes empezar el mismo día." },
+  { title: "Tutor incluido", description: "Se te asigna un tutor desde el primer día, disponible en la plataforma para resolver tus dudas." },
+  { title: "Tutorías en la plataforma", description: "Consulta a tu tutor cuando lo necesites, directamente desde la plataforma, sin esperas." },
+  { title: "Evaluaciones y seguimiento", description: "Completa las actividades y evaluaciones a tu ritmo para consolidar lo aprendido." },
+  { title: "Certificado profesional", description: "Terminas con un diploma o certificado profesional que acredita tu formación." },
 ];
 
 const benefits = [
-  { title: "Acompañamiento real", description: "Tutor asignado y seguimiento personalizado en cada etapa de tu formación.", icon: "chat" as const },
-  { title: "Tutorías semanales", description: "Resuelve tus dudas con tu tutor asignado cada semana, de forma personalizada y a tu ritmo.", icon: "calendar" as const },
-  { title: "Proyectos reales", description: "Aplica lo aprendido en proyectos que puedes mostrar en tu portfolio profesional.", icon: "briefcase" as const },
+  { title: "Tutor incluido", description: "Cada curso incluye un tutor asignado que resuelve tus dudas a través de la plataforma.", icon: "chat" as const },
+  { title: "Tutorías en la plataforma", description: "Consulta a tu tutor cuando lo necesites, sin necesidad de citas ni llamadas.", icon: "calendar" as const },
+  { title: "Certificado acreditado", description: "Obtén tu diploma al finalizar, válido para acreditar tu formación ante cualquier empresa o inspección.", icon: "award" as const },
   { title: "Contenidos siempre actualizados", description: "Formación al día con lo que el mercado laboral demanda hoy.", icon: "refresh" as const },
   { title: "Orientación profesional", description: "Te ayudamos a dar el siguiente paso: empleo, especialización o emprendimiento.", icon: "compass" as const },
   { title: "100% online y flexible", description: "Estudia desde donde quieras, sin renunciar a tu trabajo o tu agenda actual.", icon: "clock" as const },
@@ -45,10 +45,10 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
 
 <Layout
   title="Esmera Online — Hazte profesional en lo que te apasiona"
-  description="Formación online con tutor propio, tutorías semanales y certificado incluido. Imagen personal, inteligencia artificial y marketing digital."
+  description="Formación online con tutor propio, tutorías semanales y certificado incluido. Prevención de riesgos laborales, imagen personal y más."
 >
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-white py-20 sm:py-28">
+  <section class="relative overflow-hidden bg-white pt-4 pb-20 sm:py-28">
     <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-brand-50 to-white"></div>
     <div class="absolute inset-x-0 top-0 -z-10 h-[640px] bg-dot-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
     <svg class="absolute inset-0 -z-10 h-full w-full text-brand-300/60 [mask-image:radial-gradient(ellipse_60%_55%_at_50%_30%,black,transparent)]" preserveAspectRatio="none">
@@ -88,12 +88,15 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
             </span>
           </h1>
           <p data-reveal style={delayStyle(2)} class="mt-7 max-w-xl text-lg font-normal leading-relaxed text-ink-500">
-            Formación 100% online con tutor propio desde el primer día. Tutorías semanales, seguimiento personalizado y certificado incluido — sin excusas para no empezar.
+            Sin horarios. Sin desplazamientos. Con tutor incluido y certificado al terminar. Formación online que se adapta a tu vida.
           </p>
           <div data-reveal style={delayStyle(3)} class="mt-10 flex flex-col items-start gap-3 sm:flex-row">
             <Button href="/cursos" variant="primary" size="lg">Explorar cursos</Button>
             <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger>Habla con un asesor</Button>
           </div>
+          <p data-reveal style={delayStyle(4)} class="mt-4 text-sm text-ink-400">
+            ¿Quieres financiarlo? <a href="javascript:void(0)" data-lead-modal-trigger class="text-brand-600 underline underline-offset-2 hover:text-brand-700">Habla con un asesor.</a>
+          </p>
         </div>
 
         <div data-reveal style={delayStyle(2)} class="relative mx-auto w-full max-w-md lg:max-w-none">
@@ -113,16 +116,16 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
   <section class="border-y border-ink-100 py-14">
     <Container>
       <!-- Métricas -->
-      <div data-reveal class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+      <div data-reveal class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-20">
         {
           [
             { value: "+1.000", label: "alumnos formados" },
             { value: "4,9/5",  label: "valoración media" },
             { value: "96%",    label: "satisfacción del alumno" },
-          ].map((stat, index) => (
-            <div class="flex items-baseline gap-2">
-              <span class="font-display text-3xl font-bold text-ink-900">{stat.value}</span>
-              <span class="text-sm text-ink-500">{stat.label}</span>
+          ].map((stat) => (
+            <div class="text-center">
+              <p class="font-display text-4xl font-bold text-ink-900">{stat.value}</p>
+              <p class="mt-1 text-sm text-ink-500">{stat.label}</p>
             </div>
           ))
         }
@@ -131,19 +134,19 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
       <!-- Separador -->
       <div class="my-10 flex items-center gap-4">
         <div class="h-px flex-1 bg-ink-100"></div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-ink-400">Formación con estándares de calidad reconocidos</p>
+        <p class="text-xs font-medium uppercase tracking-widest text-ink-400">Formación con estándares de calidad reconocidos</p>
         <div class="h-px flex-1 bg-ink-100"></div>
       </div>
 
       <!-- Logos -->
       <div data-reveal class="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
-        <img src="/fundae.png" alt="FUNDAE" class="h-16 w-auto object-contain" />
-        <img src="/Logo ANCYPEL rojo texto fondo blanco.png" alt="ANCYPEL" class="h-16 w-auto object-contain" />
-        <img src="/sepelogo.png" alt="SEPE" class="h-16 w-auto object-contain" />
+        <img src="/fundae.png" alt="FUNDAE" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
+        <img src="/Logo ANCYPEL rojo texto fondo blanco.png" alt="ANCYPEL" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
+        <img src="/sepelogo.png" alt="SEPE" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
       </div>
 
-      <!-- Sellos de texto -->
-      <p data-reveal class="mt-8 text-center text-xs text-ink-400">
+      <!-- Sellos -->
+      <p data-reveal class="mt-6 text-center text-xs font-medium tracking-wide text-ink-400">
         ANCYPEL · ISO 21001 · UNE 66181 · Registro oficial de formación
       </p>
     </Container>
@@ -157,7 +160,7 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
           Esto es lo que incluye tu formación
         </h2>
         <p class="mt-4 text-base leading-relaxed text-ink-500">
-          Acompañamiento real durante todo el proceso, de principio a fin.
+          Tutor incluido, plataforma siempre disponible y certificado al terminar.
         </p>
       </div>
 

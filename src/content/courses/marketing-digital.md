@@ -32,7 +32,7 @@ contents:
     description: "Briefing publicitario, comunicación 360° (regla de las 4F) y formatos de publicidad online."
   - title: "Proyecto final"
     description: "Diseña, ejecuta y presenta una estrategia de marketing digital completa para un caso real."
-hasFinalProject: true
+hasFinalProject: false
 certificate: "Certificado profesional"
 careerOutcomes:
   - title: "Técnico de Marketing Digital"

@@ -1,22 +1,28 @@
 ---
-import Logo from "./Logo.astro";
 import Container from "./ui/Container.astro";
 import { getCollection } from "astro:content";
 
-const categories = (await getCollection("categories")).sort((a, b) => a.data.order - b.data.order);
+const allCategories = await getCollection("categories");
+const topCategories = allCategories
+  .filter((c) => !c.data.parent)
+  .sort((a, b) => a.data.order - b.data.order);
+
 const year = new Date().getFullYear();
 
 const linkColumns = [
   {
-    title: "Categorías",
-    links: categories.map((category) => ({ label: category.data.name, href: `/categorias/${category.id}` })),
+    title: "Cursos",
+    links: [
+      ...topCategories.map((c) => ({ label: c.data.name, href: `/categorias/${c.id}` })),
+      { label: "Ver todos los cursos", href: "/cursos" },
+    ],
   },
   {
     title: "Esmera Online",
     links: [
-      { label: "Todos los cursos", href: "/cursos" },
-      { label: "Blog", href: "/blog" },
-      { label: "Contacto", href: "/contacto" },
+      { label: "Inicio",    href: "/" },
+      { label: "Blog",      href: "/blog" },
+      { label: "Contacto",  href: "/contacto" },
     ],
   },
   {
@@ -37,10 +43,13 @@ const linkColumns = [
 
   <Container class="relative">
     <div class="grid grid-cols-1 gap-14 py-20 lg:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr] lg:gap-10">
+
       <div data-reveal>
-        <Logo variant="light" imageOnly imageClass="h-14" />
+        <a href="/" class="inline-flex items-center">
+          <img src="/images/esmera-online-logo-blanco.png" alt="Esmera Online" class="h-12 w-auto" />
+        </a>
         <p class="mt-5 max-w-sm text-base leading-relaxed text-ink-400">
-          Fórmate para tu futuro profesional con cursos online y el acompañamiento real que te mereces.
+          Fórmate con tutor incluido, avanza a tu ritmo y obtén tu certificado desde la plataforma.
         </p>
       </div>
 
@@ -78,8 +87,8 @@ const linkColumns = [
       <p>&copy; {year} Esmera Online. Todos los derechos reservados.</p>
       <div class="flex gap-5">
         <a href="/privacidad" class="transition-colors duration-150 hover:text-brand-400">Privacidad</a>
-        <a href="/terminos" class="transition-colors duration-150 hover:text-brand-400">Términos</a>
-        <a href="/cookies" class="transition-colors duration-150 hover:text-brand-400">Cookies</a>
+        <a href="/terminos"   class="transition-colors duration-150 hover:text-brand-400">Términos</a>
+        <a href="/cookies"    class="transition-colors duration-150 hover:text-brand-400">Cookies</a>
       </div>
     </Container>
   </div>

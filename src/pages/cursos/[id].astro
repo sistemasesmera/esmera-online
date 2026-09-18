@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/ui/Container.astro";
 import Eyebrow from "../../components/ui/Eyebrow.astro";
 import Button from "../../components/ui/Button.astro";
+import BackButton from "../../components/ui/BackButton.astro";
 import CourseCard from "../../components/CourseCard.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import Icon from "../../components/Icon.astro";
@@ -75,6 +76,7 @@ const breadcrumbJsonLd = {
     <div class="absolute inset-x-0 top-0 -z-10 h-full bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
 
     <Container class="relative">
+      <BackButton href="/cursos" class="mb-6 inline-flex" />
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
         <div data-reveal class="lg:col-span-2">
           <div class="flex flex-wrap items-center gap-4">
@@ -92,17 +94,9 @@ const breadcrumbJsonLd = {
               <Icon name="clock" class="h-4 w-4 text-brand-600" />
               {course.data.duration}
             </span>
-            {
-              course.data.hasFinalProject && (
-                <span class="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-700">
-                  <Icon name="briefcase" class="h-4 w-4 text-brand-600" />
-                  Proyecto final
-                </span>
-              )
-            }
             <span class="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-700">
-              <Icon name="calendar" class="h-4 w-4 text-brand-600" />
-              Tutorías semanales
+              <Icon name="chat" class="h-4 w-4 text-brand-600" />
+              Tutor incluido
             </span>
           </div>
 
@@ -144,58 +138,118 @@ const breadcrumbJsonLd = {
 
   <section class="py-16">
     <Container>
-      <div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
-        <div class="space-y-16 lg:col-span-2">
-          <div data-reveal>
-            <h2 class="font-display text-2xl font-semibold text-ink-900">Lo que vas a conseguir</h2>
-            <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {
-                course.data.objectives.map((objective, index) => (
-                  <li
-                    data-reveal
-                    style={`--reveal-delay: ${(index % 2) * 80}ms`}
-                    class="group flex items-start gap-3 rounded-xl border border-ink-100 bg-white p-4 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md hover:shadow-ink-900/5"
-                  >
-                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700 transition-transform duration-300 group-hover:-rotate-6">
-                      <Icon name={objective.icon} class="h-4 w-4" />
-                    </div>
-                    <p class="mt-0.5 text-sm leading-relaxed text-ink-900">{objective.text}</p>
-                  </li>
-                ))
-              }
-            </ul>
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-3">
+
+        <!-- Columna principal con tabs -->
+        <div class="lg:col-span-2">
+
+          <!-- Tab nav -->
+          <div class="flex border-b border-ink-100" role="tablist">
+            {[
+              { id: "presentacion", label: "Presentación" },
+              { id: "temario",      label: "Temario" },
+              { id: "faq",          label: "Preguntas frecuentes" },
+            ].map((tab, i) => (
+              <button
+                role="tab"
+                data-tab-btn={tab.id}
+                aria-selected={i === 0 ? "true" : "false"}
+                aria-controls={`panel-${tab.id}`}
+                class:list={[
+                  "relative px-5 py-3 text-sm font-medium transition-colors duration-200 focus-visible:outline-none",
+                  "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-t after:transition-all after:duration-200",
+                  i === 0
+                    ? "text-brand-700 after:bg-brand-600"
+                    : "text-ink-500 after:bg-transparent hover:text-ink-900",
+                ]}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
 
-          <div data-reveal>
-            <h2 class="font-display text-2xl font-semibold text-ink-900">Metodología</h2>
-            <div class="prose mt-6 max-w-none text-ink-600">
+          <!-- Panel: Presentación -->
+          <div id="panel-presentacion" role="tabpanel" data-tab-panel="presentacion" class="pt-10 space-y-6">
+
+            <!-- Texto de presentación -->
+            <div class="prose max-w-none text-ink-600">
               <Content />
             </div>
-          </div>
 
-          <div data-reveal>
-            <h2 class="font-display text-2xl font-semibold text-ink-900">Contenidos del curso</h2>
-            <div class="mt-6 space-y-5 border-l-2 border-ink-100 pl-6">
-              {
-                course.data.contents.map((module, index) => (
-                  <div data-reveal style={`--reveal-delay: ${(index % 5) * 60}ms`} class="relative">
-                    <span class="absolute -left-[1.65rem] top-1 h-2.5 w-2.5 rounded-full bg-brand-500" />
-                    <p class="text-sm font-semibold text-ink-900">{module.title}</p>
-                    {module.description && <p class="mt-1 text-sm leading-relaxed text-ink-500">{module.description}</p>}
+            <!-- Acordeones -->
+            <div class="divide-y divide-ink-100 pt-4">
+
+              {course.data.targetAudience && course.data.targetAudience.length > 0 && (
+                <details class="group open:bg-brand-50/20">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
+                    Dirigido a
+                    <svg width="12" height="7" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-500 transition-transform duration-250 group-open:rotate-180">
+                      <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </summary>
+                  <div class="accordion-body pb-5">
+                    {course.data.targetAudienceIntro && (
+                      <p class="mb-3 text-base leading-relaxed text-ink-600">{course.data.targetAudienceIntro}</p>
+                    )}
+                    <ul class="ml-4 list-disc space-y-1 text-base leading-relaxed text-ink-600 marker:text-brand-500">
+                      {course.data.targetAudience.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
                   </div>
-                ))
-              }
-            </div>
-            {
-              course.data.hasFinalProject && (
-                <p class="mt-4 text-sm font-medium text-brand-700">✓ Este curso incluye proyecto final.</p>
-              )
-            }
-          </div>
+                </details>
+              )}
 
-          {
-            course.data.careerOutcomes && course.data.careerOutcomes.length > 0 && (
-              <div data-reveal>
+              {course.data.skills && course.data.skills.length > 0 && (
+                <details class="group open:bg-brand-50/20">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
+                    Competencias a adquirir
+                    <svg width="12" height="7" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-500 transition-transform duration-250 group-open:rotate-180">
+                      <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </summary>
+                  <ul class="accordion-body ml-4 list-disc space-y-1 pb-5 text-base leading-relaxed text-ink-600 marker:text-brand-500">
+                    {course.data.skills.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+
+              {course.data.requirements && course.data.requirements.length > 0 && (
+                <details class="group open:bg-brand-50/20">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
+                    Requisitos
+                    <svg width="12" height="7" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-500 transition-transform duration-250 group-open:rotate-180">
+                      <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </summary>
+                  <div class="accordion-body space-y-1.5 pb-5">
+                    {course.data.requirements.map((item) => (
+                      <p class="text-base leading-relaxed text-ink-600">{item}</p>
+                    ))}
+                  </div>
+                </details>
+              )}
+
+              <details class="group open:bg-brand-50/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
+                  Lo que vas a conseguir
+                  <svg width="12" height="7" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-500 transition-transform duration-250 group-open:rotate-180">
+                    <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </summary>
+                <ul class="accordion-body ml-4 list-disc space-y-1 pb-5 text-base leading-relaxed text-ink-600 marker:text-brand-500">
+                  {course.data.objectives.map((objective) => (
+                    <li>{objective.text}</li>
+                  ))}
+                </ul>
+              </details>
+
+            </div>
+
+            {course.data.careerOutcomes && course.data.careerOutcomes.length > 0 && (
+              <div data-reveal class="pt-6">
                 <h2 class="font-display text-2xl font-semibold text-ink-900">Salidas profesionales</h2>
                 <p class="mt-2 text-sm text-ink-500">Perfiles a los que puedes optar al terminar este curso.</p>
                 <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -207,70 +261,103 @@ const breadcrumbJsonLd = {
                   ))}
                 </div>
               </div>
-            )
-          }
+            )}
 
-          <div data-reveal>
+          </div>
+
+          <!-- Panel: Temario -->
+          <div id="panel-temario" role="tabpanel" data-tab-panel="temario" class="hidden pt-10">
+            <h2 class="font-display text-2xl font-semibold text-ink-900">Contenidos del curso</h2>
+            {course.data.contents.length > 0 ? (
+              <div class="mt-8 space-y-3">
+                {course.data.contents.map((module, index) => (
+                  <div class="group flex items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-200 hover:border-brand-200 hover:shadow-sm">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 font-mono text-xs font-bold text-brand-700 transition-colors duration-200 group-hover:bg-brand-100">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p class="text-sm font-semibold text-ink-900">{module.title}</p>
+                      {module.description && <p class="mt-1 text-sm leading-relaxed text-ink-500">{module.description}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="mt-6 text-sm text-ink-400">Los contenidos detallados se facilitan al inicio del curso.</p>
+            )}
+          </div>
+
+          <!-- Panel: FAQ -->
+          <div id="panel-faq" role="tabpanel" data-tab-panel="faq" class="hidden pt-10">
             <h2 class="font-display text-2xl font-semibold text-ink-900">Preguntas frecuentes</h2>
-            <div class="mt-6 space-y-3">
-              {
-                course.data.faq.map((item, index) => (
-                  <details
-                    data-reveal
-                    style={`--reveal-delay: ${index * 60}ms`}
-                    class="group rounded-2xl border border-ink-100 p-5 transition-colors duration-200 open:border-brand-200 open:bg-brand-50/40"
-                  >
+            {course.data.faq.length > 0 ? (
+              <div class="mt-6 space-y-3">
+                {course.data.faq.map((item) => (
+                  <details class="group rounded-2xl border border-ink-100 p-5 transition-colors duration-200 open:border-brand-200 open:bg-brand-50/40">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink-900">
                       {item.question}
-                      <svg
-                        width="14"
-                        height="8"
-                        viewBox="0 0 14 8"
-                        fill="none"
-                        class="shrink-0 text-brand-600 transition-transform duration-300 group-open:rotate-180"
-                      >
+                      <svg width="14" height="8" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-600 transition-transform duration-300 group-open:rotate-180">
                         <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </summary>
                     <p class="mt-3 animate-[fadeIn_0.3s_ease-out] text-sm leading-relaxed text-ink-500">{item.answer}</p>
                   </details>
-                ))
-              }
-            </div>
+                ))}
+              </div>
+            ) : (
+              <p class="mt-6 text-sm text-ink-400">Próximamente añadiremos las preguntas más frecuentes sobre este curso.</p>
+            )}
           </div>
 
-          {
-            relatedCourses.length > 0 && (
-              <div data-reveal>
-                <h2 class="font-display text-2xl font-semibold text-ink-900">Cursos relacionados</h2>
-                <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  {relatedCourses.map((related) => related && <CourseCard course={related} />)}
-                </div>
+          <!-- Cursos relacionados (fuera de tabs) -->
+          {relatedCourses.length > 0 && (
+            <div data-reveal class="mt-16 border-t border-ink-100 pt-14">
+              <h2 class="font-display text-2xl font-semibold text-ink-900">Cursos relacionados</h2>
+              <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {relatedCourses.map((related) => related && <CourseCard course={related} />)}
               </div>
-            )
-          }
+            </div>
+          )}
         </div>
 
+        <!-- Sidebar derecho -->
         <aside class="lg:col-span-1">
-          <div class="sticky top-24 space-y-6" id="informacion">
-            {course.data.stripePaymentLink && (
-              <div class="rounded-3xl border border-brand-200 bg-brand-50 p-6">
-                <p class="font-display text-lg font-semibold text-ink-900">Reserva tu plaza ahora</p>
-                <p class="mt-1 text-sm leading-relaxed text-ink-500">Pago seguro con tarjeta. Administración te contactará para el contrato y el acceso al curso.</p>
-                {course.data.price !== undefined && (
-                  <p class="mt-4 font-display text-3xl font-bold text-ink-900">
-                    {course.data.price} <span class="text-xl font-medium text-ink-400">€</span>
-                  </p>
-                )}
-                <Button href={course.data.stripePaymentLink} variant="primary" size="lg" class="mt-4 w-full text-center" target="_blank" rel="noopener noreferrer">
-                  Matricularme ahora
-                </Button>
-                <p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-400">
-                  <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                  Pago procesado por Stripe
+          <div class="sticky top-24 space-y-5" id="informacion">
+
+            {course.data.price !== undefined && (
+              <div class="rounded-3xl border border-ink-100 bg-white p-6 shadow-sm shadow-ink-900/5">
+                <p class="text-xs font-semibold uppercase tracking-widest text-ink-400">Precio del curso</p>
+                <p class="mt-2 font-display text-4xl font-bold text-ink-900">
+                  {course.data.price} <span class="text-2xl font-medium text-ink-400">€</span>
                 </p>
+                <ul class="mt-4 space-y-2 text-sm text-ink-600">
+                  <li class="flex items-center gap-2"><Icon name="award" class="h-4 w-4 text-brand-600 shrink-0" /> Certificado incluido</li>
+                  <li class="flex items-center gap-2"><Icon name="chat" class="h-4 w-4 text-brand-600 shrink-0" /> Tutor incluido</li>
+                  <li class="flex items-center gap-2"><Icon name="clock" class="h-4 w-4 text-brand-600 shrink-0" /> {course.data.duration}</li>
+                </ul>
+                {course.data.stripePaymentLink ? (
+                  <>
+                    <Button href={course.data.stripePaymentLink} variant="primary" size="lg" class="mt-5 w-full text-center" target="_blank" rel="noopener noreferrer">
+                      Matricularme ahora
+                    </Button>
+                    <p class="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-400">
+                      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                      Pago seguro con Stripe
+                    </p>
+                  </>
+                ) : (
+                  <Button href="#informacion" variant="primary" size="lg" class="mt-5 w-full text-center">
+                    Solicitar información
+                  </Button>
+                )}
               </div>
             )}
+
+            <div class="rounded-2xl border border-brand-100 bg-brand-50/50 px-5 py-4">
+              <p class="text-sm font-semibold text-brand-800">¿Sabías que puedes financiar este curso?</p>
+              <p class="mt-1 text-sm leading-relaxed text-brand-700">Escríbenos y un asesor te explicará las opciones disponibles.</p>
+            </div>
+
             <LeadForm
               presetCourse={course.data.title}
               title="¿Tienes dudas?"
@@ -279,7 +366,47 @@ const breadcrumbJsonLd = {
             />
           </div>
         </aside>
+
       </div>
     </Container>
   </section>
 </Layout>
+
+<script>
+  function initTabs() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+    const panels  = document.querySelectorAll<HTMLElement>("[data-tab-panel]");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tabBtn;
+
+        buttons.forEach((b) => {
+          const active = b.dataset.tabBtn === target;
+          b.setAttribute("aria-selected", String(active));
+          b.classList.toggle("text-brand-700", active);
+          b.classList.toggle("after:bg-brand-600", active);
+          b.classList.toggle("text-ink-500", !active);
+          b.classList.toggle("after:bg-transparent", !active);
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.dataset.tabPanel !== target);
+        });
+      });
+    });
+  }
+
+  initTabs();
+  document.addEventListener("astro:page-load", initTabs);
+</script>
+
+<style>
+  details[open] .accordion-body {
+    animation: accordionSlide 0.2s ease-out both;
+  }
+  @keyframes accordionSlide {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
