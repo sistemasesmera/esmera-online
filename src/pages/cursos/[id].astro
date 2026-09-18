@@ -76,7 +76,7 @@ const breadcrumbJsonLd = {
     <div class="absolute inset-x-0 top-0 -z-10 h-full bg-dot-grid-light opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
 
     <Container class="relative">
-      <BackButton href="/cursos" class="mb-6 inline-flex" />
+      <BackButton href="/cursos" />
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
         <div data-reveal class="lg:col-span-2">
           <div class="flex flex-wrap items-center gap-4">
@@ -121,10 +121,10 @@ const breadcrumbJsonLd = {
             {course.data.stripePaymentLink ? (
               <>
                 <Button href={course.data.stripePaymentLink} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">Matricularme ahora</Button>
-                <Button href="#informacion" variant="secondary" size="lg">¿Tienes dudas?</Button>
+                <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>¿Tienes dudas?</Button>
               </>
             ) : (
-              <Button href="#informacion" variant="primary" size="lg">Solicitar información</Button>
+              <Button href="javascript:void(0)" variant="primary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>Solicitar información</Button>
             )}
           </div>
         </div>
@@ -200,23 +200,7 @@ const breadcrumbJsonLd = {
                 </details>
               )}
 
-              {course.data.skills && course.data.skills.length > 0 && (
-                <details class="group open:bg-brand-50/20">
-                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
-                    Competencias a adquirir
-                    <svg width="12" height="7" viewBox="0 0 14 8" fill="none" class="shrink-0 text-brand-500 transition-transform duration-250 group-open:rotate-180">
-                      <path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </summary>
-                  <ul class="accordion-body ml-4 list-disc space-y-1 pb-5 text-base leading-relaxed text-ink-600 marker:text-brand-500">
-                    {course.data.skills.map((item) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
-                </details>
-              )}
-
-              {course.data.requirements && course.data.requirements.length > 0 && (
+{course.data.requirements && course.data.requirements.length > 0 && (
                 <details class="group open:bg-brand-50/20">
                   <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink-900">
                     Requisitos
@@ -346,7 +330,7 @@ const breadcrumbJsonLd = {
                     </p>
                   </>
                 ) : (
-                  <Button href="#informacion" variant="primary" size="lg" class="mt-5 w-full text-center">
+                  <Button href="javascript:void(0)" variant="primary" size="lg" class="mt-5 w-full text-center" data-lead-modal-trigger data-lead-course={course.data.title}>
                     Solicitar información
                   </Button>
                 )}

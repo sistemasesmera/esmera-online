@@ -36,7 +36,43 @@ import Icon from "./Icon.astro";
     const backdrop = modal.querySelector<HTMLElement>("[data-lead-modal-backdrop]");
     const closeButton = modal.querySelector<HTMLElement>("[data-lead-modal-close]");
 
-    const open = () => {
+    const titleEl    = modal.querySelector<HTMLElement>("h3");
+    const subtitleEl = modal.querySelector<HTMLElement>("h3 + p");
+    const form       = modal.querySelector<HTMLFormElement>("#lead-form");
+
+    const defaultTitle    = titleEl?.textContent ?? "";
+    const defaultSubtitle = subtitleEl?.textContent ?? "";
+
+    const open = (courseName?: string) => {
+      // Campos que ocultamos en modo curso
+      const courseRow  = modal.querySelector<HTMLElement>("#lead-course")?.closest("div") ?? null;
+      const messageRow = modal.querySelector<HTMLElement>("#lead-message")?.closest("div") ?? null;
+
+      // Elimina hidden input previo si existe
+      modal.querySelector<HTMLInputElement>('input[name="courseOfInterest"]')?.remove();
+
+      if (courseName && form) {
+        // Inyecta curso como campo oculto
+        const hidden = document.createElement("input");
+        hidden.type  = "hidden";
+        hidden.name  = "courseOfInterest";
+        hidden.value = courseName;
+        form.prepend(hidden);
+
+        // Oculta selector de curso y mensaje
+        if (courseRow)  courseRow.style.display  = "none";
+        if (messageRow) messageRow.style.display = "none";
+
+        if (titleEl)    titleEl.textContent    = "¿Tienes dudas sobre este curso?";
+        if (subtitleEl) subtitleEl.textContent = "Déjanos tus datos y un asesor te contacta en menos de 24 h.";
+      } else {
+        // Restaura estado por defecto
+        if (courseRow)  courseRow.style.display  = "";
+        if (messageRow) messageRow.style.display = "";
+        if (titleEl)    titleEl.textContent    = defaultTitle;
+        if (subtitleEl) subtitleEl.textContent = defaultSubtitle;
+      }
+
       modal.classList.remove("opacity-0", "pointer-events-none");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("overflow-hidden");
@@ -47,6 +83,14 @@ import Icon from "./Icon.astro";
       modal.classList.add("opacity-0", "pointer-events-none");
       modal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("overflow-hidden");
+      // Restaura estado por defecto al cerrar
+      const courseRow  = modal.querySelector<HTMLElement>("#lead-course")?.closest("div") ?? null;
+      const messageRow = modal.querySelector<HTMLElement>("#lead-message")?.closest("div") ?? null;
+      modal.querySelector<HTMLInputElement>('input[name="courseOfInterest"]')?.remove();
+      if (courseRow)  courseRow.style.display  = "";
+      if (messageRow) messageRow.style.display = "";
+      if (titleEl)    titleEl.textContent    = defaultTitle;
+      if (subtitleEl) subtitleEl.textContent = defaultSubtitle;
     };
 
     backdrop?.addEventListener("click", close);
@@ -60,7 +104,7 @@ import Icon from "./Icon.astro";
       const trigger = (event.target as HTMLElement)?.closest<HTMLElement>("[data-lead-modal-trigger]");
       if (!trigger) return;
       event.preventDefault();
-      open();
+      open(trigger.dataset.leadCourse);
     });
   }
 

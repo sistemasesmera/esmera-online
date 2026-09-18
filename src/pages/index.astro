@@ -14,7 +14,7 @@ import heroImage from "../assets/hero/hero-study.png";
 const categories = (await getCollection("categories")).filter((c) => !c.data.parent).sort((a, b) => a.data.order - b.data.order);
 const courses = await getCollection("courses");
 const catalogIds = ["prl-peluqueria-estetica", "prl-basico-peluqueria", "cejas-pestanas"];
-const featuredCourses = catalogIds.map((id) => courses.find((c) => c.id === id)).filter(Boolean);
+const featuredCourses = catalogIds.map((id) => courses.find((c) => c.id === id)).filter((c) => c !== undefined);
 
 const courseCountByCategory = new Map<string, number>();
 for (const course of courses) {
@@ -123,9 +123,9 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
             { value: "4,9/5",  label: "valoración media" },
             { value: "96%",    label: "satisfacción del alumno" },
           ].map((stat) => (
-            <div class="text-center">
-              <p class="font-display text-4xl font-bold text-ink-900">{stat.value}</p>
-              <p class="mt-1 text-sm text-ink-500">{stat.label}</p>
+            <div class="min-w-[120px] text-center">
+              <p class="font-display text-5xl font-bold tabular-nums text-ink-900">{stat.value}</p>
+              <p class="mt-2 text-base text-ink-500">{stat.label}</p>
             </div>
           ))
         }
@@ -140,9 +140,9 @@ const delayStyle = (index: number, step = 80) => `--reveal-delay: ${index * step
 
       <!-- Logos -->
       <div data-reveal class="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
-        <img src="/fundae.png" alt="FUNDAE" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
-        <img src="/Logo ANCYPEL rojo texto fondo blanco.png" alt="ANCYPEL" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
-        <img src="/sepelogo.png" alt="SEPE" class="h-10 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" />
+        <img src="/fundae.png" alt="FUNDAE" class="h-20 w-auto object-contain" />
+        <img src="/Logo ANCYPEL rojo texto fondo blanco.png" alt="ANCYPEL" class="h-20 w-auto object-contain" />
+        <img src="/sepelogo.png" alt="SEPE" class="h-20 w-auto object-contain" />
       </div>
 
       <!-- Sellos -->

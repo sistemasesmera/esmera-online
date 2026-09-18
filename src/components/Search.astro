@@ -22,7 +22,7 @@
 </div>
 
 <script>
-  import Fuse from "fuse.js";
+  import Fuse, { type FuseResult } from "fuse.js";
 
   type CourseItem = {
     id: string;
@@ -58,7 +58,7 @@
     }
   }
 
-  function resultHTML(items: Fuse.FuseResult<CourseItem>[]) {
+  function resultHTML(items: FuseResult<CourseItem>[]) {
     return items.map(({ item }) => `
       <a href="/cursos/${item.id}" class="flex items-center justify-between px-4 py-3 transition-colors hover:bg-brand-50 border-b border-ink-50 last:border-0">
         <div class="min-w-0">
