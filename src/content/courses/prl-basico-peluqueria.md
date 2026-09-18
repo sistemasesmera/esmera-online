@@ -65,4 +65,4 @@ La Ley 31/1995 de Prevención de Riesgos Laborales establece la obligación de f
 
 Este curso está diseñado para completarse a tu ritmo desde la plataforma, sin fechas límite estrictas. El temario es directo y práctico: identificar riesgos en el salón, aplicar medidas preventivas, usar correctamente los equipos de protección y saber cómo actuar ante una emergencia.
 
-Al finalizar obtienes un diploma privado de Esmera Online. Si más adelante necesitas profundizar, puedes ampliar con el curso completo de 75 horas.
+Al finalizar obtienes un diploma privado de Esmera Online que acredita tu formación básica en Prevención de Riesgos Laborales para el sector peluquería.
