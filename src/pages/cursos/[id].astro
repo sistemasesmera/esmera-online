@@ -112,7 +112,7 @@ const breadcrumbJsonLd = {
             )
           }
 
-          <div class="mt-8 flex flex-wrap items-center gap-5">
+          <div class="mt-8 flex flex-col gap-4">
             {course.data.price !== undefined && (
               <span class="font-display text-3xl font-bold text-ink-900">
                 {course.data.price} <span class="text-xl font-medium text-ink-400">€</span>
@@ -120,13 +120,48 @@ const breadcrumbJsonLd = {
             )}
             {course.data.stripePaymentLink ? (
               <>
-                <Button href={course.data.stripePaymentLink} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">Comprar curso</Button>
-                <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>¿Tienes dudas?</Button>
+                <label class="flex items-start gap-3 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    id="terms-checkbox"
+                    class="mt-0.5 h-4 w-4 shrink-0 accent-brand-600 cursor-pointer"
+                  />
+                  <span class="text-sm text-ink-500">
+                    He leído y acepto los <a href="/terminos" target="_blank" class="text-brand-600 underline underline-offset-2 hover:text-brand-700">Términos y Condiciones</a>
+                  </span>
+                </label>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a
+                    id="buy-btn"
+                    href={course.data.stripePaymentLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-disabled="true"
+                    class="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all pointer-events-none opacity-40 select-none"
+                  >Comprar curso</a>
+                  <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>¿Tienes dudas?</Button>
+                </div>
               </>
             ) : (
               <Button href="javascript:void(0)" variant="primary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>Solicitar información</Button>
             )}
           </div>
+
+          <script>
+            const checkbox = document.getElementById("terms-checkbox") as HTMLInputElement | null;
+            const buyBtn   = document.getElementById("buy-btn");
+            if (checkbox && buyBtn) {
+              checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                  buyBtn.classList.remove("pointer-events-none", "opacity-40");
+                  buyBtn.removeAttribute("aria-disabled");
+                } else {
+                  buyBtn.classList.add("pointer-events-none", "opacity-40");
+                  buyBtn.setAttribute("aria-disabled", "true");
+                }
+              });
+            }
+          </script>
         </div>
 
         <div data-reveal style="--reveal-delay: 120ms" class="self-start overflow-hidden rounded-3xl border border-ink-100">
