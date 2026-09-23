@@ -241,15 +241,6 @@ import CookieNotice from "../components/CookieNotice.astro";
               </div>
             </div>
 
-            <div id="ip-form-duplicate" class="hidden flex-col items-center gap-4 py-8 text-center">
-              <span class="flex h-16 w-16 items-center justify-center rounded-full bg-ink-50">
-                <svg class="h-8 w-8 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-              </span>
-              <p class="text-sm text-ink-500">Ya tenemos tu solicitud. En breve te contactamos.</p>
-            </div>
-
             <form id="ip-lead-form" class="space-y-4" novalidate>
               <input type="hidden" name="courseOfInterest" value="LANDING - INSTAGRAM PRO" />
 
@@ -344,7 +335,6 @@ import CookieNotice from "../components/CookieNotice.astro";
     const phoneInput = form.querySelector<HTMLInputElement>("#ip-phone");
     const phoneError = form.querySelector<HTMLParagraphElement>("#ip-phone-error");
     const successPanel = document.getElementById("ip-form-success");
-    const duplicatePanel = document.getElementById("ip-form-duplicate");
     const status = document.getElementById("ip-form-status");
     const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
 
@@ -382,11 +372,6 @@ import CookieNotice from "../components/CookieNotice.astro";
         form.classList.add("hidden");
         successPanel?.classList.remove("hidden");
         successPanel?.classList.add("flex");
-      } else if (result.duplicate) {
-        form.reset();
-        form.classList.add("hidden");
-        duplicatePanel?.classList.remove("hidden");
-        duplicatePanel?.classList.add("flex");
       } else {
         if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo o llámanos.";
         if (submitBtn) submitBtn.disabled = false;

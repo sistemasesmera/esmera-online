@@ -9,10 +9,7 @@ export interface LeadPayload {
   message?: string;
 }
 
-export type LeadResult =
-  | { ok: true }
-  | { ok: false; duplicate: true; error: "duplicate_lead" | "already_student" }
-  | { ok: false; duplicate: false };
+export type LeadResult = { ok: true } | { ok: false };
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
   try {
@@ -34,16 +31,11 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
 
     if (res.status === 201) return { ok: true };
 
-    if (res.status === 409) {
-      const data = await res.json().catch(() => ({}));
-      return { ok: false, duplicate: true, error: data.error };
-    }
-
     const text = await res.text().catch(() => "");
     console.error("[leads] unexpected status:", res.status, text);
-    return { ok: false, duplicate: false };
+    return { ok: false };
   } catch (err) {
     console.error("[leads] fetch error:", err);
-    return { ok: false, duplicate: false };
+    return { ok: false };
   }
 }
