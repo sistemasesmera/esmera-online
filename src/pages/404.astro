@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Página no encontrada"
+  description="Esta página no existe o ha sido movida. Vuelve al inicio de Esmera Online."
+  noIndex={true}
+>
+  <section class="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden px-4 py-24 sm:px-6">
+    <!-- Background -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="absolute inset-x-0 top-0 -z-10 h-full bg-gradient-to-b from-brand-50/60 to-white"></div>
+      <div class="absolute inset-0 -z-10 bg-dot-grid opacity-[0.25] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,black,transparent)]"></div>
+    </div>
+
+    <!-- Giant 404 -->
+    <div class="relative select-none" aria-hidden="true">
+      <span
+        class="pointer-events-none block font-display font-black leading-none tracking-tighter text-ink-900/[0.04]"
+        style="font-size: clamp(7rem, 25vw, 18rem)"
+      >
+        404
+      </span>
+      <!-- Overlaid visible number -->
+      <span
+        class="absolute inset-0 flex items-center justify-center font-display font-black leading-none tracking-tighter"
+        style="font-size: clamp(5rem, 18vw, 13rem); background: linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-700) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+      >
+        404
+      </span>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 -mt-4 max-w-lg text-center sm:-mt-8">
+      <h1 class="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+        Esta página no existe
+      </h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-500">
+        El enlace que seguiste puede estar roto o la página fue movida. No te preocupes, desde aquí puedes seguir navegando.
+      </p>
+
+      <!-- Actions -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),0_8px_20px_-8px_var(--color-brand-700)] transition-all hover:-translate-y-0.5 hover:bg-brand-700"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          Ir al inicio
+        </a>
+        <a
+          href="/cursos"
+          class="inline-flex items-center gap-2 rounded-xl border border-ink-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-700"
+        >
+          Ver cursos
+        </a>
+        <a
+          href="/contacto"
+          class="inline-flex items-center gap-2 rounded-xl border border-ink-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-700"
+        >
+          Contacto
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="relative z-10 mt-14 w-full max-w-md">
+      <p class="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.18em] text-ink-400">
+        Quizás buscabas
+      </p>
+      <ul class="flex flex-col gap-2">
+        {[
+          { label: "Cursos de PRL — Prevención de Riesgos Laborales", href: "/categorias/prevencion-riesgos-laborales" },
+          { label: "Cursos de Marketing Digital", href: "/categorias/marketing-digital" },
+          { label: "Cursos de Ciberseguridad", href: "/categorias/ciberseguridad" },
+          { label: "Blog de formación", href: "/blog" },
+        ].map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="group flex items-center justify-between rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm text-ink-600 transition-colors hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700"
+            >
+              <span>{link.label}</span>
+              <svg class="h-4 w-4 -translate-x-1 text-ink-300 opacity-0 transition-all group-hover:translate-x-0 group-hover:text-brand-500 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+              </svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
