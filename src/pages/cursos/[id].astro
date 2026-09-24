@@ -474,3 +474,15 @@ const breadcrumbJsonLd = {
     to   { opacity: 1; transform: translateY(0); }
   }
 </style>
+
+<script define:vars={{ courseId: course.id, courseName: course.data.title }}>
+  document.addEventListener('astro:page-load', () => {
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', {
+        content_ids: [courseId],
+        content_name: courseName,
+        content_type: 'product',
+      });
+    }
+  }, { once: true });
+</script>
