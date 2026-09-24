@@ -85,6 +85,7 @@ relatedCourses:
   - "instagram-optimizacion-marca"
   - "seo-posicionamiento-web"
 price: 300
+stripePaymentLink: "https://buy.stripe.com/3cI14p3Webc80jHfeU2880E"
 featured: true
 order: 6
 ---

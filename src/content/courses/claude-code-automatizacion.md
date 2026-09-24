@@ -68,6 +68,7 @@ skills:
 relatedCourses:
   - "intro-chatgpt-gemini-copilot"
 price: 249
+stripePaymentLink: "https://buy.stripe.com/14AcN7csKeok7M9feU2880G"
 featured: true
 order: 2
 ---

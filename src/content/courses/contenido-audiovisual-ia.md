@@ -76,6 +76,7 @@ skills:
 relatedCourses:
   - "branding-con-ia"
 price: 210
+stripePaymentLink: "https://buy.stripe.com/7sY9AVdwO0xu4zX4Ag2880z"
 featured: true
 order: 1
 ---

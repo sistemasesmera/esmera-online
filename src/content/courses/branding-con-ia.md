@@ -67,6 +67,7 @@ skills:
 relatedCourses:
   - "branding-gestion-marca"
 price: 150
+stripePaymentLink: "https://buy.stripe.com/8x200lakC3JGgiF2s82880y"
 featured: true
 order: 3
 ---

@@ -63,6 +63,7 @@ skills:
 relatedCourses:
   - "contenido-audiovisual-ia"
 price: 110
+stripePaymentLink: "https://buy.stripe.com/fZucN7eASeok1nL6Io2880A"
 featured: true
 order: 2
 ---

@@ -64,6 +64,7 @@ skills:
 relatedCourses:
   - "instagram-optimizacion-marca"
 price: 110
+stripePaymentLink: "https://buy.stripe.com/28EbJ39gydkg9Uh1o42880C"
 featured: true
 order: 4
 ---

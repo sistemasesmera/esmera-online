@@ -65,6 +65,7 @@ skills:
 relatedCourses:
   - "geo-posicionamiento-ia"
 price: 210
+stripePaymentLink: "https://buy.stripe.com/dRmcN79gy1By7M96Io2880D"
 featured: true
 order: 5
 ---

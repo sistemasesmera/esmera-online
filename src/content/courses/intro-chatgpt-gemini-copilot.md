@@ -61,6 +61,7 @@ relatedCourses:
   - "branding-con-ia"
   - "contenido-audiovisual-ia"
 price: 110
+stripePaymentLink: "https://buy.stripe.com/3cI6oJ0K21Byc2p3wc2880F"
 featured: true
 order: 1
 ---

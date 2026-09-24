@@ -66,6 +66,7 @@ skills:
 relatedCourses:
   - "imagenes-profesionales-ia"
 price: 210
+stripePaymentLink: "https://buy.stripe.com/cNi28tgJ04NK5E16Io2880B"
 featured: true
 order: 1
 ---
