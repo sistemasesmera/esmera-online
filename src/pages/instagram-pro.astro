@@ -16,6 +16,15 @@ import CookieNotice from "../components/CookieNotice.astro";
     <meta name="robots" content="noindex, nofollow" />
     <meta property="og:title" content="Curso Instagram Pro — Esmera Online" />
     <meta property="og:description" content="Aprende a crear, diseñar, publicar y gestionar Instagram como un profesional. Formación completa en 90 horas." />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18H8Q5VPNE" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-18H8Q5VPNE');
+    </script>
+
     <ClientRouter />
     <script>
       import "../lib/reveal";

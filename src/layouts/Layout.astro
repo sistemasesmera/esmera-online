@@ -64,6 +64,15 @@ const organizationJsonLd = {
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18H8Q5VPNE" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-18H8Q5VPNE');
+    </script>
+
     <ClientRouter />
     <script>
       import "../lib/reveal";
