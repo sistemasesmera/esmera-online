@@ -228,6 +228,16 @@ const labelClass = isBrand
         });
 
         if (result.ok) {
+          const courseName = String(data.get("courseOfInterest") ?? "").trim();
+          const pathMatch = window.location.pathname.match(/^\/cursos\/([^/]+)/);
+          const courseSlug = pathMatch ? pathMatch[1] : (courseName || "general");
+          if (typeof (window as any).fbq === "function") {
+            (window as any).fbq("track", "Lead", {
+              content_ids: [courseSlug],
+              ...(courseName && { content_name: courseName }),
+              content_type: "product",
+            });
+          }
           showPanel(successPanel);
         } else {
           if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo o llámanos directamente.";
