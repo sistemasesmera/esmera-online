@@ -64,6 +64,7 @@ skills:
   - "Usar las funcionalidades actuales de Instagram: Stories, Reels, Colaboraciones y más"
 relatedCourses: []
 price: 150
+stripePaymentLink: "https://buy.stripe.com/4gMdRbakC9408Qd5Ek2880w"
 featured: true
 order: 1
 ---

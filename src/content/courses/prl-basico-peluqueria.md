@@ -55,6 +55,7 @@ skills:
 relatedCourses:
   - "prl-peluqueria-estetica"
 price: 99
+stripePaymentLink: "https://buy.stripe.com/eVq6oJcsK7ZWeax5Ek2880v"
 featured: true
 order: 2
 ---

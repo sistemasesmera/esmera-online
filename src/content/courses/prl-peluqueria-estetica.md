@@ -73,6 +73,7 @@ skills:
 relatedCourses:
   - "prl-basico-peluqueria"
 price: 420
+stripePaymentLink: "https://buy.stripe.com/14A8wR3We5RO0jH0k02880u"
 featured: true
 order: 1
 ---
