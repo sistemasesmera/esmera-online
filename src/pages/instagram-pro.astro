@@ -16,14 +16,13 @@ import CookieNotice from "../components/CookieNotice.astro";
     <meta name="robots" content="noindex, nofollow" />
     <meta property="og:title" content="Curso Instagram Pro — Esmera Online" />
     <meta property="og:description" content="Aprende a crear, diseñar, publicar y gestionar Instagram como un profesional. Formación completa en 90 horas." />
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18H8Q5VPNE" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-18H8Q5VPNE');
-    </script>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
+    <!-- End Google Tag Manager -->
 
     <ClientRouter />
     <script>
@@ -44,6 +43,10 @@ import CookieNotice from "../components/CookieNotice.astro";
   </head>
 
   <body class="bg-white text-ink-900 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9BWQC3S"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Top bar -->
     <header class="sticky top-0 z-20 border-b border-ink-100 bg-white/95 backdrop-blur-sm">
