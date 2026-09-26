@@ -7,23 +7,37 @@ import Container from "./ui/Container.astro";
   data-cookie-notice
   class="fixed inset-x-0 bottom-0 z-[90] translate-y-full border-t border-white/10 bg-ink-950 text-ink-300 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.3)] transition-transform duration-300"
 >
-  <Container class="flex flex-col items-center gap-4 py-5 sm:flex-row sm:justify-between">
+  <Container class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
     <p class="text-sm leading-relaxed text-ink-300">
-      Este sitio no utiliza cookies de analítica ni de marketing.
+      Usamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia.
       <a href="/cookies" class="underline hover:text-white">Más información</a>.
     </p>
-    <button
-      type="button"
-      data-cookie-notice-dismiss
-      class="w-full shrink-0 rounded-lg bg-brand-600 px-5 py-2.5 font-display text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-700 sm:w-auto"
-    >
-      Entendido
-    </button>
+    <div class="flex shrink-0 gap-3">
+      <button
+        type="button"
+        data-cookie-reject
+        class="rounded-lg border border-ink-700 px-4 py-2.5 font-display text-sm font-semibold text-ink-300 transition-colors hover:border-ink-500 hover:text-white"
+      >
+        Rechazar
+      </button>
+      <button
+        type="button"
+        data-cookie-accept
+        class="rounded-lg bg-brand-600 px-5 py-2.5 font-display text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+      >
+        Aceptar
+      </button>
+    </div>
   </Container>
 </div>
 
 <script>
-  const STORAGE_KEY = "esmera-cookie-notice-dismissed";
+  const STORAGE_KEY = "esmera-cookie-consent";
+
+  function gtag(...args: unknown[]) {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push(args);
+  }
 
   function initCookieNotice() {
     const notice = document.querySelector<HTMLElement>("[data-cookie-notice]");
@@ -34,17 +48,30 @@ import Container from "./ui/Container.astro";
       document.documentElement.style.setProperty("--cookie-notice-shift", `-${px}px`);
     };
 
-    if (!localStorage.getItem(STORAGE_KEY)) {
+    const hide = () => {
+      notice.classList.add("translate-y-full");
+      setShift(0);
+    };
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
       requestAnimationFrame(() => {
         notice.classList.remove("translate-y-full");
         setShift(notice.offsetHeight);
       });
     }
 
-    notice.querySelector("[data-cookie-notice-dismiss]")?.addEventListener("click", () => {
-      localStorage.setItem(STORAGE_KEY, "true");
-      notice.classList.add("translate-y-full");
-      setShift(0);
+    notice.querySelector("[data-cookie-accept]")?.addEventListener("click", () => {
+      localStorage.setItem(STORAGE_KEY, "granted");
+      gtag("consent", "update", {
+        analytics_storage: "granted",
+      });
+      hide();
+    });
+
+    notice.querySelector("[data-cookie-reject]")?.addEventListener("click", () => {
+      localStorage.setItem(STORAGE_KEY, "denied");
+      hide();
     });
   }
 
