@@ -54,7 +54,7 @@ const faqJsonLd = {
   })),
 };
 
-const ogImage = await getImage({ src: course.data.coverImage, format: "png", width: 1200, height: 630 });
+const ogImage = await getImage({ src: course.data.coverImage, format: "jpeg", quality: 80, width: 1200, height: 630 });
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",

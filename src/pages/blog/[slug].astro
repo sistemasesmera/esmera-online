@@ -35,7 +35,7 @@ const articleJsonLd = {
   publisher: { "@type": "Organization", name: "Esmera Online" },
 };
 
-const ogImage = await getImage({ src: post.data.coverImage, format: "png", width: 1200, height: 630 });
+const ogImage = await getImage({ src: post.data.coverImage, format: "jpeg", quality: 80, width: 1200, height: 630 });
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
