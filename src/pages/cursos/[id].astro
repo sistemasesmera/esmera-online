@@ -8,7 +8,7 @@ import CourseCard from "../../components/CourseCard.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import Icon from "../../components/Icon.astro";
 import { getCollection, getEntry, render } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
@@ -54,6 +54,8 @@ const faqJsonLd = {
   })),
 };
 
+const ogImage = await getImage({ src: course.data.coverImage, format: "png", width: 1200, height: 630 });
+
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -65,7 +67,7 @@ const breadcrumbJsonLd = {
 };
 ---
 
-<Layout title={course.data.title} description={course.data.shortDescription} image={course.data.coverImage.src}>
+<Layout title={course.data.title} description={course.data.shortDescription} image={ogImage.src}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
