@@ -16,7 +16,7 @@ import CookieNotice from "../components/CookieNotice.astro";
     <meta name="robots" content="noindex, nofollow" />
     <meta property="og:title" content="Curso Instagram Pro — Esmera Online" />
     <meta property="og:description" content="Aprende a crear, diseñar, publicar y gestionar Instagram como un profesional. Formación completa en 90 horas." />
-    <!-- Consent Mode v2 — defaults before GTM loads -->
+    <!-- Consent Mode v2 -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -36,39 +36,115 @@ import CookieNotice from "../components/CookieNotice.astro";
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
     <!-- End Google Tag Manager -->
-
     <ClientRouter />
     <script>
       import "../lib/reveal";
     </script>
-    <script is:inline>
-      function loadEsmeraWidget() {
-        const old = document.getElementById("esmera-widget-script");
-        if (old) old.remove();
-        const s = document.createElement("script");
-        s.id = "esmera-widget-script";
-        s.src = "https://app.esmeraonline.com/api/widget.js";
-        document.head.appendChild(s);
+
+    <style is:global>
+      :root {
+        --ig: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc2a8d 100%);
+        --ig-text: linear-gradient(90deg, #f09433 0%, #e6683c 20%, #dc2743 45%, #cc2366 75%, #bc2a8d 100%);
       }
-      loadEsmeraWidget();
-      document.addEventListener("astro:page-load", loadEsmeraWidget);
-    </script>
+
+      .ig-btn {
+        background: var(--ig);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 0.75rem;
+        padding: 1rem 2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 24px rgba(220,39,67,0.25);
+      }
+      .ig-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(220,39,67,0.35); }
+
+      .ig-text {
+        background: var(--ig-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 1.25rem;
+      }
+
+      .stat-num {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+
+      /* FAQ accordion */
+      .faq-item summary { list-style: none; cursor: pointer; }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-item[open] .faq-icon { transform: rotate(45deg); }
+      .faq-icon { transition: transform 0.25s; }
+
+      /* intl-tel-input */
+      .iti { width: 100%; }
+      .iti__selected-flag { border-radius: 0.75rem 0 0 0.75rem; padding-inline: 0.75rem; }
+      .iti__country-list {
+        z-index: 9999;
+        background: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+      .iti__country-list .iti__country-name,
+      .iti__country-list .iti__dial-code { color: #111827 !important; }
+      .iti__country-list .iti__country.iti__highlight,
+      .iti__country-list .iti__country:hover { background: #f9fafb !important; }
+      .iti__search-input {
+        color: #111827 !important;
+        background: #f9fafb !important;
+        border-color: #e5e7eb !important;
+      }
+
+      /* WhatsApp floating button */
+      .wa-float {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        background: #25d366;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.75rem 1.25rem;
+        border-radius: 9999px;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+        text-decoration: none;
+      }
+      .wa-float:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+      @media (max-width: 480px) {
+        .wa-float span { display: none; }
+        .wa-float { padding: 0.875rem; }
+      }
+    </style>
   </head>
 
   <body class="bg-white text-ink-900 antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9BWQC3S"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9BWQC3S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- Top bar -->
+    <!-- HEADER -->
     <header class="sticky top-0 z-20 border-b border-ink-100 bg-white/95 backdrop-blur-sm">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
-        <img src="/esmeraonline-logo.png" alt="Esmera Online" class="h-16 w-auto" />
-        <a
-          href="tel:+34661043572"
-          class="flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-700 transition-colors hover:border-ink-300 hover:text-ink-900"
-        >
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+        <img src="/esmeraonline-logo.png" alt="Esmera Online" class="h-14 w-auto" />
+        <a href="tel:+34661043572"
+          class="flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-medium text-ink-700 transition hover:border-ink-300 hover:text-ink-900">
           <svg class="h-3.5 w-3.5 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
           </svg>
@@ -78,37 +154,123 @@ import CookieNotice from "../components/CookieNotice.astro";
     </header>
 
     <main>
-      <!-- Hero -->
-      <section class="relative overflow-hidden px-4 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-20">
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]" style="background: linear-gradient(180deg, rgba(240,148,51,0.06) 0%, rgba(188,42,141,0.04) 60%, transparent 100%)"></div>
-        <div class="pointer-events-none absolute inset-0 -z-10 bg-dot-grid-light opacity-50 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
 
-        <!-- Badge -->
-        <div class="mb-6 flex justify-center">
-          <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc2a8d 100%);">
-            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            Curso Instagram Pro
-          </span>
-        </div>
+      <!-- ① HERO -->
+      <!-- En móvil solo el titular, el resto aparece tras el vídeo -->
+      <section class="relative overflow-hidden px-5 pb-4 pt-10 sm:pb-16 sm:pt-28">
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[500px]" style="background: linear-gradient(180deg, rgba(240,148,51,0.05) 0%, rgba(188,42,141,0.03) 60%, transparent 100%)"></div>
+        <div class="pointer-events-none absolute inset-0 -z-10 bg-dot-grid-light opacity-40 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"></div>
 
         <div class="mx-auto max-w-4xl text-center">
-          <h1 class="font-display text-4xl font-black leading-tight tracking-tight text-ink-900 sm:text-5xl lg:text-6xl xl:text-7xl">
-            Tu futuro puede
-            <span class="mt-1 block" style="background: linear-gradient(90deg, #f09433 0%, #e6683c 20%, #dc2743 40%, #cc2366 70%, #bc2a8d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-              empezar en Instagram
-            </span>
+          <h1 class="font-display text-3xl font-black leading-[1.08] tracking-tight text-ink-900 sm:text-6xl lg:text-7xl">
+            Convierte Instagram<br />
+            <span class="ig-text">en tu profesión.</span>
           </h1>
-          <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-500 sm:text-xl">
-            Aprende, crea, gestiona y conviértelo en una oportunidad real. Instagram + Canva + Community Manager en una única formación de <strong class="text-ink-800">90 horas</strong>.
+
+          <!-- Oculto en móvil, visible en desktop -->
+          <p class="mx-auto mt-6 hidden max-w-2xl text-lg leading-relaxed text-ink-500 sm:block sm:text-xl">
+            90 horas de formación en Instagram, Canva y Community Manager.
+            Aprende de cero, trabaja desde el primer día.
           </p>
 
+          <div class="mt-8 hidden flex-col items-center gap-4 sm:flex sm:flex-row sm:justify-center">
+            <a href="#form" class="ig-btn text-base">
+              Quiero información
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <a href="tel:+34661043572"
+              class="inline-flex items-center gap-2 rounded-xl border border-ink-200 bg-white px-7 py-4 text-base font-medium text-ink-700 transition hover:border-ink-300 hover:text-ink-900">
+              <svg class="h-4 w-4 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+              </svg>
+              Llámanos
+            </a>
+          </div>
 
-          <!-- Primary CTA -->
-          <div class="mt-8">
-            <a href="#form" class="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 font-display text-sm font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc2a8d 100%)">
-              Quiero saber más
+          <div class="mt-6 hidden flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ink-400 sm:flex">
+            <span>Sin compromiso</span>
+            <span>·</span>
+            <span>Un asesor te llama en &lt;24 h</span>
+            <span>·</span>
+            <span>Certificado incluido</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② VIDEO -->
+      <section class="px-5 pb-10 pt-4 sm:py-20">
+        <div class="mx-auto max-w-3xl">
+          <p class="mb-3 text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">Mira esto antes de decidir</p>
+          <h2 class="mb-6 hidden text-center font-display text-2xl font-bold text-ink-900 sm:mb-10 sm:block sm:text-3xl">
+            Todo lo que necesitas saber<br class="hidden sm:block" />
+            <span class="ig-text">en menos de 5 minutos</span>
+          </h2>
+
+          <!--
+            PARA ACTIVAR EL VIDEO DE WISTIA:
+            1. Reemplaza WISTIA_VIDEO_ID por el ID real de tu vídeo en Wistia.
+            2. Elimina el bloque "placeholder" y descomenta el bloque de abajo.
+
+            <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+            <div class="overflow-hidden rounded-2xl shadow-xl shadow-ink-900/10" style="padding:56.25% 0 0 0;position:relative;">
+              <div style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                <div class="wistia_embed wistia_async_WISTIA_VIDEO_ID videoFoam=true" style="height:100%;position:relative;width:100%;">&nbsp;</div>
+              </div>
+            </div>
+          -->
+
+          <!-- Placeholder hasta tener el vídeo -->
+          <div class="card relative overflow-hidden shadow-xl shadow-ink-900/5" style="aspect-ratio:16/9; background:#f3f4f6;">
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 60%, rgba(220,39,67,0.07) 0%, transparent 70%);"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-5">
+              <div class="flex h-20 w-20 items-center justify-center rounded-full border border-ink-200 bg-white shadow-sm">
+                <svg class="h-9 w-9 translate-x-0.5 text-ink-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <div class="text-center">
+                <p class="font-display text-lg font-bold text-ink-700">Vídeo próximamente</p>
+                <p class="mt-1 text-sm text-ink-400">Espacio reservado para el vídeo de Wistia</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- En móvil: subtítulo y CTAs aparecen tras el vídeo -->
+          <div class="mt-6 sm:hidden">
+            <p class="mb-6 text-center text-base leading-relaxed text-ink-500">
+              90 horas de formación en Instagram, Canva y Community Manager.
+              Aprende de cero, trabaja desde el primer día.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#form" class="ig-btn justify-center text-base">
+                Quiero información
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <a href="tel:+34661043572"
+                class="inline-flex items-center justify-center gap-2 rounded-xl border border-ink-200 bg-white px-7 py-4 text-base font-medium text-ink-700">
+                <svg class="h-4 w-4 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                </svg>
+                Llámanos
+              </a>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-ink-400">
+              <span>Sin compromiso</span>
+              <span>·</span>
+              <span>Asesor en &lt;24 h</span>
+              <span>·</span>
+              <span>Certificado incluido</span>
+            </div>
+          </div>
+
+          <!-- En desktop: CTA simple tras el vídeo -->
+          <div class="mt-10 hidden text-center sm:block">
+            <a href="#form" class="ig-btn">
+              Quiero información
               <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
@@ -117,185 +279,271 @@ import CookieNotice from "../components/CookieNotice.astro";
         </div>
       </section>
 
-      <!-- Hook section -->
-      <section class="border-y border-ink-100 bg-ink-50 px-4 py-12 sm:px-6">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="font-display text-2xl font-bold text-ink-900 sm:text-3xl">
-            Un cliente no necesita solo posts.
-          </p>
-          <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-500">
-            Necesita alguien que sepa <strong class="text-ink-800">crear, diseñar, publicar y gestionar</strong> su Instagram. Con este curso, ese alguien eres tú.
-          </p>
+      <!-- ② STATS BAR -->
+      <section class="border-y border-ink-100 bg-ink-50 px-5 py-10">
+        <div class="mx-auto grid max-w-4xl grid-cols-3 gap-8 text-center">
+          <div>
+            <p class="stat-num ig-text">90</p>
+            <p class="mt-1 text-sm text-ink-500">horas de formación</p>
+          </div>
+          <div>
+            <p class="stat-num ig-text">3</p>
+            <p class="mt-1 text-sm text-ink-500">cursos en uno</p>
+          </div>
+          <div>
+            <p class="stat-num ig-text">100%</p>
+            <p class="mt-1 text-sm text-ink-500">online y a tu ritmo</p>
+          </div>
         </div>
       </section>
 
-      <!-- 3 courses -->
-      <section class="px-4 py-16 sm:px-6 sm:py-20">
-        <div class="mx-auto max-w-6xl">
-          <div class="mb-12 text-center">
-            <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">Qué incluye</p>
-            <h2 class="mt-3 font-display text-3xl font-bold text-ink-900 sm:text-4xl">3 cursos. Una formación completa.</h2>
+      <!-- ④ QUÉ INCLUYE -->
+      <section class="border-t border-ink-100 bg-ink-50 px-5 py-20">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-14 text-center">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">Qué incluye</p>
+            <h2 class="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+              3 cursos. <span class="ig-text">Una formación completa.</span>
+            </h2>
             <p class="mt-3 text-ink-500">Todo lo que necesitas para gestionar y potenciar una marca en Instagram.</p>
           </div>
 
-          <div class="grid gap-6 sm:grid-cols-3">
+          <div class="grid gap-5 sm:grid-cols-3">
             <!-- Instagram -->
-            <div class="relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-8 shadow-sm">
-              <div class="absolute inset-x-0 top-0 h-1" style="background: linear-gradient(90deg, #f09433, #dc2743)"></div>
-              <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl" style="background: linear-gradient(135deg, rgba(240,148,51,0.1), rgba(220,39,67,0.1))">
-                <svg class="h-7 w-7" style="color: #dc2743" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
+            <div class="card p-8 shadow-sm">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl" style="background:rgba(220,39,67,0.08);">
+                  <svg class="h-6 w-6" style="color:#dc2743" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+                <span class="rounded-full bg-ink-100 px-3 py-1 text-xs font-semibold text-ink-500">20 h</span>
               </div>
-              <div class="mb-3 flex items-center justify-between">
-                <h3 class="font-display text-xl font-bold text-ink-900">Instagram</h3>
-                <span class="rounded-full bg-ink-50 px-3 py-1 font-mono text-xs font-semibold text-ink-500">20 horas</span>
-              </div>
+              <h3 class="mb-3 font-display text-xl font-bold text-ink-900">Instagram</h3>
               <p class="text-sm leading-relaxed text-ink-500">
-                Domina la plataforma: algoritmo, contenido, Reels, Stories e historias. Aprende a crear publicaciones que conectan y hacen crecer un perfil de cero.
+                Algoritmo, Reels, Stories y contenido que crece. Aprende a gestionar un perfil desde cero y convertirlo en una herramienta de negocio real.
               </p>
             </div>
 
             <!-- Canva -->
-            <div class="relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-8 shadow-sm">
-              <div class="absolute inset-x-0 top-0 h-1" style="background: linear-gradient(90deg, #dc2743, #cc2366)"></div>
-              <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl" style="background: linear-gradient(135deg, rgba(220,39,67,0.1), rgba(204,35,102,0.1))">
-                <!-- Canva logo simplified -->
-                <svg class="h-7 w-7" style="color: #cc2366" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="4"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M12 8v8"/>
-                </svg>
+            <div class="card p-8 shadow-sm">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl" style="background:rgba(204,35,102,0.08);">
+                  <svg class="h-6 w-6" style="color:#cc2366" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="4"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M12 8v8"/>
+                  </svg>
+                </div>
+                <span class="rounded-full bg-ink-100 px-3 py-1 text-xs font-semibold text-ink-500">30 h</span>
               </div>
-              <div class="mb-3 flex items-center justify-between">
-                <h3 class="font-display text-xl font-bold text-ink-900">Canva</h3>
-                <span class="rounded-full bg-ink-50 px-3 py-1 font-mono text-xs font-semibold text-ink-500">30 horas</span>
-              </div>
+              <h3 class="mb-3 font-display text-xl font-bold text-ink-900">Canva</h3>
               <p class="text-sm leading-relaxed text-ink-500">
-                Diseña como un profesional, fácil y rápido. Crea piezas visuales para feed, Stories, Reels y anuncios que destacan sin necesitar conocimientos previos de diseño.
+                Diseña piezas para feed, Stories, Reels y anuncios como un profesional. Sin conocimientos previos de diseño. Plantillas, tipografía y marca personal.
               </p>
             </div>
 
             <!-- Community Manager -->
-            <div class="relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-8 shadow-sm">
-              <div class="absolute inset-x-0 top-0 h-1" style="background: linear-gradient(90deg, #cc2366, #bc2a8d)"></div>
-              <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl" style="background: linear-gradient(135deg, rgba(204,35,102,0.1), rgba(188,42,141,0.1))">
-                <svg class="h-7 w-7" style="color: #bc2a8d" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                </svg>
+            <div class="card p-8 shadow-sm">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl" style="background:rgba(188,42,141,0.08);">
+                  <svg class="h-6 w-6" style="color:#bc2a8d" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                  </svg>
+                </div>
+                <span class="rounded-full bg-ink-100 px-3 py-1 text-xs font-semibold text-ink-500">40 h</span>
               </div>
-              <div class="mb-3 flex items-center justify-between">
-                <h3 class="font-display text-xl font-bold text-ink-900">Community Manager</h3>
-                <span class="rounded-full bg-ink-50 px-3 py-1 font-mono text-xs font-semibold text-ink-500">40 horas</span>
-              </div>
+              <h3 class="mb-3 font-display text-xl font-bold text-ink-900">Community Manager</h3>
               <p class="text-sm leading-relaxed text-ink-500">
-                Gestiona comunidades y haz crecer marcas. Estrategia, planificación de contenido, métricas, atención a la comunidad y cómo convertirte en el CM que los negocios buscan.
+                Estrategia, planificación, métricas y gestión de comunidades. Conviértete en el perfil que los negocios buscan contratar.
               </p>
             </div>
           </div>
 
-          <!-- Total hours badge -->
-          <div class="mt-8 flex justify-center">
-            <div class="inline-flex items-center gap-3 rounded-2xl border border-ink-100 bg-ink-50 px-6 py-4">
-              <svg class="h-5 w-5 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          <div class="mt-10 text-center">
+            <a href="#form" class="ig-btn">
+              Quiero información
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
-              <span class="font-display text-base font-semibold text-ink-900">90 horas de formación completa</span>
-              <span class="text-ink-400">·</span>
-              <span class="text-sm text-ink-500">100% online · a tu ritmo</span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
-      <!-- Benefits -->
-      <section class="px-4 py-14 sm:px-6">
-        <div class="mx-auto max-w-6xl">
-          <div class="overflow-hidden rounded-3xl p-8 sm:p-10" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc2a8d 100%);">
-            <div class="mb-8 text-center">
-              <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Todo incluido desde el primer día</h2>
+      <!-- ⑤ PARA QUIÉN ES -->
+      <section class="border-t border-ink-100 px-5 py-20">
+        <div class="mx-auto max-w-3xl">
+          <div class="mb-12 text-center">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">¿Es para ti?</p>
+            <h2 class="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+              Este curso es para ti si…
+            </h2>
+          </div>
+          <div class="space-y-3">
+            {[
+              "Quieres trabajar desde casa gestionando redes sociales para negocios.",
+              "Tienes un negocio propio y quieres llevar tú mismo tu Instagram.",
+              "Buscas una salida laboral real sin necesitar un título universitario.",
+              "Ya publicas en Instagram pero no ves resultados y no sabes por qué.",
+              "Quieres aprender diseño sin complicarte con herramientas difíciles.",
+            ].map((item) => (
+              <div class="card flex items-start gap-4 p-5 shadow-sm">
+                <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white" style="background: var(--ig);">
+                  <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+                <p class="text-sm leading-relaxed text-ink-600">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ⑥ TODO INCLUIDO -->
+      <section class="border-t border-ink-100 px-5 py-20">
+        <div class="mx-auto max-w-5xl">
+          <div class="overflow-hidden rounded-3xl p-8 sm:p-12" style="background: var(--ig);">
+            <div class="mb-10 text-center">
+              <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">
+                Todo incluido desde el primer día
+              </h2>
             </div>
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />`, label: "Acceso 24/7", sub: "Estudia a tu ritmo, cuando puedas" },
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />`, label: "Tutor específico", sub: "Resuelve tus dudas con un experto" },
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />`, label: "Materiales descargables", sub: "Plantillas y recursos para aplicar ya" },
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.990" />`, label: "Actualizaciones incluidas", sub: "Contenido siempre al día" },
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />`, label: "Certificado de finalización", sub: "Acredita tu formación ante cualquier empresa" },
-                { icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 0a.75.75 0 0 1-.75-.75V6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.75.75m-3 0h3" />`, label: "100% online", sub: "Sin desplazamientos ni horarios fijos" },
+                { label: "Acceso 24/7", sub: "Estudia cuando quieras, sin horarios fijos." },
+                { label: "Tutor personal", sub: "Resuelve tus dudas con un experto real." },
+                { label: "Materiales descargables", sub: "Plantillas y recursos para aplicar ya." },
+                { label: "Actualizaciones incluidas", sub: "El contenido evoluciona con la plataforma." },
+                { label: "Certificado de finalización", sub: "Acredita tu formación ante cualquier empresa." },
+                { label: "100% online", sub: "Sin desplazamientos. Desde donde quieras." },
               ].map((b) => (
-                <div class="flex items-start gap-3 rounded-xl bg-white/10 p-4">
-                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/20">
-                    <svg class="h-4.5 w-4.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" set:html={b.icon} />
-                  </div>
-                  <div>
-                    <p class="font-display text-sm font-semibold text-white">{b.label}</p>
-                    <p class="mt-0.5 text-xs text-white/70">{b.sub}</p>
-                  </div>
+                <div class="rounded-xl bg-white/10 p-5">
+                  <p class="mb-1 font-display text-sm font-bold text-white">{b.label}</p>
+                  <p class="text-xs leading-relaxed text-white/70">{b.sub}</p>
                 </div>
               ))}
+            </div>
+            <div class="mt-10 text-center">
+              <a href="#form" class="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 font-display text-base font-bold shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl" style="color:#dc2743;">
+                Quiero información
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Lead Form -->
-      <section id="form" class="px-4 pb-24 pt-16 sm:px-6">
-        <div class="mx-auto max-w-lg">
-          <div class="mb-8 text-center">
-            <h2 class="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-              Quiero saber más
-              <span class="block text-2xl font-semibold" style="background: linear-gradient(90deg, #f09433, #bc2a8d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                sobre el Curso Instagram Pro
-              </span>
-            </h2>
-            <p class="mt-3 text-sm text-ink-400">Un asesor te contacta en menos de 24 h. Sin compromiso.</p>
+      <!-- ⑦ FAQ -->
+      <section class="border-t border-ink-100 bg-ink-50 px-5 py-20">
+        <div class="mx-auto max-w-2xl">
+          <div class="mb-12 text-center">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">Preguntas frecuentes</p>
+            <h2 class="font-display text-3xl font-bold text-ink-900 sm:text-4xl">Lo que suelen preguntar</h2>
+          </div>
+          <div class="space-y-3">
+            {[
+              {
+                q: "¿Necesito experiencia previa en Instagram o diseño?",
+                a: "No. El curso está diseñado para empezar desde cero. Aprenderás todo paso a paso, desde lo más básico hasta gestionar perfiles reales.",
+              },
+              {
+                q: "¿Cuánto tiempo tengo para completarlo?",
+                a: "Dispones de 6 meses desde el momento de tu matrícula para completar la formación a tu ritmo.",
+              },
+              {
+                q: "¿Qué certificado recibo al terminar?",
+                a: "Obtienes un certificado de finalización emitido por Esmera Online que puedes incluir en tu CV o perfil de LinkedIn.",
+              },
+              {
+                q: "¿Puedo matricularme ahora y empezar más adelante?",
+                a: "Sí. Una vez matriculado tienes acceso inmediato y puedes empezar cuando quieras.",
+              },
+              {
+                q: "¿Cuánto cuesta? ¿Hay facilidades de pago?",
+                a: "El precio y las opciones de pago las gestiona directamente nuestro equipo de asesores, que se adaptará a tu situación. Rellena el formulario y te lo explicamos sin compromiso.",
+              },
+            ].map((item) => (
+              <details class="faq-item card shadow-sm">
+                <summary class="flex items-center justify-between gap-4 p-6">
+                  <span class="text-sm font-semibold text-ink-900">{item.q}</span>
+                  <svg class="faq-icon h-5 w-5 shrink-0 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                  </svg>
+                </summary>
+                <p class="px-6 pb-6 text-sm leading-relaxed text-ink-500">{item.a}</p>
+              </details>
+            ))}
           </div>
 
-          <div class="relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-8 shadow-xl shadow-ink-900/5 sm:p-10">
-            <div class="absolute inset-x-0 top-0 h-[3px]" style="background: linear-gradient(90deg, #f09433 0%, #dc2743 50%, #bc2a8d 100%)"></div>
+          <div class="mt-12 text-center">
+            <a href="#form" class="ig-btn">
+              Consulta precio y fechas
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
 
-            <div id="ip-form-success" class="hidden flex-col items-center gap-4 py-8 text-center">
-              <span class="flex h-16 w-16 items-center justify-center rounded-full" style="background: linear-gradient(135deg, rgba(240,148,51,0.15), rgba(188,42,141,0.15))">
-                <svg class="h-8 w-8" style="color: #dc2743" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <!-- ⑧ FORMULARIO -->
+      <section id="form" class="border-t border-ink-100 px-5 pb-28 pt-20">
+        <div class="mx-auto max-w-lg">
+          <div class="mb-10 text-center">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-400">Sin compromiso</p>
+            <h2 class="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+              Habla con un asesor.<br />
+              <span class="ig-text">Sin coste, sin presión.</span>
+            </h2>
+            <p class="mt-3 text-sm text-ink-400">Te llamamos en menos de 24 horas para resolver tus dudas y explicarte precio y condiciones.</p>
+          </div>
+
+          <div class="card relative overflow-hidden p-8 shadow-xl shadow-ink-900/5 sm:p-10">
+            <div class="absolute inset-x-0 top-0 h-[3px]" style="background: var(--ig);"></div>
+
+            <div id="ip-form-success" class="hidden flex-col items-center gap-4 py-10 text-center">
+              <span class="flex h-16 w-16 items-center justify-center rounded-full" style="background: rgba(220,39,67,0.08); border:1px solid rgba(220,39,67,0.15)">
+                <svg class="h-8 w-8" style="color:#dc2743" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               </span>
               <div>
-                <p class="font-display text-lg font-semibold text-ink-900">¡Recibido!</p>
+                <p class="font-display text-lg font-bold text-ink-900">¡Recibido!</p>
                 <p class="mt-1 text-sm text-ink-500">Un asesor se pondrá en contacto contigo muy pronto.</p>
               </div>
             </div>
 
-            <form id="ip-lead-form" class="space-y-4" novalidate>
+            <form id="ip-lead-form" class="space-y-5" novalidate>
               <input type="hidden" name="courseOfInterest" value="LANDING - INSTAGRAM PRO" />
 
               <div>
-                <label for="ip-name" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">Nombre completo</label>
+                <label for="ip-name" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-ink-500">Nombre completo</label>
                 <input id="ip-name" name="name" type="text" required placeholder="Tu nombre"
-                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition-colors focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
+                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
               </div>
 
               <div>
-                <label for="ip-phone" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">Teléfono</label>
+                <label for="ip-phone" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-ink-500">Teléfono</label>
                 <input id="ip-phone" name="phone" type="tel" required placeholder="612 345 678"
-                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition-colors focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
-                <p id="ip-phone-error" class="mt-1 hidden text-xs text-red-500">Introduce un número de teléfono válido.</p>
+                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
+                <p id="ip-phone-error" class="mt-1.5 hidden text-xs text-red-500">Introduce un número de teléfono válido.</p>
               </div>
 
               <div>
-                <label for="ip-email" class="mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500">
+                <label for="ip-email" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-ink-500">
                   Email <span class="normal-case text-ink-300">(opcional)</span>
                 </label>
                 <input id="ip-email" name="email" type="email" placeholder="tu@email.com"
-                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition-colors focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
+                  class="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm text-ink-900 placeholder-ink-300 outline-none transition focus:border-[#dc2743] focus:ring-2 focus:ring-[#dc2743]/10" />
               </div>
 
-              <button
-                type="submit"
-                class="group relative mt-2 w-full overflow-hidden rounded-xl px-6 py-3.5 font-display text-sm font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
-                style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc2a8d 100%)"
-              >
-                <span class="relative z-10">Quiero saber más — sin compromiso</span>
+              <button type="submit"
+                class="group relative mt-2 w-full overflow-hidden rounded-xl px-6 py-4 font-display text-sm font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+                style="background: var(--ig); box-shadow: 0 4px 24px rgba(220,39,67,0.25);">
+                <span class="relative z-10">Quiero información — sin compromiso</span>
                 <div class="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10"></div>
               </button>
 
@@ -309,15 +557,12 @@ import CookieNotice from "../components/CookieNotice.astro";
             </form>
           </div>
 
-          <!-- WhatsApp -->
-          <div class="mt-6 text-center">
-            <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink-300">¿Prefieres escribirnos?</p>
-            <a
-              href="https://wa.me/34661043572?text=Hola!%20He%20visto%20el%20Curso%20Instagram%20Pro%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n"
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center gap-2.5 rounded-full border border-ink-200 bg-white px-5 py-2.5 text-sm font-medium text-ink-700 shadow-sm transition-all hover:border-green-200 hover:bg-green-50 hover:text-green-800"
-            >
+          <!-- WhatsApp inline -->
+          <div class="mt-8 text-center">
+            <p class="mb-3 text-xs uppercase tracking-widest text-ink-300">¿Prefieres escribirnos?</p>
+            <a href="https://wa.me/34661043572?text=Hola!%20He%20visto%20el%20Curso%20Instagram%20Pro%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n"
+              target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2.5 rounded-full border border-ink-200 bg-white px-5 py-2.5 text-sm font-medium text-ink-700 shadow-sm transition hover:border-green-200 hover:bg-green-50 hover:text-green-800">
               <svg class="h-4 w-4 text-green-500" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
               </svg>
@@ -328,20 +573,29 @@ import CookieNotice from "../components/CookieNotice.astro";
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-ink-100 px-4 py-8 sm:px-6">
+    <!-- FOOTER -->
+    <footer class="border-t border-ink-100 px-5 py-8">
       <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:flex-row sm:justify-between">
-        <img src="/esmeraonline-logo.png" alt="Esmera Online" class="h-6 w-auto opacity-50" />
+        <img src="/esmeraonline-logo.png" alt="Esmera Online" class="h-6 w-auto opacity-40" />
         <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-ink-400">
-          <a href="/privacidad" class="transition-colors hover:text-ink-700">Política de privacidad</a>
+          <a href="/privacidad" class="transition hover:text-ink-700">Política de privacidad</a>
           <span>·</span>
-          <a href="/terminos" class="transition-colors hover:text-ink-700">Términos y condiciones</a>
+          <a href="/terminos" class="transition hover:text-ink-700">Términos y condiciones</a>
           <span>·</span>
-          <a href="/cookies" class="transition-colors hover:text-ink-700">Cookies</a>
+          <a href="/cookies" class="transition hover:text-ink-700">Cookies</a>
         </div>
         <p class="text-xs text-ink-300">© 2026 Esmera Online</p>
       </div>
     </footer>
+
+    <!-- WhatsApp floating button -->
+    <a href="https://wa.me/34661043572?text=Hola!%20He%20visto%20el%20Curso%20Instagram%20Pro%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n"
+      target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      <span>Escríbenos por WhatsApp</span>
+    </a>
 
     <CookieNotice transition:persist />
   </body>
@@ -406,27 +660,3 @@ import CookieNotice from "../components/CookieNotice.astro";
 
   document.addEventListener("astro:page-load", initInstagramProForm);
 </script>
-
-<style is:global>
-  .iti { width: 100%; }
-  .iti__selected-flag {
-    border-radius: 0.75rem 0 0 0.75rem;
-    padding-inline: 0.75rem;
-  }
-  .iti__country-list {
-    z-index: 9999;
-    background: #ffffff !important;
-    color: #111827 !important;
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  }
-  .iti__country-list .iti__country-name,
-  .iti__country-list .iti__dial-code { color: #111827 !important; }
-  .iti__country-list .iti__country.iti__highlight,
-  .iti__country-list .iti__country:hover { background: #f9fafb !important; }
-  .iti__search-input {
-    color: #111827 !important;
-    background: #f9fafb !important;
-    border-color: #e5e7eb !important;
-  }
-</style>
