@@ -65,7 +65,7 @@ const breadcrumbJsonLd = {
 };
 ---
 
-<Layout title={course.data.title} description={course.data.shortDescription}>
+<Layout title={course.data.title} description={course.data.shortDescription} image={course.data.coverImage.src}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
