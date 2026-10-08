@@ -104,6 +104,13 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <script>
+  function maskName(name) {
+    return name.split(" ").map(word => {
+      if (word.length <= 2) return word;
+      return word[0] + "*".repeat(word.length - 2) + word[word.length - 1];
+    }).join(" ");
+  }
+
   function fmt(d) {
     if (!d) return null;
     return new Date(d).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" });
@@ -139,7 +146,7 @@ import Layout from "../../layouts/Layout.astro";
       }
 
       document.getElementById("cert-number").textContent  = `Nº ${data.certificate_number}`;
-      document.getElementById("cert-student").textContent = data.student_name;
+      document.getElementById("cert-student").textContent = maskName(data.student_name);
       document.getElementById("cert-course").textContent  = data.course_name;
 
       if (data.hours) {
