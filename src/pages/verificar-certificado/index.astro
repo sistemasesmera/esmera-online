@@ -1,7 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-
-const PANEL_API_URL = import.meta.env.PUBLIC_PANEL_API_URL ?? "https://panel.esmeraonline.com";
 ---
 
 <Layout
@@ -91,7 +89,7 @@ const PANEL_API_URL = import.meta.env.PUBLIC_PANEL_API_URL ?? "https://panel.esm
   </section>
 </Layout>
 
-<script define:vars={{ PANEL_API_URL }}>
+<script>
   function fmt(d) {
     if (!d) return null;
     return new Date(d).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" });
@@ -115,7 +113,7 @@ const PANEL_API_URL = import.meta.env.PUBLIC_PANEL_API_URL ?? "https://panel.esm
     }
 
     try {
-      const res  = await fetch(`${PANEL_API_URL}/api/certificados/${encodeURIComponent(numero)}`);
+      const res  = await fetch(`https://panel.esmeraonline.com/api/certificados/${encodeURIComponent(numero)}`);
       const data = await res.json();
 
       if (!data.valid) {
