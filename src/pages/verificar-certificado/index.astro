@@ -15,74 +15,88 @@ import Layout from "../../layouts/Layout.astro";
       <div class="absolute inset-0 -z-10 bg-dot-grid opacity-[0.25] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,black,transparent)]"></div>
     </div>
 
-    <!-- Logo / marca -->
+    <!-- Logo -->
     <div class="mb-8 flex items-center gap-2">
       <img src="/favicon-64.png" alt="Esmera Online" class="h-8 w-8 rounded-lg" />
       <span class="font-display text-sm font-bold text-ink-500">Esmera Online</span>
     </div>
 
-    <!-- Estado: cargando -->
+    <!-- Cargando -->
     <div id="state-loading" class="flex flex-col items-center gap-4 text-ink-400">
       <div class="h-10 w-10 rounded-full border-4 border-brand-200 border-t-brand-600 animate-spin"></div>
       <p class="text-sm">Verificando certificado…</p>
     </div>
 
-    <!-- Estado: válido -->
-    <div id="state-valid" class="hidden w-full max-w-md">
-      <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center shadow-sm">
-        <!-- Icono check -->
-        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-          <svg class="h-8 w-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-          </svg>
+    <!-- Válido -->
+    <div id="state-valid" class="hidden w-full max-w-sm">
+      <div class="rounded-2xl border border-emerald-200 bg-white shadow-sm overflow-hidden">
+
+        <!-- Cabecera verde -->
+        <div class="bg-emerald-50 px-6 py-5 text-center border-b border-emerald-100">
+          <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+            <svg class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </div>
+          <p class="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-600 mb-1">Certificado válido</p>
+          <p id="cert-number" class="font-mono text-base font-black text-ink-900 break-all"></p>
         </div>
-        <p class="text-xs font-black uppercase tracking-[0.16em] text-emerald-600 mb-1">Certificado válido</p>
-        <p id="cert-number" class="font-mono text-2xl font-black text-ink-900 mb-5"></p>
 
         <!-- Datos -->
-        <div class="rounded-xl bg-white border border-emerald-100 divide-y divide-emerald-50 text-left mb-4">
-          <div class="flex justify-between px-4 py-3 text-sm">
+        <div class="divide-y divide-slate-100">
+          <div class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
             <span class="text-ink-400">Alumno</span>
-            <span id="cert-student" class="font-semibold text-ink-900 text-right max-w-[55%]"></span>
+            <span id="cert-student" class="font-semibold text-ink-900 text-right"></span>
           </div>
-          <div class="flex justify-between px-4 py-3 text-sm">
+          <div class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
             <span class="text-ink-400">Curso</span>
-            <span id="cert-course" class="font-semibold text-ink-900 text-right max-w-[55%]"></span>
+            <span id="cert-course" class="font-semibold text-ink-900 text-right"></span>
           </div>
-          <div id="row-hours" class="flex justify-between px-4 py-3 text-sm">
+          <div id="row-hours" class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
             <span class="text-ink-400">Horas</span>
-            <span id="cert-hours" class="font-semibold text-ink-900"></span>
+            <span id="cert-hours" class="font-semibold text-ink-900 text-right"></span>
           </div>
-          <div id="row-dates" class="flex justify-between px-4 py-3 text-sm">
-            <span class="text-ink-400">Período</span>
-            <span id="cert-dates" class="font-semibold text-ink-900"></span>
+          <div id="row-start" class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
+            <span class="text-ink-400">Inicio</span>
+            <span id="cert-start" class="font-semibold text-ink-900 text-right"></span>
           </div>
-          <div class="flex justify-between px-4 py-3 text-sm">
+          <div id="row-end" class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
+            <span class="text-ink-400">Fin</span>
+            <span id="cert-end" class="font-semibold text-ink-900 text-right"></span>
+          </div>
+          <div class="grid grid-cols-2 px-5 py-3 text-sm gap-2">
             <span class="text-ink-400">Emitido</span>
-            <span id="cert-issued" class="font-semibold text-ink-900"></span>
+            <span id="cert-issued" class="font-semibold text-ink-900 text-right"></span>
           </div>
         </div>
 
-        <p class="text-xs text-ink-400">Este certificado ha sido emitido y verificado por Esmera Online.</p>
+        <!-- Pie -->
+        <div class="bg-slate-50 px-5 py-3 border-t border-slate-100">
+          <p class="text-center text-[11px] text-ink-400">Verificado por Esmera Online</p>
+        </div>
       </div>
     </div>
 
-    <!-- Estado: inválido / no encontrado -->
-    <div id="state-invalid" class="hidden w-full max-w-md">
-      <div class="rounded-2xl border border-red-200 bg-red-50 p-6 text-center shadow-sm">
-        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
-          <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-          </svg>
+    <!-- Inválido -->
+    <div id="state-invalid" class="hidden w-full max-w-sm">
+      <div class="rounded-2xl border border-red-200 bg-white shadow-sm overflow-hidden">
+        <div class="bg-red-50 px-6 py-5 text-center border-b border-red-100">
+          <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+            <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+          </div>
+          <p class="text-[11px] font-black uppercase tracking-[0.18em] text-red-500 mb-1">Certificado no válido</p>
+          <p id="invalid-reason" class="text-sm text-ink-500">No se ha podido verificar este certificado.</p>
         </div>
-        <p class="text-xs font-black uppercase tracking-[0.16em] text-red-500 mb-2">Certificado no válido</p>
-        <p id="invalid-reason" class="text-sm text-ink-500 mb-5">No se ha podido verificar este certificado.</p>
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-ink-800"
-        >
-          Ir a Esmera Online
-        </a>
+        <div class="px-6 py-4 text-center">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-ink-800"
+          >
+            Ir a Esmera Online
+          </a>
+        </div>
       </div>
     </div>
 
@@ -102,8 +116,7 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   async function verify() {
-    // Extract certificate number from URL path: /verificar-certificado/1042
-    const parts = window.location.pathname.replace(/\/$/, "").split("/");
+    const parts  = window.location.pathname.replace(/\/$/, "").split("/");
     const numero = parts[parts.length - 1];
 
     if (!numero || numero === "verificar-certificado") {
@@ -125,23 +138,29 @@ import Layout from "../../layouts/Layout.astro";
         return;
       }
 
-      // Populate valid state
       document.getElementById("cert-number").textContent  = `Nº ${data.certificate_number}`;
       document.getElementById("cert-student").textContent = data.student_name;
       document.getElementById("cert-course").textContent  = data.course_name;
 
       if (data.hours) {
-        document.getElementById("cert-hours").textContent = `${data.hours} horas`;
+        document.getElementById("cert-hours").textContent = `${data.hours} h`;
       } else {
         document.getElementById("row-hours")?.classList.add("hidden");
       }
 
       const start = fmt(data.start_date);
       const end   = fmt(data.end_date);
-      if (start || end) {
-        document.getElementById("cert-dates").textContent = [start, end].filter(Boolean).join(" — ");
+
+      if (start) {
+        document.getElementById("cert-start").textContent = start;
       } else {
-        document.getElementById("row-dates")?.classList.add("hidden");
+        document.getElementById("row-start")?.classList.add("hidden");
+      }
+
+      if (end) {
+        document.getElementById("cert-end").textContent = end;
+      } else {
+        document.getElementById("row-end")?.classList.add("hidden");
       }
 
       document.getElementById("cert-issued").textContent = fmt(data.issued_at) ?? "—";
