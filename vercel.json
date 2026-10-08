@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/verificar-certificado/:numero*",
+      "destination": "/verificar-certificado"
+    }
+  ]
+}
