@@ -1,0 +1,30 @@
+---
+// Componente centralizado: Consent Mode v2 + GTM.
+// Colocar dentro de <head>, antes de cualquier otro script.
+// Todos los layouts deben usar este componente — nunca duplicar este código.
+---
+<!-- Consent Mode v2 — se ejecuta ANTES de que cargue GTM -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  var _consent = 'denied';
+  try {
+    if (localStorage.getItem('esmera-cookie-consent') === 'granted') _consent = 'granted';
+  } catch(e) {}
+
+  gtag('consent', 'default', {
+    analytics_storage:   _consent,
+    ad_storage:          _consent,
+    ad_user_data:        _consent,
+    ad_personalization:  _consent,
+    wait_for_update:     500,
+  });
+</script>
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
+<!-- End Google Tag Manager -->

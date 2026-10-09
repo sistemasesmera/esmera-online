@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import CookieNotice from "../components/CookieNotice.astro";
+import ConsentAndGTM from "../components/ConsentAndGTM.astro";
 ---
 
 <!doctype html>
@@ -16,26 +17,7 @@ import CookieNotice from "../components/CookieNotice.astro";
     <meta name="robots" content="noindex, nofollow" />
     <meta property="og:title" content="Curso Instagram Pro — Esmera Online" />
     <meta property="og:description" content="Aprende a crear, diseñar, publicar y gestionar Instagram como un profesional. Formación completa en 90 horas." />
-    <!-- Consent Mode v2 -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      var _consent = localStorage.getItem('esmera-cookie-consent');
-      gtag('consent', 'default', {
-        analytics_storage:     _consent === 'granted' ? 'granted' : 'denied',
-        ad_storage:            'denied',
-        ad_user_data:          'denied',
-        ad_personalization:    'denied',
-        wait_for_update:       500,
-      });
-    </script>
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
-    <!-- End Google Tag Manager -->
+    <ConsentAndGTM />
     <ClientRouter />
     <script>
       import "../lib/reveal";

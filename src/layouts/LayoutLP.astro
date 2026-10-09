@@ -3,6 +3,7 @@ import "../styles/global.css";
 import CookieNotice from "../components/CookieNotice.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { Image } from "astro:assets";
+import ConsentAndGTM from "../components/ConsentAndGTM.astro";
 import logoFull from "../assets/brand/logo-full.png";
 
 interface Props {
@@ -28,26 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     <meta name="robots" content="noindex, nofollow" />
 
-    <!-- Consent Mode v2 — defaults before GTM loads -->
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      var _consent = localStorage.getItem('esmera-cookie-consent');
-      gtag('consent', 'default', {
-        analytics_storage:     _consent === 'granted' ? 'granted' : 'denied',
-        ad_storage:            'denied',
-        ad_user_data:          'denied',
-        ad_personalization:    'denied',
-        wait_for_update:       500,
-      });
-    </script>
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
-    <!-- End Google Tag Manager -->
+    <ConsentAndGTM />
 
     <slot name="head" />
   </head>
