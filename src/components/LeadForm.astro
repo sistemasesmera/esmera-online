@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 
 interface Props {
   presetCourse?: string;
+  courseSlug?: string;
+  coursePrice?: number;
   title?: string;
   subtitle?: string;
   variant?: "light" | "brand";
@@ -12,6 +14,8 @@ interface Props {
 
 const {
   presetCourse,
+  courseSlug,
+  coursePrice,
   title = "Habla con un asesor de formación",
   subtitle = "Cuéntanos qué quieres conseguir y te ayudamos a elegir el camino formativo adecuado.",
   variant = "light",
@@ -58,7 +62,13 @@ const labelClass = isBrand
       <p class={`text-sm leading-relaxed ${isBrand ? "text-white/85" : "text-ink-500"}`}>¡Recibido! Un asesor se pondrá en contacto contigo pronto.</p>
     </div>
 
-    <form id="lead-form" class="mt-8 space-y-4" novalidate>
+    <form
+      id="lead-form"
+      class="mt-8 space-y-4"
+      novalidate
+      data-course-slug={courseSlug}
+      data-course-price={coursePrice !== undefined ? String(coursePrice) : undefined}
+    >
       {presetCourse && <input type="hidden" name="courseOfInterest" value={presetCourse} />}
 
       <div>
@@ -177,6 +187,7 @@ const labelClass = isBrand
   import intlTelInput from "intl-tel-input/intlTelInputWithUtils";
   import "intl-tel-input/styles";
   import { submitLead } from "../lib/leads";
+  import { trackLead } from "../lib/gtm";
 
   function initLeadForms() {
     document.querySelectorAll<HTMLFormElement>("#lead-form").forEach((form) => {
@@ -228,9 +239,22 @@ const labelClass = isBrand
         });
 
         if (result.ok) {
+          const isModal = !!form.closest("[data-lead-modal]");
           const courseName = String(data.get("courseOfInterest") ?? "").trim();
-          const pathMatch = window.location.pathname.match(/^\/cursos\/([^/]+)/);
-          const courseSlug = pathMatch ? pathMatch[1] : (courseName || "general");
+          const slugAttr = (form.dataset.courseSlug ?? "").trim();
+          const course_id = slugAttr
+            || (isModal
+              ? (window.location.pathname.match(/^\/cursos\/([^/]+)/)?.[1] ?? "sin_definir")
+              : "sin_definir");
+
+          trackLead({
+            form_location: isModal ? "popup_asesor" : "ficha_curso",
+            course_id,
+            course_name: courseName || "Aún no lo sé",
+            value: Number(form.dataset.coursePrice ?? 0),
+            email: String(data.get("email") ?? "").trim() || undefined,
+            phone: iti ? iti.getNumber() : String(data.get("phone") ?? ""),
+          });
           showPanel(successPanel);
         } else {
           if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo o llámanos directamente.";

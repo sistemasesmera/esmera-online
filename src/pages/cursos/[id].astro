@@ -127,10 +127,10 @@ const breadcrumbJsonLd = {
                   data-buy-trigger={course.data.stripePaymentLink}
                   class="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                 >Comprar curso</button>
-                <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>¿Tienes dudas?</Button>
+                <Button href="javascript:void(0)" variant="secondary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title} data-lead-course-slug={course.id} data-lead-course-price={String(course.data.price ?? 0)}>¿Tienes dudas?</Button>
               </>
             ) : (
-              <Button href="javascript:void(0)" variant="primary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title}>Solicitar información</Button>
+              <Button href="javascript:void(0)" variant="primary" size="lg" data-lead-modal-trigger data-lead-course={course.data.title} data-lead-course-slug={course.id} data-lead-course-price={String(course.data.price ?? 0)}>Solicitar información</Button>
             )}
           </div>
         </div>
@@ -352,6 +352,8 @@ const breadcrumbJsonLd = {
 
             <LeadForm
               presetCourse={course.data.title}
+              courseSlug={course.id}
+              coursePrice={course.data.price}
               title="¿Tienes dudas?"
               subtitle="Cuéntanos qué necesitas y te respondemos en menos de 24h."
               variant="brand"

@@ -177,6 +177,7 @@ const labelClass = isBrand
   import intlTelInput from "intl-tel-input/intlTelInputWithUtils";
   import "intl-tel-input/styles";
   import { submitLead } from "../lib/leads";
+  import { trackLead } from "../lib/gtm";
 
   const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"] as const;
 
@@ -273,14 +274,13 @@ const labelClass = isBrand
       });
 
       if (result.ok) {
-        // dataLayer push for GTM conversion tracking
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event:     "generate_lead",
-          form_name: "lp_curso_unas",
-          course,
-          value:     dlValue,
-          currency:  "EUR",
+        trackLead({
+          form_location: "landing",
+          course_id:   window.location.pathname.match(/^\/lp\/([^/]+)/)?.[1] ?? "sin_definir",
+          course_name: course,
+          value:       dlValue,
+          email:       String(data.get("email") ?? "").trim() || undefined,
+          phone:       iti ? iti.getNumber() : String(data.get("phone") ?? ""),
         });
         window.location.href = redirectUrl;
       } else {
