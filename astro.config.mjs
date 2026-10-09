@@ -21,5 +21,8 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), icon()]
+  integrations: [
+    sitemap({ filter: (page) => !page.includes("/lp/") }),
+    icon(),
+  ]
 });

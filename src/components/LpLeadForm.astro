@@ -1,0 +1,298 @@
+---
+interface Props {
+  course?: string;
+  redirectUrl?: string;
+  buttonText?: string;
+  title?: string;
+  subtitle?: string;
+  variant?: "light" | "brand";
+  class?: string;
+  dataLayerValue?: number;
+}
+
+const {
+  course = "Curso Profesional de Uñas Esmera",
+  redirectUrl = "/lp/curso-unas/gracias",
+  buttonText = "Quiero información gratis",
+  title = "Pide información sin compromiso",
+  subtitle = "Un asesor te contactará en menos de 24h para resolver todas tus dudas.",
+  variant = "brand",
+  class: className = "",
+  dataLayerValue = 660,
+} = Astro.props;
+
+const isBrand = variant === "brand";
+
+const inputClass = isBrand
+  ? "w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/50 focus:ring-2 focus:ring-white/20"
+  : "w-full rounded-lg border border-ink-200 px-4 py-3 text-sm text-ink-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-100";
+
+const labelClass = isBrand
+  ? "mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-white/70"
+  : "mb-1.5 block font-mono text-xs font-medium uppercase tracking-wide text-ink-500";
+---
+
+<div
+  class={`relative overflow-hidden rounded-3xl p-8 shadow-xl sm:p-10 ${isBrand ? "bg-brand-600 text-white shadow-brand-900/20" : "border border-ink-100 bg-white text-ink-900 shadow-ink-900/5"} ${className}`}
+  data-variant={variant}
+  data-redirect-url={redirectUrl}
+  data-course={course}
+  data-datalayer-value={dataLayerValue}
+>
+  {
+    isBrand && (
+      <>
+        <div class="absolute inset-0 bg-grain" />
+        <div class="glow-orb -right-16 -top-16 h-64 w-64 bg-brand-300/30" />
+      </>
+    )
+  }
+
+  <div class="relative">
+    <h3 class={`font-display text-2xl font-semibold ${isBrand ? "text-white" : "text-ink-900"}`}>{title}</h3>
+    <p class={`mt-2 text-sm leading-relaxed ${isBrand ? "text-white/85" : "text-ink-500"}`}>{subtitle}</p>
+
+    <form id="lp-lead-form" class="mt-8 space-y-4" novalidate>
+      <input type="hidden" name="courseOfInterest" value={course} />
+      <input type="hidden" id="lp-utm-source" name="utm_source" />
+      <input type="hidden" id="lp-utm-medium" name="utm_medium" />
+      <input type="hidden" id="lp-utm-campaign" name="utm_campaign" />
+      <input type="hidden" id="lp-utm-term" name="utm_term" />
+      <input type="hidden" id="lp-utm-content" name="utm_content" />
+      <input type="hidden" id="lp-gclid" name="gclid" />
+
+      <div>
+        <label for="lp-name" class={labelClass}>Nombre completo *</label>
+        <input
+          id="lp-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          class={inputClass}
+          placeholder="Tu nombre"
+        />
+      </div>
+
+      <div>
+        <label for="lp-phone" class={labelClass}>Teléfono *</label>
+        <input
+          id="lp-phone"
+          name="phone"
+          type="tel"
+          required
+          autocomplete="tel"
+          class={inputClass}
+          placeholder="612 345 678"
+        />
+        <p id="lp-phone-error" class={`mt-1 hidden text-xs ${isBrand ? "text-white/70" : "text-red-500"}`}>
+          Introduce un número de teléfono válido.
+        </p>
+      </div>
+
+      <div>
+        <label for="lp-email" class={labelClass}>
+          Email <span class={isBrand ? "text-white/50" : "text-ink-400"}>(opcional)</span>
+        </label>
+        <input
+          id="lp-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          class={inputClass}
+          placeholder="tu@email.com"
+        />
+      </div>
+
+      <label class={`flex cursor-pointer items-start gap-3 ${isBrand ? "text-white/80" : "text-ink-600"}`}>
+        <input
+          id="lp-privacy"
+          name="privacy"
+          type="checkbox"
+          required
+          class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-500"
+        />
+        <span class="text-xs leading-relaxed">
+          He leído y acepto la{" "}
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`underline ${isBrand ? "hover:text-white" : "hover:text-brand-600"}`}
+          >política de privacidad</a>. Esmera Online tratará mis datos para responder a mi consulta. *
+        </span>
+      </label>
+      <p id="lp-privacy-error" class={`hidden text-xs ${isBrand ? "text-white/70" : "text-red-500"}`}>
+        Debes aceptar la política de privacidad para continuar.
+      </p>
+
+      <button
+        type="submit"
+        id="lp-submit-btn"
+        class={
+          isBrand
+            ? "w-full rounded-lg bg-white px-6 py-3.5 font-display text-sm font-semibold text-brand-700 shadow-lg shadow-brand-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-60"
+            : "w-full rounded-lg bg-brand-600 px-6 py-3.5 font-display text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_8px_20px_-10px_var(--color-brand-700)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+        }
+      >
+        {buttonText}
+      </button>
+
+      <p
+        id="lp-form-status"
+        class={`text-center text-sm ${isBrand ? "text-white/80" : "text-ink-500"}`}
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <p class={`text-center text-xs leading-relaxed ${isBrand ? "text-white/60" : "text-ink-400"}`}>
+        Sin compromiso. Protegemos tu privacidad.
+      </p>
+    </form>
+  </div>
+</div>
+
+<style is:global>
+  .iti { width: 100%; }
+  .iti__selected-flag { border-radius: 0.5rem 0 0 0.5rem; padding-inline: 0.75rem; }
+  .iti__country-list {
+    z-index: 50;
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+  .iti__country-list .iti__country-name,
+  .iti__country-list .iti__dial-code { color: #111827 !important; }
+  .iti__country-list .iti__country.iti__highlight,
+  .iti__country-list .iti__country:hover { background: #f3f4f6 !important; }
+  .iti__search-input { color: #111827 !important; background: #f9fafb !important; border-color: #e5e7eb !important; }
+  [data-variant="brand"] .iti__selected-flag { background: rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(255, 255, 255, 0.2); }
+  [data-variant="brand"] .iti__selected-flag:hover { background: rgba(255, 255, 255, 0.15); }
+  [data-variant="brand"] .iti__selected-dial-code { color: rgba(255, 255, 255, 0.85); }
+  [data-variant="brand"] .iti__arrow { border-top-color: rgba(255, 255, 255, 0.6); }
+</style>
+
+<script>
+  import intlTelInput from "intl-tel-input/intlTelInputWithUtils";
+  import "intl-tel-input/styles";
+  import { submitLead } from "../lib/leads";
+
+  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"] as const;
+
+  function captureUtms() {
+    const params = new URLSearchParams(window.location.search);
+    UTM_KEYS.forEach((key) => {
+      const val = params.get(key);
+      if (val) sessionStorage.setItem(`lp_${key}`, val);
+    });
+  }
+
+  function populateHiddenFields() {
+    const idMap: Record<string, string> = {
+      "lp-utm-source":   "utm_source",
+      "lp-utm-medium":   "utm_medium",
+      "lp-utm-campaign": "utm_campaign",
+      "lp-utm-term":     "utm_term",
+      "lp-utm-content":  "utm_content",
+      "lp-gclid":        "gclid",
+    };
+    Object.entries(idMap).forEach(([elId, key]) => {
+      const el = document.getElementById(elId) as HTMLInputElement | null;
+      if (el) el.value = sessionStorage.getItem(`lp_${key}`) ?? "";
+    });
+  }
+
+  function initLpForm() {
+    captureUtms();
+    populateHiddenFields();
+
+    const form = document.getElementById("lp-lead-form") as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = "true";
+
+    const container     = form.closest<HTMLElement>("[data-redirect-url]");
+    const redirectUrl   = container?.dataset.redirectUrl ?? "/lp/curso-unas/gracias";
+    const course        = container?.dataset.course ?? "Curso Profesional de Uñas Esmera";
+    const dlValue       = Number(container?.dataset.datalayerValue ?? 660);
+
+    const phoneInput    = document.getElementById("lp-phone") as HTMLInputElement | null;
+    const phoneError    = document.getElementById("lp-phone-error");
+    const privacyCheck  = document.getElementById("lp-privacy") as HTMLInputElement | null;
+    const privacyError  = document.getElementById("lp-privacy-error");
+    const submitBtn     = document.getElementById("lp-submit-btn") as HTMLButtonElement | null;
+    const status        = document.getElementById("lp-form-status");
+
+    const iti = phoneInput
+      // @ts-expect-error dropdownContainer is valid at runtime
+      ? intlTelInput(phoneInput, { initialCountry: "es", dropdownContainer: document.body })
+      : null;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      // Validate phone
+      try {
+        if (iti && !iti.isValidNumber()) {
+          phoneError?.classList.remove("hidden");
+          phoneInput?.focus();
+          return;
+        }
+      } catch {
+        // isValidNumber not available — let API validate
+      }
+      phoneError?.classList.add("hidden");
+
+      // Validate privacy checkbox
+      if (!privacyCheck?.checked) {
+        privacyError?.classList.remove("hidden");
+        privacyCheck?.focus();
+        return;
+      }
+      privacyError?.classList.add("hidden");
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) status.textContent = "Enviando...";
+
+      // Build UTM note to append to the lead
+      const utmParts = UTM_KEYS
+        .map((key) => {
+          const val = String(data.get(key) ?? "").trim();
+          return val ? `${key}: ${val}` : null;
+        })
+        .filter(Boolean)
+        .join(" | ");
+
+      const result = await submitLead({
+        name:             String(data.get("name") ?? ""),
+        email:            String(data.get("email") ?? "") || undefined,
+        phone:            iti ? iti.getNumber() : String(data.get("phone") ?? ""),
+        courseOfInterest: String(data.get("courseOfInterest") ?? "") || undefined,
+        message:          utmParts || undefined,
+      });
+
+      if (result.ok) {
+        // dataLayer push for GTM conversion tracking
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event:     "generate_lead",
+          form_name: "lp_curso_unas",
+          course,
+          value:     dlValue,
+          currency:  "EUR",
+        });
+        window.location.href = redirectUrl;
+      } else {
+        if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo o llámanos directamente.";
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLpForm);
+  } else {
+    initLpForm();
+  }
+</script>

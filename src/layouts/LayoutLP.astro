@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+import CookieNotice from "../components/CookieNotice.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { Image } from "astro:assets";
+import logoFull from "../assets/brand/logo-full.png";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const year = new Date().getFullYear();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>{title} | Esmera Online</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Consent Mode v2 — defaults before GTM loads -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      var _consent = localStorage.getItem('esmera-cookie-consent');
+      gtag('consent', 'default', {
+        analytics_storage:     _consent === 'granted' ? 'granted' : 'denied',
+        ad_storage:            'denied',
+        ad_user_data:          'denied',
+        ad_personalization:    'denied',
+        wait_for_update:       500,
+      });
+    </script>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N9BWQC3S');</script>
+    <!-- End Google Tag Manager -->
+
+    <slot name="head" />
+  </head>
+  <body class="bg-white text-ink-900 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript is:inline><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9BWQC3S"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="sticky top-0 z-30 border-b border-ink-100 bg-white/95 py-3 backdrop-blur-sm">
+      <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
+        <Image
+          src={logoFull}
+          alt="Esmera Online"
+          width={84}
+          height={62}
+          class="h-8 w-auto"
+        />
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-ink-100 bg-ink-50 py-8">
+      <div class="mx-auto w-full max-w-7xl px-6 lg:px-8 flex flex-col items-center justify-between gap-3 text-xs text-ink-400 sm:flex-row">
+        <p>&copy; {year} Esmera Online. Todos los derechos reservados.</p>
+        <div class="flex gap-5">
+          <a href="/aviso-legal" class="transition-colors hover:text-ink-700">Aviso legal</a>
+          <a href="/privacidad" class="transition-colors hover:text-ink-700">Política de privacidad</a>
+          <a href="/cookies" class="transition-colors hover:text-ink-700">Cookies</a>
+        </div>
+      </div>
+    </footer>
+
+    <CookieNotice />
+    <WhatsAppButton />
+
+    <script>
+      // Reveal animations — inline for LP (no View Transitions / astro:page-load)
+      document.addEventListener("DOMContentLoaded", () => {
+        const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          els.forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+        const obs = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                (e.target as HTMLElement).classList.add("is-visible");
+                obs.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+        );
+        els.forEach((el) => obs.observe(el));
+      });
+    </script>
+  </body>
+</html>
