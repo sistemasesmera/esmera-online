@@ -85,6 +85,21 @@ const organizationJsonLd = {
       document.addEventListener("astro:page-load", trackNavigation);
     </script>
 
+    <script>
+      // virtual_page_view para GTM en navegaciones con View Transitions.
+      // astro:after-swap solo se dispara en navegaciones cliente (nunca en carga inicial),
+      // por lo que no duplica el page view que GTM ya registra al cargar la primera página.
+      document.addEventListener("astro:after-swap", () => {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event:         "virtual_page_view",
+          page_path:     location.pathname,
+          page_location: location.href,
+          page_title:    document.title,
+        });
+      });
+    </script>
+
 <script is:inline>
       function loadEsmeraWidget() {
         const old = document.getElementById("esmera-widget-script");
