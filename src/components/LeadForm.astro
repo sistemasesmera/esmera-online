@@ -114,6 +114,12 @@ const labelClass = isBrand
         ></textarea>
       </div>
 
+      {/* Honeypot — oculto para humanos, visible para bots */}
+      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+        <label for="lead-website">Website</label>
+        <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
       <button
         type="submit"
         class={
@@ -188,18 +194,21 @@ const labelClass = isBrand
   import "intl-tel-input/styles";
   import { submitLead } from "../lib/leads";
   import { trackLead } from "../lib/gtm";
+  import { captureAttribution, getAttribution } from "../lib/attribution";
 
   function initLeadForms() {
+    captureAttribution();
+
     document.querySelectorAll<HTMLFormElement>("#lead-form").forEach((form) => {
       if (form.dataset.bound) return;
       form.dataset.bound = "true";
 
       const phoneInput = form.querySelector<HTMLInputElement>("#lead-phone");
       const phoneError = form.querySelector<HTMLParagraphElement>("#lead-phone-error");
-      const wrapper = form.closest<HTMLElement>(".relative");
+      const wrapper    = form.closest<HTMLElement>(".relative");
       const successPanel = wrapper?.querySelector<HTMLElement>("#lead-form-success");
-      const status = form.querySelector<HTMLParagraphElement>("#lead-form-status");
-      const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      const status     = form.querySelector<HTMLParagraphElement>("#lead-form-status");
+      const submitBtn  = form.querySelector<HTMLButtonElement>("button[type=submit]");
 
       const iti = phoneInput
         // @ts-expect-error dropdownContainer is valid at runtime but missing from this version's types
@@ -222,38 +231,44 @@ const labelClass = isBrand
             phoneInput?.focus();
             return;
           }
-        } catch {
-          // isValidNumber no disponible — dejamos pasar y el API valida
-        }
+        } catch { /* isValidNumber no disponible */ }
         phoneError?.classList.add("hidden");
 
         if (submitBtn) submitBtn.disabled = true;
         if (status) status.textContent = "Enviando...";
 
+        const isModal   = !!form.closest("[data-lead-modal]");
+        const slugAttr  = (form.dataset.courseSlug ?? "").trim();
+        const course_id = slugAttr
+          || (isModal
+            ? (window.location.pathname.match(/^\/cursos\/([^/]+)/)?.[1] ?? "sin_definir")
+            : "sin_definir");
+        const attr = getAttribution();
+
+        const course_name = String(data.get("courseOfInterest") ?? "").trim() || "Aún no lo sé";
+
         const result = await submitLead({
-          name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? "") || undefined,
-          phone: iti ? iti.getNumber() : String(data.get("phone") ?? ""),
-          courseOfInterest: String(data.get("courseOfInterest") ?? "") || undefined,
-          message: String(data.get("message") ?? "") || undefined,
+          nombre:            String(data.get("name") ?? ""),
+          telefono:          iti ? iti.getNumber() : String(data.get("phone") ?? ""),
+          email:             String(data.get("email") ?? "") || undefined,
+          mensaje:           String(data.get("message") ?? "") || undefined,
+          acepta_privacidad: true,
+          form_location:     isModal ? "popup_asesor" : "ficha_curso",
+          course_id,
+          course_name,
+          website:           String(data.get("website") ?? ""),
+          ...attr,
         });
 
         if (result.ok) {
-          const isModal = !!form.closest("[data-lead-modal]");
-          const courseName = String(data.get("courseOfInterest") ?? "").trim();
-          const slugAttr = (form.dataset.courseSlug ?? "").trim();
-          const course_id = slugAttr
-            || (isModal
-              ? (window.location.pathname.match(/^\/cursos\/([^/]+)/)?.[1] ?? "sin_definir")
-              : "sin_definir");
-
           trackLead({
+            event_id:      result.event_id,
             form_location: isModal ? "popup_asesor" : "ficha_curso",
             course_id,
-            course_name: courseName || "Aún no lo sé",
-            value: Number(form.dataset.coursePrice ?? 0),
-            email: String(data.get("email") ?? "").trim() || undefined,
-            phone: iti ? iti.getNumber() : String(data.get("phone") ?? ""),
+            course_name:   String(data.get("courseOfInterest") ?? "").trim() || "Aún no lo sé",
+            value:         Number(form.dataset.coursePrice ?? 0),
+            email:         String(data.get("email") ?? "").trim() || undefined,
+            phone:         iti ? iti.getNumber() : String(data.get("phone") ?? ""),
           });
           showPanel(successPanel);
         } else {
