@@ -96,6 +96,10 @@ const faqs = [
     q: "¿Podré trabajar como profesional de uñas al terminar?",
     a: "Sí, el programa está orientado a la empleabilidad real. Al finalizar tendrás los conocimientos y la práctica necesarios para ejercer de forma profesional.",
   },
+  {
+    q: "¿Se puede financiar?",
+    a: "Sí. Puedes fraccionar el pago en 3 cuotas de 220 €/mes sin intereses. Sin necesidad de tarjeta de crédito ni papeleos.",
+  },
 ];
 
 const standardIncludes = [
@@ -110,7 +114,7 @@ const standardIncludes = [
 
 <LayoutLP
   title="Curso Profesional de Uñas Esmera"
-  description="Conviértete en profesional de uñas profesional desde casa. 16 unidades, 200 horas, 100% online, tutor incluido y diploma de Esmera Online. ¡Empieza cuando quieras!"
+  description="Conviértete en profesional de uñas desde casa. 16 unidades, 200 horas, 100% online, tutor incluido y diploma de Esmera Online. ¡Empieza cuando quieras!"
 >
   <!-- =====================================================
        1. HERO — texto izquierda + formulario derecha
@@ -128,7 +132,7 @@ const standardIncludes = [
           </div>
 
           <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-ink-900 sm:text-4xl lg:text-5xl">
-            Conviértete en profesional de uñas profesional
+            Conviértete en profesional de uñas
             <span class="text-brand-600"> desde casa</span>
           </h1>
 
@@ -353,12 +357,12 @@ const standardIncludes = [
 
       <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {([
-          { icon: "users",     title: "Atender clientes en casa",        desc: "Monta tu propio espacio y trabaja con tu propia clientela sin depender de nadie." },
+          { icon: "users",     title: "Atender clientes en casa",        desc: "Crea tu propio espacio y trabaja con tu clientela sin depender de nadie." },
           { icon: "briefcase", title: "Trabajar en centros de estética", desc: "Entra al mercado laboral como profesional de uñas en salones y centros de belleza." },
           { icon: "chart",     title: "Abrir tu propio negocio",         desc: "Crea tu marca, fija tus precios y construye un negocio rentable desde cero." },
           { icon: "brush",     title: "Especializarte en nail art",      desc: "Diferénciate con técnicas avanzadas de decoración y atrae a clientas exigentes." },
           { icon: "clock",     title: "Trabajar de forma autónoma",      desc: "Sin horarios fijos ni jefes. Tú decides cuándo, dónde y para quién trabajas." },
-          { icon: "compass",   title: "Un sector que no para de crecer",  desc: "La demanda de técnicas de uñas sube cada año. Donde vivas, siempre hay clientas buscando una buena profesional." },
+          { icon: "compass",   title: "Crecer en un sector con futuro",   desc: "La demanda de profesionales de uñas sube cada año. Donde vivas, siempre hay clientas buscando una buena profesional." },
         ] as { icon: "users"|"briefcase"|"chart"|"brush"|"clock"|"compass"; title: string; desc: string }[]).map(({ icon, title, desc }) => (
           <div data-reveal class="flex items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5 shadow-sm">
             <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
