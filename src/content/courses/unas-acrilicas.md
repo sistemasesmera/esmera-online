@@ -1,7 +1,7 @@
 ---
 title: "Uñas Acrílicas"
 internalCode: "UAC1"
-shortDescription: "Domina la técnica de uñas acrílicas: mezcla de polvo y líquido, modelado con molde o tip, y acabado profesional resistente y duradero."
+shortDescription: "Domina la profesional de uñas acrílicas: mezcla de polvo y líquido, modelado con molde o tip, y acabado profesional resistente y duradero."
 categories: ["unas"]
 level: "Iniciación"
 duration: "20 horas"

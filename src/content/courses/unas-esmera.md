@@ -1,7 +1,7 @@
 ---
 title: "Curso Profesional de Uñas Esmera"
 internalCode: "CPUE1"
-shortDescription: "Conviértete en técnica de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo y acompañamiento real."
+shortDescription: "Conviértete en profesional de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo y acompañamiento real."
 categories: ["unas"]
 level: "Iniciación"
 duration: "200 horas"
@@ -28,8 +28,8 @@ faq:
   - question: "¿Cuánto tiempo tengo para completar el curso?"
     answer: "Tienes acceso flexible para organizarte a tu ritmo, sin fechas límite estrictas."
   - question: "¿Qué certificado obtengo al terminar?"
-    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como técnica de uñas profesional."
-  - question: "¿Podré trabajar como técnica de uñas al terminar?"
+    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como profesional de uñas profesional."
+  - question: "¿Podré trabajar como profesional de uñas al terminar?"
     answer: "Sí, el programa está orientado a la empleabilidad real. Al finalizar tendrás los conocimientos y la práctica necesarios para ejercer de forma profesional."
 relatedCourses:
   - "cejas-pestanas"
@@ -39,4 +39,4 @@ featured: true
 order: 10
 ---
 
-Formación profesional online para convertirte en técnica de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales.
+Formación profesional online para convertirte en profesional de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales.

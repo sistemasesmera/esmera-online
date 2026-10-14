@@ -1,6 +1,6 @@
 ---
 title: "Gel, acrílico o acrigel: ¿qué sistema de uñas elegir?"
-description: "Tres sistemas, tres resultados distintos. Si estás pensando en formarte como técnica de uñas o simplemente quieres entender las diferencias, aquí tienes la guía más clara."
+description: "Tres sistemas, tres resultados distintos. Si estás pensando en formarte como profesional de uñas o simplemente quieres entender las diferencias, aquí tienes la guía más clara."
 category: "Imagen Personal"
 publishDate: 2026-07-22
 readingTime: "5 min de lectura"

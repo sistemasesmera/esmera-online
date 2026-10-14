@@ -1,7 +1,7 @@
 ---
 title: "Curso Profesional de Uñas + Clases en vivo"
 internalCode: "CPUE-LIVE"
-shortDescription: "Conviértete en técnica de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo, acompañamiento real y 24 horas de clases en vivo con la profesora."
+shortDescription: "Conviértete en profesional de uñas profesional: acrílicas, gel, nail art y atención al cliente, con un programa completo, acompañamiento real y 24 horas de clases en vivo con la profesora."
 categories: ["unas"]
 level: "Iniciación"
 duration: "200 horas"
@@ -32,7 +32,7 @@ faq:
   - question: "¿Cuánto tiempo tengo para completar el curso?"
     answer: "Tienes acceso flexible para organizarte a tu ritmo. Las clases en vivo se programan con antelación para que puedas planificarte."
   - question: "¿Qué certificado obtengo al terminar?"
-    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como técnica de uñas profesional."
+    answer: "Recibirás un diploma privado de Esmera Online que acredita tu formación como profesional de uñas profesional."
 relatedCourses:
   - "unas-esmera"
 price: 1199
@@ -41,4 +41,4 @@ featured: false
 order: 11
 ---
 
-Formación profesional online para convertirte en técnica de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales. Esta modalidad incluye además **24 horas de clases en vivo** con la profesora para practicar, resolver dudas en tiempo real y avanzar con más seguridad.
+Formación profesional online para convertirte en profesional de uñas: desde las bases hasta las técnicas más demandadas (acrílicas, gel, semipermanente y nail art), con tutor personalizado y tutorías semanales. Esta modalidad incluye además **24 horas de clases en vivo** con la profesora para practicar, resolver dudas en tiempo real y avanzar con más seguridad.
