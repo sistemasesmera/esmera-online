@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "esmeraonline.com" }],
+      "destination": "https://www.esmeraonline.com/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/verificar-certificado/:numero*",

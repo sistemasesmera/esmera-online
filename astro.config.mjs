@@ -9,7 +9,7 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   // TODO: update to the real production domain before deploying
-  site: 'https://esmeraonline.com',
+  site: 'https://www.esmeraonline.com',
 
   // The dev toolbar's client entrypoint reliably 504s on first load in
   // headless/automated sessions (see .claude/skills/run-esmera-online),
