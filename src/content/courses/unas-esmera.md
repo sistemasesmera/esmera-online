@@ -33,7 +33,7 @@ faq:
     answer: "Sí, el programa está orientado a la empleabilidad real. Al finalizar tendrás los conocimientos y la práctica necesarios para ejercer de forma profesional."
 relatedCourses:
   - "cejas-pestanas"
-price: 599
+price: 660
 stripePaymentLink: "https://buy.stripe.com/5kQ28teAS3JG7M91o42880m"
 featured: true
 order: 10
